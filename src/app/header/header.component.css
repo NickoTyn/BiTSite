@@ -1,0 +1,134 @@
+  /* Style for the fixed header */
+  .site-header {
+    display: flex;
+    align-items: center; /* Center items when in column mode */
+    justify-content: flex-start;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #db0ed12e;
+    color: #fff;
+    padding: 10px;
+    z-index: 1000;
+    transition: all 1.2s ease;
+    box-shadow: 0 4px 10px #db0ed148, /* Deeper glow */
+    0 1px 3px #0301022e; /* Subtle inner shadow */
+  }
+  
+  .site-header{
+    padding: 10px 20px;
+    max-height: 10vh;
+  }
+  
+  .logo-link {
+    flex-shrink: 0; 
+    scale: 1.45;
+    margin-left: 20px;
+}
+  
+
+
+.main-nav {
+    margin-left: -35px;
+    flex-grow: 1; /* Allows the nav to take up remaining space */
+    display: flex;
+    justify-content: center; /* Center the navigation buttons */
+    margin-top: 0; /* Remove any additional margin */
+    font-family: 'Poppins', sans-serif;
+    ;
+}
+  
+  
+  .nav-list {
+    list-style: none;
+    display: flex;
+    gap: 20px; /* Space between navigation items */
+    padding: 0;
+    margin: 0;
+    align-items: center;
+  }
+  
+  
+  .nav-button {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #fff;
+    background: linear-gradient(145deg, #cd13cc, #675fff);
+    border: none;
+    border-radius: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+
+  
+    .nav-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 
+        0 7px 14px rgba(0, 0, 0, 0.3), 
+        0 3px 6px rgba(0, 0, 0, 0.08),
+        0 0 0 2px rgba(255, 255, 255, 0.7), /* Semi-transparent white outline */
+        0 0 0 5px #FF98FF, /* Violet ring */
+        0 0 10px rgba(242, 0, 255, 0.7), /* Soft violet glow for extra effect */
+        0 0 15px rgba(255, 255, 255, 0.5); /* Outer violet glow */
+}
+
+  
+  .nav-list li a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-list li a:hover {
+    color: #ededed;
+  }
+
+  .nav-button:active {
+    transform: scale(0.95); /* Slightly reduce the size */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2); /* Soften the shadow for a pressed effect */
+    background-color: #674dff; /* Optional: change background color to give feedback */
+}
+  
+  body {
+    padding-top: 120px;
+  }
+  
+  /* Reset some basic elements */
+  body,
+  h1,
+  h2,
+  h3,
+  h4,
+  p,
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: "Arial", sans-serif;
+    background-color: #000;
+    color: #fff;
+  }
+  
+
+  
+  
+  /* Media Query for screens less than 768px wide */
+  @media (max-width: 1068px) {
+    .activities-container {
+      flex-direction: column; /* Stacks flex items vertically */
+    }
+  
+    .activity {
+      width: auto; /* Allows each activity to fill the container */
+      margin: 10px auto; /* Adjust margin as needed for mobile layout */
+    }
+  }
+  
+
+ 
