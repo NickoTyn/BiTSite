@@ -12,7 +12,10 @@ export class JoinUsFormComponent {
   applyForm = new FormGroup({
     firstName: new FormControl(''),
     lastName: new FormControl(''),
-    email: new FormControl('')
+    email: new FormControl(''),
+    telnr: new FormControl(''),
+    discord: new FormControl(''),
+    additionalInfo: new FormControl('') // Adding the new form control
   });
 
   constructor() {
@@ -26,14 +29,27 @@ export class JoinUsFormComponent {
     this.applyForm.controls['email'].valueChanges.subscribe(() => {
       this.toggleFilledClass('email');
     });
+    this.applyForm.controls['telnr'].valueChanges.subscribe(() => {
+      this.toggleFilledClass('telnr');
+    });
+    this.applyForm.controls['discord'].valueChanges.subscribe(() => {
+      this.toggleFilledClass('discord');
+    });
   }
 
   // Function to toggle the 'filled' class based on whether the form control has content
   toggleFilledClass(controlName: string) {
     const control = this.applyForm.get(controlName);
     if (control && control.value !== '') {
-      control.updateValueAndValidity(); // Update the validation status
-      control.markAsDirty(); // Mark the control as dirty to trigger validation
+      const inputElement = document.querySelector(`[formControlName="${controlName}"]`) as HTMLInputElement;
+      if (inputElement) {
+        inputElement.classList.add('filled');
+      }
+    } else {
+      const inputElement = document.querySelector(`[formControlName="${controlName}"]`) as HTMLInputElement;
+      if (inputElement) {
+        inputElement.classList.remove('filled');
+      }
     }
   }
 

@@ -32,8 +32,7 @@ form {
   position: relative;
 }
 
-input[type="text"],
-input[type="email"] {
+input {
   padding: 10px;
   margin: 10px 0;
   background: none;
@@ -45,7 +44,6 @@ input[type="email"] {
   transition: box-shadow 0.3s ease;
 }
 
-input:focus,
 input:focus {
   z-index: 1111;
   box-shadow: 0 0 8px 3px rgba(205, 19, 204, 0.7),
@@ -65,8 +63,57 @@ input:focus {
   pointer-events: none;
 }
 
-input:focus + .labelline,
-input:valid + .labelline{
+input:focus + .labelline{
+  color: #d7bce8;
+  box-shadow: 0px -2px 3px rgba(205, 19, 204, 0.7),
+  0px -2px 35px rgba(103, 95, 255, 0.7);
+  height: 30px;
+  line-height: 30px;
+  transform: translateY(-120%) scale(0.88);
+  z-index: 1;
+}
+
+.filled + .labelline{
+  color: #d7bce8;
+  box-shadow: 0px -2px 3px rgba(205, 19, 204, 0.7),
+  0px -2px 35px rgba(103, 95, 255, 0.7);
+  height: 30px;
+  line-height: 30px;
+  transform: translateY(-120%) scale(0.88);
+  z-index: 1;
+}
+
+input:invalid:not(:focus):not(:placeholder-shown) + .labelline{
+    color: red; /* Change the text color to red */
+    box-shadow: 0px -2px 3px rgba(255, 0, 0, 0.7), /* Red shadow for depth */
+                0px -2px 35px rgba(255, 0, 0, 0.7); /* Red shadow for detail */
+    height: 30px;
+    line-height: 30px;
+    transform: translateY(-120%) scale(0.88);
+    z-index: 1;
+}
+
+input:autofill {
+  padding: 10px;
+  margin: 10px 0;
+  background: none;
+  border: 1px solid #333;
+  border-radius: 4px;
+  color: white;
+  font-size: 16px;
+  outline: none;
+  transition: box-shadow 0.3s ease;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px #330329 inset !important;
+    -webkit-text-fill-color: White !important;
+  }
+
+input:-webkit-autofill + .labelline{
   color: #d7bce8;
   box-shadow: 0px -2px 3px rgba(205, 19, 204, 0.7),
   0px -2px 35px rgba(103, 95, 255, 0.7);
@@ -88,7 +135,68 @@ a:hover {
 .name {
   display: flex;
   justify-content: space-between;
+  width: 20%
 }
+
+.input-row > .name > div{
+  width:20%;
+}
+
+.input-row > #email, #phone-number{
+    width: 95%;
+}
+
+.contact{
+  width:100%
+}
+
+
+/* Ensure the text area has the same styling as the input fields */
+
+textarea{
+  border: none;
+  font-size: 16px;
+}
+
+textarea.input-field {
+  margin-top: 10px;
+  color: white;
+  width: 100%;
+  height: 150px; /* Set a fixed height for the textarea */
+  background: none;
+  border: 1px solid #333;
+  resize: none; /* Disable resizing */
+}
+
+.input-field:focus {
+  box-shadow: 0 0 8px 3px rgba(205, 19, 204, 0.7),
+              0 0 25px 5px rgba(103, 95, 255, 0.7);
+}
+
+#additional-info.labelline{
+  transform: translateY(-65px) !important;
+}
+
+.labelline {
+  position: absolute;
+  top: 50%;
+  padding: 0 5px;
+  left: 10px;
+  transform: translateY(-50%);
+  color: #999;
+  transition: 0.3s ease-out;
+  pointer-events: none;
+}
+
+input:focus + .labelline,
+textarea:focus + .labelline {
+  height: 30px;
+  line-height: 30px;
+  transform: translateY(-120%) scale(0.88);
+  z-index: 1;
+}
+
+
 
 .button-container {
   display: flex;
