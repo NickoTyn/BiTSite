@@ -1,4 +1,9 @@
 .mainactivities{
     margin-top: 145px;
+
 }
 
+html,body{
+    margin:0px;
+    padding:0px;
+}

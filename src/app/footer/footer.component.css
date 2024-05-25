@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+/* aici incepem bubble design */
+
+*{
+  margin:0px;
+  padding:0px;
+  box-sizing: border-box;
+}
+
+.bubble-design svg{
+  
+}
+
+/* aici incepe design footer normal */
+
+.site-footer {
+  background-color: #333;
+  color: #fff;
+  padding: 8px 0;
+  padding-top:30px;
+
+  text-align: center;
+  background:0%;
+  border-top: 1px solid #972ba5;
+  margin-top:40px;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-section {
+  flex: 1;
+  padding: 10px 10px 10px 10px;
+}
+
+.footer-section h4 {
+  margin-bottom: 10px;
+}
+
+.footer-section p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.footer-items {
+  display: flex;
+  align-items: center;
+  padding: 10px 5px 5px 10px;
+  margin-left:10px;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+}
+
+.footer-section ul li {
+  margin: 5px;
+  padding: 10px 5px 10px 5px;
+  flex:1;
+}
+.footer-section ul li a:hover {
+  text-decoration:underline;
+}
+
+.footer-section ul li a {
+  color: #fff;
+  text-decoration: none;
+
+}
+
+.footer-section .social-links {
+  display: flex;
+  justify-content: center;
+  padding:10px 10px 10px 10px;
+}
+
+.footer-section .social-links a {
+  margin: 0 10px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 24px;
+}
+
+.footer-bottom {
+  border-top: 1px solid #972ba5;
+  padding-top: 10px;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.footer-icon{
+  margin-right:15px;
+  transform: scale(1); /* Start scaled to 0 (invisible) */
+  transition:fill 0.3s;
+}
+
+li{
+  font-family:Verdana, Geneva, Tahoma, sans-serif ;
+
+text-transform: capitalize;
+text-transform: uppercase;
+font-style:italic;
+}
+
+li:hover{
+ 
+  opacity:0.5;
+}
+
+.footer-section h4{
+
+
+  font-family:'Dancing Script' ;
+  font-size:34px;
+  text-transform: capitalize;
+  
+  
+}
+.footer-section p{
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-style: italic;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+
+
+

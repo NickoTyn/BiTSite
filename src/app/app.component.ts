@@ -6,6 +6,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { HeaderComponent } from './header/header.component'; 
 import { MainactivitiesComponent } from './mainactivities/mainactivities.component';
 import { JoinUsFormComponent } from './join-us-form/join-us-form.component';
+import { FooterComponent } from './footer/footer.component';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,7 @@ import { JoinUsFormComponent } from './join-us-form/join-us-form.component';
   imports: [
     HomepageComponent,
     HeaderComponent,
+    FooterComponent,
     MainactivitiesComponent,
     JoinUsFormComponent
   ]
