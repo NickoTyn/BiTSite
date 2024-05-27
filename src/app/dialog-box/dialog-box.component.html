@@ -1,0 +1,12 @@
+@if (authService.currentUserSig() == null){
+    <div class="test">
+      <a style="color: aliceblue" routerLink="/login">Login</a>
+      <a style="color: aliceblue" routerLink="/register">Register</a>
+    </div>
+    } @if (authService.currentUserSig()){
+    <div>
+      <span (click)="logout()">Logout</span>
+    </div>
+    }
+
+    
