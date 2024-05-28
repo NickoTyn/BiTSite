@@ -1,7 +1,12 @@
 .mainactivities{
     margin-top: 145px;
+
 }
 
 .test{
     margin-top: 250px;
+}
+html,body{
+    margin:0px;
+    padding:0px;
 }

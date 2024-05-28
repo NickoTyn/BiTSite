@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+.site-footer {
+  background-color: #333;
+  color: #fff;
+  padding: 8px 0;
+  padding-top:20px;
+  background-color: #0E0004;
+  text-align: center;
+
+  border-top: 1px solid #972ba5;
+  margin-top:40px;
+  z-index: 500;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  
+}
+
+.footer-section {
+  flex: 1;
+  padding: 10px 10px 10px 10px;
+}
+
+.footer-section h4 {
+  margin-bottom: 10px;
+}
+
+.footer-section p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.footer-items {
+  display: flex;
+  align-items: center;
+  padding: 10px 5px 5px 10px;
+  margin-left:10px;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+}
+
+.footer-section ul li {
+  margin: 5px;
+  padding: 10px 5px 10px 5px;
+  flex:1;
+}
+.footer-section ul li a:hover {
+  text-decoration:underline;
+}
+
+.footer-section ul li a {
+  color: #fff;
+  text-decoration: none;
+
+}
+
+.footer-section .social-links {
+  display: flex;
+  justify-content: center;
+  padding:10px 10px 10px 10px;
+
+}
+
+.footer-section .social-links a {
+  margin: 0 10px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 24px;
+ 
+}
+
+.footer-section .social-links a:hover {
+  opacity:0.9;
+  text-decoration: none;
+ 
+}
+
+
+.footer-section .QuickLinks a:hover {
+
+  text-decoration: none;
+}
+
+
+
+.footer-bottom {
+  border-top: 1px solid #972ba5;
+  padding-top: 10px;
+  margin-top: 20px;
+  font-size: 14px;
+  background: 0%;
+}
+
+
+
+li{
+  font-family:Verdana, Geneva, Tahoma, sans-serif ;
+  text-decoration: none;
+text-transform: capitalize;
+text-transform: uppercase;
+font-style:italic;
+}
+
+.footer-section h4{
+
+
+  font-family:'Dancing Script' ;
+  font-size:34px;
+  text-transform: capitalize;
+  
+  
+}
+
+.footer-section p{
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-style: italic;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+
+
+
+
+
+/* design dragut underline */
+a {
+  background-image: linear-gradient(
+    to right,
+    #ffffff,
+    #b724cb 50%,
+    #ffffff
+  );
+  background-size: 200% 100%;
+  background-position: -100%;
+  display: inline-block;
+  padding: 5px 0;
+  position: relative;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: all 0.3s ease-in-out;
+}
+
+a:before{
+  content: '';
+  background: #b824cb;
+  display: block;
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  transition: all 0.3s ease-in-out;
+
+
+}
+
+a:hover {
+ background-position: 0;
+}
+
+a:hover::before{
+  width: 100%;
+}

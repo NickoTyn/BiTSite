@@ -17,6 +17,7 @@ import { SignInUpComponent } from './sign-in-up/components/sign-in-up.component'
 import { SignInUpService } from './sign-in-up/services/modal.service';
 import { DialogBoxComponent } from './dialog-box/dialog-box.component';
 
+import { FooterComponent } from './footer/footer.component';
 
 @Component({
   selector: 'app-root',
@@ -26,6 +27,7 @@ import { DialogBoxComponent } from './dialog-box/dialog-box.component';
   imports: [
     HomepageComponent,
     HeaderComponent,
+    FooterComponent,
     MainactivitiesComponent,
     JoinUsFormComponent,
     LoginComponent,
