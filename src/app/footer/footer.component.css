@@ -1,30 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing Script&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 
-/* aici incepem bubble design */
-
-*{
-  margin:0px;
-  padding:0px;
-  box-sizing: border-box;
-}
-
-.bubble-design svg{
-  
-}
-
-/* aici incepe design footer normal */
-
 .site-footer {
   background-color: #333;
   color: #fff;
   padding: 8px 0;
-  padding-top:30px;
-
+  padding-top:20px;
+  background-color: #0E0004;
   text-align: center;
-  background:0%;
+
   border-top: 1px solid #972ba5;
   margin-top:40px;
+  z-index: 500;
 }
 
 .footer-container {
@@ -34,6 +21,7 @@
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  
 }
 
 .footer-section {
@@ -83,6 +71,7 @@
   display: flex;
   justify-content: center;
   padding:10px 10px 10px 10px;
+
 }
 
 .footer-section .social-links a {
@@ -90,32 +79,39 @@
   color: #fff;
   text-decoration: none;
   font-size: 24px;
+ 
 }
+
+.footer-section .social-links a:hover {
+  opacity:0.9;
+  text-decoration: none;
+ 
+}
+
+
+.footer-section .QuickLinks a:hover {
+
+  text-decoration: none;
+}
+
+
 
 .footer-bottom {
   border-top: 1px solid #972ba5;
   padding-top: 10px;
   margin-top: 20px;
   font-size: 14px;
+  background: 0%;
 }
 
-.footer-icon{
-  margin-right:15px;
-  transform: scale(1); /* Start scaled to 0 (invisible) */
-  transition:fill 0.3s;
-}
+
 
 li{
   font-family:Verdana, Geneva, Tahoma, sans-serif ;
-
+  text-decoration: none;
 text-transform: capitalize;
 text-transform: uppercase;
 font-style:italic;
-}
-
-li:hover{
- 
-  opacity:0.5;
 }
 
 .footer-section h4{
@@ -127,6 +123,7 @@ li:hover{
   
   
 }
+
 .footer-section p{
   font-family:Verdana, Geneva, Tahoma, sans-serif;
   font-style: italic;
@@ -137,3 +134,44 @@ li:hover{
 
 
 
+
+
+/* design dragut underline */
+a {
+  background-image: linear-gradient(
+    to right,
+    #ffffff,
+    #b724cb 50%,
+    #ffffff
+  );
+  background-size: 200% 100%;
+  background-position: -100%;
+  display: inline-block;
+  padding: 5px 0;
+  position: relative;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: all 0.3s ease-in-out;
+}
+
+a:before{
+  content: '';
+  background: #b824cb;
+  display: block;
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  transition: all 0.3s ease-in-out;
+
+
+}
+
+a:hover {
+ background-position: 0;
+}
+
+a:hover::before{
+  width: 100%;
+}
