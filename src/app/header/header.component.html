@@ -1,28 +1,37 @@
 <header class="site-header" class="site-header full-page-header">
- 
-    <a href="/" class="logo-link">
+  <a href="/" class="logo-link">
       <img
-        class="logo__image"
-        src="assets/Logo BIT.png"
-        alt="BiT Logo"
-        height="100px"
+          class="logo__image"
+          src="assets/Logo BIT.png"
+          alt="BiT Logo"
+          height="100px"
       />
-    </a>
+  </a>
 
-    <nav class="main-nav">
-      <ul class="nav-list">
-        <li>
-                
-          <a class="button" href="#education-training" class="nav-button"
-            >Home</a
-          >
-        </li>
-        <li>
-          <a href="#work-experience" class="nav-button">Events</a>
-        </li>
-        <li><a href="#portfolio" class="nav-button">Past Activities</a></li>
-        <li><a href="#" class="nav-button">Join Us</a></li>
-      </ul>
-    </nav>
+  <div class="nav-container">
+      <nav class="main-nav">
+          <ul class="nav-list">
+              <li>
+                  <a class="button" href="#education-training" class="nav-button">Home</a>
+              </li>
+              <li>
+                  <a href="#work-experience" class="nav-button">Events</a>
+              </li>
+              <li><a href="#portfolio" class="nav-button">Past Activities</a></li>
+              <li><a href="#" class="nav-button">Join Us</a></li>
+          </ul>
+      </nav>
 
-  </header>
+      <button mat-button class="nav-button-login" (click)="openDialog()">
+          <svg width="24px" height="24px" viewBox="0 0 24.00 24.00" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff">
+              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+              <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.192"></g>
+              <g id="SVGRepo_iconCarrier">
+                  <path d="M20 12C20 7.58172 16.4183 4 12 4M12 20C14.5264 20 16.7792 18.8289 18.2454 17" stroke="#ffffff" stroke-width="1.7759999999999998" stroke-linecap="round"></path>
+                  <path d="M4 12H14M14 12L11 9M14 12L11 15" stroke="#ffffff" stroke-width="1.7759999999999998" stroke-linecap="round" stroke-linejoin="round"></path>
+              </g>
+          </svg>
+          <span class="login-text">Sign In</span>
+      </button>
+  </div>
+</header>
