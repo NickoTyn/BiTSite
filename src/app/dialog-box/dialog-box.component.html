@@ -1,8 +1,19 @@
 @if (authService.currentUserSig() == null){
     <div class="test">
-      <a style="color: aliceblue" routerLink="/login">Login</a>
-      <a style="color: aliceblue" routerLink="/register">Register</a>
+
+     
+      @if (showLogin) {
+        <button (click)="toggleRegisterComponent()">Register</button>
+        <app-login> </app-login>
+      }
+
+
+      @else if (showRegister) {
+        <button (click)="toggleLoginComponent()">Login</button>
+        <app-register> </app-register>
+      }
     </div>
+
     } @if (authService.currentUserSig()){
     <div>
       <span (click)="logout()">Logout</span>

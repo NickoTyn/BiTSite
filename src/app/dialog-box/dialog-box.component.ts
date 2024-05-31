@@ -4,6 +4,7 @@ import {
   MatDialogContent,
   MatDialogActions,
   MatDialogClose,
+  MatDialog,
 } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
@@ -37,6 +38,7 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./dialog-box.component.css']
 })
 export class DialogBoxComponent implements OnInit {
+
   constructor() { }
 
   authService = inject(AuthService);
@@ -57,6 +59,19 @@ export class DialogBoxComponent implements OnInit {
 
   onNoClick(): void {
     // Close dialog logic can be handled in the DialogService
+  }
+
+  showLogin = true;
+  showRegister = false;
+
+  toggleLoginComponent(){
+    this.showLogin = !this.showLogin;
+    this.showRegister = !this.showRegister;
+  }
+
+  toggleRegisterComponent() {
+    this.showRegister = !this.showRegister;
+    this.showLogin = !this.showLogin;
   }
 
   logout(): void {

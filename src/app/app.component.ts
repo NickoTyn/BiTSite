@@ -2,9 +2,8 @@ import { Component, TemplateRef, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
-import { HomepageComponent } from './homepage/homepage.component';
 import { HeaderComponent } from './header/header.component';
 import { MainactivitiesComponent } from './mainactivities/mainactivities.component';
 import { JoinUsFormComponent } from './join-us-form/join-us-form.component';
@@ -16,8 +15,10 @@ import { AuthService } from './auth.service';
 import { SignInUpComponent } from './sign-in-up/components/sign-in-up.component';
 import { SignInUpService } from './sign-in-up/services/modal.service';
 import { DialogBoxComponent } from './dialog-box/dialog-box.component';
-
+import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
+import { AccountComponent } from './account/account.component';
+
 
 @Component({
   selector: 'app-root',
@@ -25,7 +26,8 @@ import { FooterComponent } from './footer/footer.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   imports: [
-    HomepageComponent,
+    HomeComponent,
+    AccountComponent,
     HeaderComponent,
     FooterComponent,
     MainactivitiesComponent,
@@ -33,6 +35,7 @@ import { FooterComponent } from './footer/footer.component';
     LoginComponent,
     RegisterComponent,
     RouterOutlet,
+    RouterModule,
     RouterLink,
     CommonModule,
     SignInUpComponent,
@@ -80,8 +83,4 @@ export class AppComponent {
 }
 
 
-
-function openDialog() {
-  throw new Error('Function not implemented.');
-}
 
