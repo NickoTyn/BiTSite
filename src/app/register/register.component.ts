@@ -7,6 +7,7 @@ import { AuthService } from '../auth.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
+  styleUrl: '../dialog-box/dialog-box.component.css',
   standalone: true,
   imports: [ReactiveFormsModule],
 })

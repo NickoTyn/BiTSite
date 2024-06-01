@@ -1,18 +1,23 @@
-@if (authService.currentUserSig() == null){
+<div class="body">
+  <div class="main">
+          <input type="checkbox" id="chk" aria-hidden="true">
+    @if (authService.currentUserSig() == null){
     <div class="test">
 
-     
-      @if (showLogin) {
-        <button (click)="toggleRegisterComponent()">Register</button>
-        <app-login> </app-login>
-      }
 
+      @if (showLogin) {
+        <label for="chk" aria-hidden="true">SignUp</label>
+      <button (click)="toggleRegisterComponent()">Register</button>
+      <app-login> </app-login>
+      }
 
       @else if (showRegister) {
-        <button (click)="toggleLoginComponent()">Login</button>
-        <app-register> </app-register>
+        <label for="chk" aria-hidden="true">Login</label>
+      <button (click)="toggleLoginComponent()">Login</button>
+      <app-register> </app-register>
       }
     </div>
+
 
     } @if (authService.currentUserSig()){
     <div>
@@ -20,4 +25,5 @@
     </div>
     }
 
-    
+  </div>
+</div>
