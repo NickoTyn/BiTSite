@@ -18,6 +18,7 @@ import { DialogBoxComponent } from './dialog-box/dialog-box.component';
 import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
 import { AccountComponent } from './account/account.component';
+import { MakeAPostComponent } from './make-a-post/make-a-post.component';
 
 
 @Component({
@@ -39,7 +40,8 @@ import { AccountComponent } from './account/account.component';
     RouterLink,
     CommonModule,
     SignInUpComponent,
-    MatDialogModule
+    MatDialogModule, 
+    MakeAPostComponent
   ]
 })
 export class AppComponent {
@@ -61,25 +63,6 @@ export class AppComponent {
     })
   }
 
-  constructor(public dialog: MatDialog){};
-
-    openDialog(){
-      this.dialog.open(DialogBoxComponent,{
-        width:'250px',
-        data:"right click"
-      })
-    }
-
-
- /*  openModal(modalTemplate: TemplateRef<any>){
-    this.modalService.open(modalTemplate, {size:'lg', title: 'Foo'}).subscribe((action: any) => {
-      console.log('modalAction', action);
-    })
-  }
- */
-  logout(): void {
-    this.authService.logout;
-  }
 }
 
 

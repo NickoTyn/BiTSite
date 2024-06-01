@@ -1,18 +1,18 @@
-/* import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { DialogBoxComponent } from './dialog-box.component';
+import { MakeAPostComponent } from './make-a-post.component';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DialogService {
-  private dialogRef: MatDialogRef<DialogBoxComponent> | null = null;
+  private dialogRef: MatDialogRef<MakeAPostComponent> | null = null;
 
   constructor(private dialog: MatDialog) {}
 
   openDialog(data: any): void {
     if (!this.dialogRef) {
-      this.dialogRef = this.dialog.open(DialogBoxComponent, {
+      this.dialogRef = this.dialog.open(MakeAPostComponent, {
         data: data,
         disableClose: true,
       });
@@ -30,4 +30,3 @@ export class DialogService {
     }
   }
 }
- */

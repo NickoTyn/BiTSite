@@ -14,7 +14,7 @@ import { RegisterComponent } from '../register/register.component';
 import { AuthService } from '../auth.service';
 
 @Component({
-  selector: 'app-dialog-box',
+  selector: 'app-make-a-post',
   standalone: true,
   imports: [
     MatFormFieldModule,
@@ -33,47 +33,16 @@ import { AuthService } from '../auth.service';
     LoginComponent,
     RegisterComponent
   ],
-  templateUrl: './dialog-box.component.html',
-  styleUrls: ['./dialog-box.component.css']
+  templateUrl: './make-a-post.component.html',
+  styleUrl: './make-a-post.component.css'
 })
-export class DialogBoxComponent implements OnInit {
+export class MakeAPostComponent {
 
   constructor() { }
-
-  authService = inject(AuthService);
-
-  ngOnInit(): void {
-    this.authService.user$.subscribe(user => {
-      if (user) {
-        this.authService.currentUserSig.set({
-          email: user.email!,
-          username: user.displayName!
-        });
-      } else {
-        this.authService.currentUserSig.set(null);
-      }
-      console.log(this.authService.currentUserSig());
-    });
-  }
-
+ 
   onNoClick(): void {
     // Close dialog logic can be handled in the DialogService
   }
 
-  showLogin = true;
-  showRegister = false;
 
-  toggleLoginComponent(){
-    this.showLogin = !this.showLogin;
-    this.showRegister = !this.showRegister;
-  }
-
-  toggleRegisterComponent() {
-    this.showRegister = !this.showRegister;
-    this.showLogin = !this.showLogin;
-  }
-
-  logout(): void {
-    this.authService.logout();
-  }
 }
