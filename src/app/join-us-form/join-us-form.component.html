@@ -1,41 +1,82 @@
 <div class="color-section">
   <div class="form-container">
     <div class="form-header">
+      <img
+        class="image"
+        src="assets/JoinUsForm-Online world-bro.png"
+        alt="BiT Logo"
+        height="100px"
+      />
       <p>
-        Be part of a vibrant community where ideas flourish and collaboration
-        thrives. Enjoy exclusive events, valuable resources, and endless
-        opportunities for growth and innovation.
+        Be part of a <span class="highlight">vibrant community</span> where
+        ideas flourish and collaboration thrives. Enjoy exclusive
+        <span class="highlight"
+          >events, valuable resources, and endless opportunities</span
+        >
+        for growth and innovation.
       </p>
     </div>
 
     <form [formGroup]="applyForm" (ngSubmit)="submitApplication()">
       <div class="name">
         <div class="input-row">
-          <input id="first-name" type="text" formControlName="firstName" class="input-field" required=""
-            placeholder=" " />
+          <input
+            id="first-name"
+            type="text"
+            formControlName="firstName"
+            class="input-field"
+            required=""
+            placeholder=" "
+          />
           <div class="labelline">First Name</div>
         </div>
 
         <div class="input-row">
-          <input id="last-name" type="text" formControlName="lastName" class="input-field" required=""
-            placeholder=" " />
+          <input
+            id="last-name"
+            type="text"
+            formControlName="lastName"
+            class="input-field"
+            required=""
+            placeholder=" "
+          />
           <div class="labelline">Last Name</div>
         </div>
       </div>
 
       <div class="contact">
         <div class="input-row">
-          <input id="email" type="email" formControlName="email" class="input-field" required="" placeholder=" " />
+          <input
+            id="email"
+            type="email"
+            formControlName="email"
+            class="input-field"
+            required=""
+            placeholder=" "
+          />
           <div class="labelline">Email</div>
         </div>
 
         <div class="input-row">
-          <input id="phone-number" type="tel" formControlName="telnr" class="input-field" required="" placeholder=" " />
+          <input
+            id="phone-number"
+            type="tel"
+            formControlName="telnr"
+            class="input-field"
+            required=""
+            placeholder=" "
+          />
           <div class="labelline">+40</div>
         </div>
 
         <div class="input-row">
-          <input id="discord" type="text" formControlName="discord" class="input-field" placeholder=" " />
+          <input
+            id="discord"
+            type="text"
+            formControlName="discord"
+            class="input-field"
+            placeholder=" "
+          />
           <div class="labelline">Discord ID</div>
         </div>
       </div>
@@ -43,8 +84,12 @@
       <!-- New textarea for additional information -->
       <div class="additional-info">
         <div class="input-row">
-          <textarea id="additional-info" formControlName="additionalInfo" class="input-field"
-            placeholder=" "></textarea>
+          <textarea
+            id="additional-info"
+            formControlName="additionalInfo"
+            class="input-field"
+            placeholder=" "
+          ></textarea>
           <div class="labelline">Additional Information</div>
         </div>
       </div>
