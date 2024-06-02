@@ -19,7 +19,6 @@ export class HeaderComponent {
   authService = inject(AuthService);
 
   ngOnInit(): void {
-    this.openDialog(); /* delete this when finished */
     this.authService.user$.subscribe(user => {
       if (user) {
         this.authService.currentUserSig.set({
@@ -37,9 +36,11 @@ export class HeaderComponent {
 
     openDialog(){
       this.dialog.open(DialogBoxComponent,{
-        panelClass: 'custom-modalbox'
+        backdropClass: 'userActivationDialog'
       })
     }
-
+    
 
 }
+
+

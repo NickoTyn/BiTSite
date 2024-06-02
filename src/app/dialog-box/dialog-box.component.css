@@ -5,6 +5,7 @@
     align-items: center;
     /* background: linear-gradient(to bottom,rgba(255, 255, 23, 0.881),#e31515fa);
  */
+ display: flex;
 }
 
 .main {
@@ -19,7 +20,7 @@
 }
 
 #chk{
-    display:none;
+    display: none;
 }
 
 .signup{
@@ -37,4 +38,75 @@ label{
     font-weight: bold;
     cursor: pointer;
     transition: 0.5s ease-in-out;
+}
+
+input{
+    width:60%;
+    height:20px;
+    background-color: #ffffff;
+    justify-content: center;
+    display: flex;
+    margin:20px auto;
+    padding:10px;
+    border:none;
+    outline:none;
+    border-radius: 10px;
+}
+
+button{
+    width:60%;
+    height:40px;
+    margin:10px auto;
+    justify-content: center;
+    display: block;
+    color:#ffffff;
+    background: #573b8a;
+    font-size:1em;
+    font-weight: bold;
+    margin-top: 20px;
+    outline: none;
+    border:none;
+    border-radius: 10px;
+    transition: 0.2s ease-in;
+    cursor: pointer;
+}
+
+button:hover{
+    background: #6d44b8;
+}
+
+.login{
+    height: 460px;
+    background:#eee;
+    border-radius: 20%/10%;
+    transform: translateY(-10px);
+    transition: 0.8 ease-in-out;
+}
+.login label{
+    color:#573b81;
+    transform: scale(.6);
+}
+
+#chk:checked ~ .login{
+    transform: translateY(-500px);
+
+}
+
+#chk:checked ~ .login label{
+    transform: scale(1);
+}
+
+#chk:checked ~ .signup label {
+    transform: scale(.6);
+}
+
+.error{
+    color:#ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-style: bold;
+    font-size: 20px;
+    margin:5px auto;
+    padding:5px auto;
 }

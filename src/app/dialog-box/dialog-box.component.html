@@ -6,13 +6,13 @@
 
 
       @if (showLogin) {
-        <label for="chk" aria-hidden="true">SignUp</label>
+        <label for="chk" aria-hidden="true" (click)="toggleRegisterComponent()">Login</label>
       <button (click)="toggleRegisterComponent()">Register</button>
       <app-login> </app-login>
       }
 
       @else if (showRegister) {
-        <label for="chk" aria-hidden="true">Login</label>
+        <label for="chk" aria-hidden="true">SingUp</label>
       <button (click)="toggleLoginComponent()">Login</button>
       <app-register> </app-register>
       }
