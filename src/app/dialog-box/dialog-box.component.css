@@ -1,11 +1,11 @@
-.body{
-    margin:0;
-    padding:0;
+.body {
+    margin: 0;
+    padding: 0;
     justify-content: center;
     align-items: center;
-     background: #972ba5;
+    background: #972ba5;
 
- display: flex;
+    display: flex;
 }
 
 .main {
@@ -13,24 +13,26 @@
     height: 80vh;
     max-height: 600px;
     overflow: hidden;
-    background: url("https://static.vecteezy.com/system/resources/previews/001/879/239/original/technology-neon-background-concept-free-vector.jpg") no-repeat center/cover; 
-    border-radius:10px;
-    box-shadow:5px 20px 50px #ffffff;
-    
+    /*     background: linear-gradient(to bottom,#d7bce8,#cd13cc); */
+    background-color: #d1b2e0;
+    background: url("https://wallpapercave.com/wp/wp9328005.jpg")no-repeat center/cover;
+    border-radius: 30px;
+    box-shadow: 5px 20px 50px #ffffff;
+
 }
 
-#chk{
+#chk {
     display: none;
 }
 
-.signup{
-    position:relative;
-    width:100%;
-    height:100%;
+.signup {
+    position: relative;
+    width: 100%;
+    height: 100%;
 }
 
-label{
-    color:#ffffff;
+label {
+    color: #ffffff;
     font-size: 2.3em;
     justify-content: center;
     display: flex;
@@ -40,73 +42,74 @@ label{
     transition: 0.5s ease-in-out;
 }
 
-input{
-    width:60%;
-    height:20px;
+input {
+    width: 60%;
+    height: 20px;
     background-color: #ffffff;
     justify-content: center;
     display: flex;
-    margin:20px auto;
-    padding:10px;
-    border:none;
-    outline:none;
+    margin: 20px auto;
+    padding: 10px;
+    border: none;
+    outline: none;
     border-radius: 10px;
 }
 
-button{
-    width:60%;
-    height:40px;
-    margin:10px auto;
+button {
+    width: 60%;
+    height: 40px;
+    margin: 10px auto;
     justify-content: center;
     display: block;
-    color:#ffffff;
+    color: #ffffff;
     background: #573b8a;
-    font-size:1em;
+    font-size: 1em;
     font-weight: bold;
     margin-top: 20px;
     outline: none;
-    border:none;
+    border: none;
     border-radius: 10px;
     transition: 0.2s ease-in;
     cursor: pointer;
 }
 
-button:hover{
+button:hover {
     background: #6d44b8;
 }
 
-.login{
+.login {
     height: 460px;
-    background:#eee;
+    background: #eee;
     border-radius: 20%/10%;
     transform: translateY(-10px);
     transition: 0.8 ease-in-out;
 }
-.login label{
-    color:#573b81;
+
+.login label {
+    color: #573b81;
     transform: scale(.6);
 }
 
-#chk:checked ~ .login{
+#chk:checked~.login {
     transform: translateY(-500px);
 
 }
 
-#chk:checked ~ .login label{
+#chk:checked~.login label {
     transform: scale(1);
 }
 
-#chk:checked ~ .signup label {
+#chk:checked~.signup label {
     transform: scale(.6);
 }
 
-.error{
-    color:#ffffff;
+.error {
+    color: #ffffff;
     display: flex;
     align-items: center;
     justify-content: center;
     font-style: bold;
     font-size: 20px;
-    margin:5px auto;
-    padding:5px auto;
+    margin: 5px auto;
+    padding: 5px auto;
 }

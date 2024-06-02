@@ -117,7 +117,12 @@ section {
 }
 
 .carousel__slide img:hover {
-  box-shadow: 0 0 250px 50px #972ba5;
+  box-shadow: 0 0 350px 60px #972ba5;
+  /* Stronger and larger glow on hover */
+}
+
+#idk:hover ~ #poza{
+  opacity:0%;
   /* Stronger and larger glow on hover */
 }
 

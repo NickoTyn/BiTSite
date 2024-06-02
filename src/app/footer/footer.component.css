@@ -9,7 +9,7 @@
   background-color: transparent;
   text-align: center;
 
-  border-top: 1px solid #972ba5;
+  border-top: 1px solid #d40dc4;
   margin-top:40px;
   z-index: 500;
 }
@@ -97,7 +97,7 @@
 
 
 .footer-bottom {
-  border-top: 1px solid #972ba5;
+  border-top: 1px solid #d40dc4;
   padding-top: 10px;
   margin-top: 20px;
   font-size: 14px;
@@ -141,7 +141,7 @@ a {
   background-image: linear-gradient(
     to right,
     #ffffff,
-    hsl(293, 90%, 64%) 50%,
+    hsl(305, 88%, 44%) 50%,
     #ffffff
   );
   background-size: 200% 100%;
@@ -156,7 +156,7 @@ a {
 
 a:before{
   content: '';
-  background: #b824cb;
+  background: #d40dc4;
   display: block;
   position: absolute;
   bottom: -3px;
