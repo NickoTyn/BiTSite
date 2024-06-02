@@ -4,6 +4,9 @@ import {MatDialogModule} from '@angular/material/dialog';
 
 import { MakeAPostComponent } from '../make-a-post/make-a-post.component';
 import { DialogBoxComponent } from '../dialog-box/dialog-box.component';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../auth.service';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-account',
@@ -15,13 +18,27 @@ import { DialogBoxComponent } from '../dialog-box/dialog-box.component';
   templateUrl: './account.component.html',
   styleUrl: './account.component.css'
 })
+
+
 export class AccountComponent {
 
-  constructor(public dialog: MatDialog) {}
+  updateProfileForm!: FormGroup;
+
+  data: any[] = [];
+  
+  constructor(public dialog: MatDialog, private dataService: AuthService) {}
+
+  ngOnInit(): void {
+    this.dataService.getData().subscribe(data => {
+      this.data = data;
+    });
+  }
+
+ 
 
   openDialog(): void {
     this.dialog.open(MakeAPostComponent, {
-      data: "right click"
+      panelClass: 'custom-dialog-container'
     });
   }
 
