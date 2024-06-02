@@ -110,14 +110,14 @@ section {
   height: 100%;
   transition: box-shadow 0.5s ease-in-out;
   /* Extended transition for smoother effect */
-  box-shadow: 0 0 15px 8px rgba(215, 188, 232, 0.7);
+  box-shadow: 0 0 15px 8px #972ba5;
   /* Updated glow settings for more subtlety */
-  box-shadow: 0 0 5px 5px rgba(215, 188, 232);
+  box-shadow:  5px  #cd13cc;
   /* Updated glow settings for more subtlety */
 }
 
 .carousel__slide img:hover {
-  box-shadow: 0 0 250px 50px rgba(244, 226, 255);
+  box-shadow: 0 0 250px 50px #972ba5;
   /* Stronger and larger glow on hover */
 }
 
@@ -234,11 +234,16 @@ svg{
   width:400px;
 }
 
+.design{
+  overflow-x:hidden;
+}
+
 .design img{
-  width:18vw; 
-  display:flex;
-  position: relative;
-  z-index: -2;
-  align-items: center;
-  justify-content:center;
+  width:450px; 
+  position: absolute;
+  z-index: -1;
+  top:4vw;
+  right: 2vw;
+/*   bottom:20vh ; */
+/*   left: ; */
 }
