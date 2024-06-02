@@ -1,3 +1,4 @@
+/* General styles for larger screens */
 .form-container {
   display: flex;
   justify-content: space-around;
@@ -6,34 +7,48 @@
   margin: auto;
   padding: 40px;
   background-color: #330329;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5),
-    /* Shadow for depth */ 0 2px 4px rgba(0, 0, 0, 0.3); /* Smaller shadow for detail */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 0.3);
   color: #fff;
   font-family: Arial, sans-serif;
   border-radius: 50px;
 }
 
+.form-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+}
 
 .form-header p {
   font-family: "Nunito", sans-serif;
   color: #d7bce8;
   font-size: 25px;
+  text-align: center;
+  margin: 0px auto;
 }
 
 form {
   margin: 0px 35px;
 }
 
-.form-header h2 {
-  font-size: 18px;
-  margin-bottom: 10px;
+.highlight {
+  color: #d40dc4;
 }
+
+.image {
+  margin: 65px auto 90px auto;
+  scale: 2.6;
+  transition: filter 0.7s ease;
+}
+
 
 .input-row {
   position: relative;
 }
 
-input {
+input,
+textarea {
   padding: 10px;
   margin: 10px 0;
   background: none;
@@ -45,10 +60,10 @@ input {
   transition: box-shadow 0.3s ease;
 }
 
-input:focus {
+input:focus,
+textarea:focus {
   z-index: 1111;
-  box-shadow: 0 0 8px 3px rgba(205, 19, 204, 0.7),
-    0 0 25px 5px rgba(103, 95, 255, 0.7);
+  box-shadow: 0 0 8px 3px rgba(205, 19, 204, 0.7), 0 0 25px 5px rgba(103, 95, 255, 0.7);
 }
 
 .labelline {
@@ -64,34 +79,24 @@ input:focus {
   pointer-events: none;
 }
 
-input:focus + .labelline{
+input:focus + .labelline,
+textarea:focus + .labelline,
+.filled + .labelline {
   color: #d7bce8;
-  box-shadow: 0px -2px 3px rgba(205, 19, 204, 0.7),
-  0px -2px 35px rgba(103, 95, 255, 0.7);
+  box-shadow: 0px -2px 3px rgba(205, 19, 204, 0.7), 0px -2px 35px rgba(103, 95, 255, 0.7);
   height: 30px;
   line-height: 30px;
   transform: translateY(-120%) scale(0.88);
   z-index: 1;
 }
 
-.filled + .labelline{
-  color: #d7bce8;
-  box-shadow: 0px -2px 3px rgba(205, 19, 204, 0.7),
-  0px -2px 35px rgba(103, 95, 255, 0.7);
+input:invalid:not(:focus):not(:placeholder-shown) + .labelline {
+  color: red;
+  box-shadow: 0px -2px 3px rgba(255, 0, 0, 0.7), 0px -2px 35px rgba(255, 0, 0, 0.7);
   height: 30px;
   line-height: 30px;
   transform: translateY(-120%) scale(0.88);
   z-index: 1;
-}
-
-input:invalid:not(:focus):not(:placeholder-shown) + .labelline{
-    color: red; /* Change the text color to red */
-    box-shadow: 0px -2px 3px rgba(255, 0, 0, 0.7), /* Red shadow for depth */
-                0px -2px 35px rgba(255, 0, 0, 0.7); /* Red shadow for detail */
-    height: 30px;
-    line-height: 30px;
-    transform: translateY(-120%) scale(0.88);
-    z-index: 1;
 }
 
 input:autofill {
@@ -107,17 +112,16 @@ input:autofill {
 }
 
 input:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus, 
-input:-webkit-autofill:active{
-    -webkit-box-shadow: 0 0 0 30px #330329 inset !important;
-    -webkit-text-fill-color: White !important;
-  }
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #330329 inset !important;
+  -webkit-text-fill-color: White !important;
+}
 
-input:-webkit-autofill + .labelline{
+input:-webkit-autofill + .labelline {
   color: #d7bce8;
-  box-shadow: 0px -2px 3px rgba(205, 19, 204, 0.7),
-  0px -2px 35px rgba(103, 95, 255, 0.7);
+  box-shadow: 0px -2px 3px rgba(205, 19, 204, 0.7), 0px -2px 35px rgba(103, 95, 255, 0.7);
   height: 30px;
   line-height: 30px;
   transform: translateY(-120%) scale(0.88);
@@ -136,68 +140,32 @@ a:hover {
 .name {
   display: flex;
   justify-content: space-between;
-  width: 20%
+  width: 100%;
 }
 
-.input-row > .name > div{
-  width:20%;
+.input-row > .name > div {
+  width: 48%;
 }
 
-.input-row > #email, #phone-number{
-    width: 95%;
+.input-row > #email,
+#phone-number {
+  width: 100%;
 }
 
-.contact{
-  width:100%
-}
-
-
-/* Ensure the text area has the same styling as the input fields */
-
-textarea{
-  border: none;
-  font-size: 16px;
+.contact,
+.additional-info {
+  width: 100%;
 }
 
 textarea.input-field {
   margin-top: 10px;
   color: white;
   width: 100%;
-  height: 150px; /* Set a fixed height for the textarea */
+  height: 150px;
   background: none;
   border: 1px solid #333;
-  resize: none; /* Disable resizing */
+  resize: none;
 }
-
-.input-field:focus {
-  box-shadow: 0 0 8px 3px rgba(205, 19, 204, 0.7),
-              0 0 25px 5px rgba(103, 95, 255, 0.7);
-}
-
-#additional-info.labelline{
-  transform: translateY(-65px) !important;
-}
-
-.labelline {
-  position: absolute;
-  top: 50%;
-  padding: 0 5px;
-  left: 10px;
-  transform: translateY(-50%);
-  color: #999;
-  transition: 0.3s ease-out;
-  pointer-events: none;
-}
-
-input:focus + .labelline,
-textarea:focus + .labelline {
-  height: 30px;
-  line-height: 30px;
-  transform: translateY(-120%) scale(0.88);
-  z-index: 1;
-}
-
-
 
 .button-container {
   display: flex;
@@ -205,7 +173,6 @@ textarea:focus + .labelline {
 }
 
 .button {
-  margin-top: 50px;
   min-width: 125px;
   min-height: 50px;
   font-family: "Nunito", sans-serif;
@@ -228,6 +195,7 @@ textarea:focus + .labelline {
 
 button::before {
   content: "";
+  width: 102%;
   border-radius: 1000px;
   min-width: calc(125px + 6px);
   min-height: calc(50px + 6px);
@@ -241,6 +209,8 @@ button::before {
   transition: all 0.3s ease-in-out 0s;
 }
 
+
+
 .button:hover,
 .button:focus {
   color: #313133;
@@ -252,19 +222,6 @@ button:focus::before {
   opacity: 1;
 }
 
-button::after {
-  content: "";
-  width: 30px;
-  height: 30px;
-  border-radius: 100%;
-  border: 6px solid #ff98ff;
-  position: absolute;
-  z-index: -1;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  animation: ring 1.5s infinite;
-}
 
 button:hover::after,
 button:focus::after {
@@ -285,3 +242,44 @@ button:focus::after {
   }
 }
 
+/* Responsive styles for smaller screens */
+@media (max-width: 768px) {
+  .form-container {
+    flex-direction: column;
+    padding: 20px;
+    max-width: 100%;
+    max-height: none;
+  }
+
+  .name {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  input{
+    width: 100%;
+  }
+
+  .input-row > .name > div {
+    width: 100%;
+  }
+
+  .form-header p {
+    font-size: 20px;
+  }
+
+  .button {
+    width: 100%;
+    font-size: 20px;
+  }
+
+  .form-header img {
+    width: 100px;
+    height: auto;
+  }
+
+  .image {
+    scale: 1.5;
+    margin: 20px auto;
+  }
+}

@@ -17,6 +17,7 @@ import { Auth, User, getAuth, onAuthStateChanged } from '@angular/fire/auth';
 export class HeaderComponent {
 
 
+  
   username: string | null = null;
   auth: Auth;
 

@@ -11,7 +11,7 @@
   padding: 10px;
   z-index: 1000;
   transition: all 1.2s ease;
-  box-shadow: 0 4px 10px hsla(293, 59%, 41%, 0.93), /* Deeper glow */
+  box-shadow: 0 4px 10px #db0ed148, /* Deeper glow */
   0 1px 3px #0301022e; /* Subtle inner shadow */
 }
 
@@ -86,7 +86,7 @@
 .nav-button:active {
   transform: scale(0.95); /* Slightly reduce the size */
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2); /* Soften the shadow for a pressed effect */
-  background-color: #675fff; /* Optional: change background color to give feedback */
+  background-color: #674dff; /* Optional: change background color to give feedback */
 }
 
 body {
@@ -161,7 +161,7 @@ body {
 .nav-button-login:active {
   transform: scale(0.95); /* Slightly reduce the size */
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2); /* Soften the shadow for a pressed effect */
-  background-color: #675fff; /* Optional: change background color to give feedback */
+  background-color: #674dff; /* Optional: change background color to give feedback */
 }
 
 .login-text{
@@ -181,6 +181,7 @@ body {
 }
 
 
-@media (max-width: 500px) {
+@media (max-width: 768px) {
 
+    
   }
