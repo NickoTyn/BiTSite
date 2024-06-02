@@ -19,6 +19,9 @@ import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
 import { AccountComponent } from './account/account.component';
 import { MakeAPostComponent } from './make-a-post/make-a-post.component';
+import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
+import { provideAuth, getAuth } from '@angular/fire/auth';
+
 
 
 @Component({
@@ -28,7 +31,6 @@ import { MakeAPostComponent } from './make-a-post/make-a-post.component';
   styleUrl: './app.component.css',
   imports: [
     HomeComponent,
-    AccountComponent,
     HeaderComponent,
     FooterComponent,
     MainactivitiesComponent,
@@ -41,7 +43,7 @@ import { MakeAPostComponent } from './make-a-post/make-a-post.component';
     CommonModule,
     SignInUpComponent,
     MatDialogModule, 
-    MakeAPostComponent
+    MakeAPostComponent,
   ]
 })
 export class AppComponent {

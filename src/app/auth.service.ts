@@ -1,6 +1,5 @@
 import { Injectable, inject, signal } from "@angular/core";
-import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile, user, getAuth } from "@angular/fire/auth";
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Auth, EmailAuthProvider, createUserWithEmailAndPassword, reauthenticateWithCredential, signInWithEmailAndPassword, signOut, updatePassword, updateProfile, user } from "@angular/fire/auth";
 import { Observable, from } from "rxjs";
 import { UserInterface } from "./user.interface";
 
@@ -9,55 +8,56 @@ import { UserInterface } from "./user.interface";
 })
 
 export class AuthService {
+   
     firebaseAuth = inject(Auth);
     user$ = user(this.firebaseAuth)
     currentUserSig = signal<UserInterface | null | undefined>(undefined)
 
-    constructor(private firestore: AngularFirestore) {}
-
     register(
         email: string,
         username: string,
-        password: string
-    ): Observable<void> {
-        const promise = createUserWithEmailAndPassword(this.firebaseAuth, email, password)
-            .then(response => updateProfile(response.user, { displayName: username }));
+        password: string): Observable<void> {
 
-        return from(promise);
+        const promise = createUserWithEmailAndPassword(this.firebaseAuth, email, password
+        ).then(respounse => updateProfile(respounse.user, { displayName: username }))
+
+        return from(promise)
     }
 
     login(email: string, password: string): Observable<void> {
-        const promise = signInWithEmailAndPassword(this.firebaseAuth, email, password)
-            .then(() => {});
+        const promise = signInWithEmailAndPassword(
+            this.firebaseAuth, 
+            email, 
+            password
+        ).then(() => {});
 
         return from(promise);
     }
 
-    /* updateCurrentUserProfile(displayName: string, photoURL: string): Observable<void> {
-        const currentUser = getAuth().currentUser;
-        if (currentUser) {
-            const promise = updateProfile(currentUser, {
-                displayName,
-                photoURL
-            }).then(() => {
-                // Profile updated!
-            }).catch((error) => {
-                // An error occurred
-                console.error('Profile update failed', error);
-            });
-
+    updateDisplayName(newDisplayName: string): Observable<void> {
+        const user = this.firebaseAuth.currentUser;
+        if (user) {
+            const promise = updateProfile(user, { displayName: newDisplayName });
             return from(promise);
         } else {
-            return from(Promise.reject('No user is currently logged in'));
+            throw new Error("No user is currently signed in");
         }
-    } */
-    
+    }
 
-    getData(): Observable<any[]> {
-        return this.firestore.collection('users').valueChanges();
-      }
+    changePassword(currentPassword: string, newPassword: string): Observable<void> {
+        const user = this.firebaseAuth.currentUser;
+        if (user) {
+            const credential = EmailAuthProvider.credential(user.email!, currentPassword);
+            const promise = reauthenticateWithCredential(user, credential).then(() => {
+                return updatePassword(user, newPassword);
+            });
+            return from(promise);
+        } else {
+            throw new Error("No user is currently signed in");
+        }
+    }
 
-    logout(): Observable<void> {
+    logout():Observable<void>{
         const promise = signOut(this.firebaseAuth);
         return from(promise);
     }

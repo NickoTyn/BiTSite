@@ -73,7 +73,4 @@ export class DialogBoxComponent implements OnInit {
     this.showLogin = !this.showLogin;
   }
 
-  logout(): void {
-    this.authService.logout();
-  }
 }

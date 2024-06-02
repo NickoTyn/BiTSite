@@ -4,6 +4,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogBoxComponent } from '../dialog-box/dialog-box.component';
 import { RouterOutlet } from '@angular/router';
 import { AccountComponent } from '../account/account.component';
+import { Auth, User, getAuth, onAuthStateChanged } from '@angular/fire/auth';
+
 
 @Component({
   selector: 'app-header',
@@ -15,11 +17,17 @@ import { AccountComponent } from '../account/account.component';
 export class HeaderComponent {
 
 
+  username: string | null = null;
+  auth: Auth;
+
+  constructor(public dialog: MatDialog){
+    this.auth = getAuth(); // Initialize the Auth instance
+  };
 
   authService = inject(AuthService);
 
   ngOnInit(): void {
-    this.openDialog(); /* delete this when finished */
+   
     this.authService.user$.subscribe(user => {
       if (user) {
         this.authService.currentUserSig.set({
@@ -31,9 +39,25 @@ export class HeaderComponent {
       }
       console.log(this.authService.currentUserSig());
     })
-  }
 
-  constructor(public dialog: MatDialog){};
+
+    onAuthStateChanged(this.auth, (user: User | null) => {
+      if (user) {
+        // The user object has basic properties such as display name, email, etc.
+        const displayName: string | null = user.displayName;
+
+
+        this.username = displayName;
+
+      } else {
+        this.username = null;
+      }
+    });
+  }
+  
+
+
+
 
     openDialog(){
       this.dialog.open(DialogBoxComponent,{
