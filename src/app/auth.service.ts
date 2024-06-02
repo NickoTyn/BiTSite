@@ -2,6 +2,8 @@ import { Injectable, inject, signal } from "@angular/core";
 import { Auth, EmailAuthProvider, createUserWithEmailAndPassword, reauthenticateWithCredential, signInWithEmailAndPassword, signOut, updatePassword, updateProfile, user } from "@angular/fire/auth";
 import { Observable, from } from "rxjs";
 import { UserInterface } from "./user.interface";
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
 
 @Injectable({
     providedIn: 'root'
@@ -10,8 +12,11 @@ import { UserInterface } from "./user.interface";
 export class AuthService {
    
     firebaseAuth = inject(Auth);
+    
     user$ = user(this.firebaseAuth)
     currentUserSig = signal<UserInterface | null | undefined>(undefined)
+
+    
 
     register(
         email: string,

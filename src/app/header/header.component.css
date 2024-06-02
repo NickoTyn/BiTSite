@@ -179,3 +179,8 @@ body {
       margin: 10px auto; /* Adjust margin as needed for mobile layout */
   }
 }
+
+
+@media (max-width: 500px) {
+
+  }

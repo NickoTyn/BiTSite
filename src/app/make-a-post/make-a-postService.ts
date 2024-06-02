@@ -10,6 +10,8 @@ export class DialogService {
 
   constructor(private dialog: MatDialog) {}
 
+    //Dialog Open/Close
+
   openDialog(data: any): void {
     if (!this.dialogRef) {
       this.dialogRef = this.dialog.open(MakeAPostComponent, {

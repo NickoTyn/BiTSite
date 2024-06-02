@@ -15,6 +15,7 @@
     /* Shadow for depth */ 0 2px 4px rgba(0, 0, 0, 0.3); /* Smaller shadow for detail */
   color: #fff;
   border-radius: 50px;
+  overflow: hidden; /* Prevent scrollbars */
 }
 
 .announcement-form {
@@ -293,8 +294,7 @@ textarea.input-field {
   resize: none; /* Disable resizing */
 }
 
-.input-field:focus{
-
+.input-field:focus {
   box-shadow: 0 0 8px 3px rgba(205, 19, 204, 0.7),
     0 0 25px 5px rgba(103, 95, 255, 0.7);
 }
@@ -316,11 +316,10 @@ textarea.input-field {
 }
 
 #labelline-description {
-
   margin-top: -55px;
 }
 
-textarea:focus +.labelline {
+textarea:focus + .labelline {
   box-shadow: 0 0 8px 3px rgba(205, 19, 204, 0.7),
     0 0 25px 5px rgba(103, 95, 255, 0.7);
 }
@@ -430,7 +429,61 @@ button:focus::after {
   }
 }
 
+/*Responsive*/
+
+@media (max-width: 500px) {
+  .custom-dialog-content {
+    background: linear-gradient(to right, rgba(205, 19, 204, 0.7), rgba(103, 95, 255, 0.7)); /* Adjust colors and direction as needed */
+    padding: 20px; /* Optional: Add some padding */
+    color: white; /* Optional: Text color for better contrast */
+    border-radius: 8px; /* Optional: Add rounded corners */
+    box-shadow: 0 0 8px 3px rgba(205, 19, 204, 0.7),
+                0 0 25px 5px rgba(103, 95, 255, 0.7); /* Custom box-shadow */
+  }
+
+  .form-container {
+    max-width: 400px;
+    width: 60vw;
+    height: 70vh;
+    margin: 0px;
+    padding: 10px 33px 22px 3px;
+  }
+
+  .announcement-form {
+    width: 58vw;
+    margin: 20px;
+  }
+
+  .form-header {
+    margin: 0px auto;
+    padding: 0px 20px;
+    text-align: center; /* Center the text */
+  }
+
+  .input-field {
+    width: 100%;
+  }
+
+  .Documents-btn {
+    margin-top: 10px;
+  }
+
+  #button-picture {
+    margin: 0px auto;
+  }
+
+  #button-close {
+    display: none;
+  }
+}
+
 /*Preview*/
+
+@media (max-width: 500px) {
+  .preview {
+    display: none;
+  }
+}
 
 .preview {
   margin: auto;
@@ -538,7 +591,7 @@ section {
 }
 
 .carousel__slide {
-  overflow: visible; /* Ensures the glow is not clipped */
+  overflow: hidden; /* Ensures no scrollbar */
   padding: 20px; /* Ensures there's space around the images for the glow to be visible */
 }
 
@@ -562,7 +615,7 @@ section {
   z-index: 1;
   padding: 0;
   margin: 0;
-  overflow: hidden;
+  overflow: hidden; /* Prevent scrollbars */
   white-space: nowrap;
   box-sizing: border-box;
   display: flex;
@@ -574,7 +627,7 @@ section {
   flex: 1 0 100%;
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  overflow: hidden; /* Prevent scrollbars */
   transition: all 300ms ease-out;
   vertical-align: top;
   box-sizing: border-box;
@@ -617,7 +670,7 @@ section {
   }
 
   &.scrollable {
-    overflow-y: scroll;
+    overflow-y: hidden; /* Ensure no vertical scrollbar */
   }
 }
 
@@ -662,7 +715,3 @@ section {
     object-fit: cover;
   }
 }
-
-
-
-
