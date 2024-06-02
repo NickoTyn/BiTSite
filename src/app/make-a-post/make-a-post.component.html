@@ -1,134 +1,308 @@
+<div class="custom-dialog-content">
+  <div class="announcement-dialog form-container">
+    <div class="control">
+      <form class="announcement-form">
+        <h2 class="form-header">Post an Announcement</h2>
 
-    <div class="announcement-dialog form-container">
-        <div class="control">
-        <form class="announcement-form">
-            <h2 class="form-header">Post an Announcement</h2>
-            
-
-
-            <div class="form-group input-row">
-                <input id="title" type="text" name="title" class="input-field" required placeholder=" " />
-                <div class="labelline">Title</div>
-            </div>
-
-            <div class="form-group input-row">
-                <textarea id="description" name="description" class="input-field" required placeholder=" "></textarea>
-                <div class="labelline">Description</div>
-            </div>
-            
-            <div class="form-group input-row">
-                <input id="picture" type="file" name="picture" class="input-field" required />
-                <div class="labelline">Upload a Picture</div>
-            </div>
-
-            <div class="button-container form-buttons">
-                <button type="button" class="form-button button" onclick="closeDialog()">Cancel</button>
-                <button type="submit" class="form-button button">Submit</button>
-            </div>
-        </form>
+        <div class="form-group input-row">
+          <input
+            [(ngModel)]="titleContent"
+            id="title"
+            type="text"
+            name="title"
+            class="input-field"
+            required
+            placeholder=" "
+          />
+          <div class="labelline">Title</div>
         </div>
-            <div class="preview">
-                
-                <section>
-                    <div class="container">
-                        <div class="carousel">
-                            <input type="radio" name="slides" checked="checked" id="slide-1">
-                            <input type="radio" name="slides" id="slide-2">
-                            <input type="radio" name="slides" id="slide-3">
-                            <input type="radio" name="slides" id="slide-4">
-                            <input type="radio" name="slides" id="slide-5">
-                            <input type="radio" name="slides" id="slide-6">
-                            <ul class="carousel__slides">
-                                <li class="carousel__slide">
-                                    <figure>
-                                        <div  class = post_wrapper>
-                                            <img src="assets/Afis Socials Editia 2.jpg">
-                                        </div>
-                                        <figcaption>
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                            <span class="credit">Photo: Tim Marshall</span>
-                                        </figcaption>
-                                    </figure>
-                                </li>
-                                <li class="carousel__slide">
-                                    <figure>
-                                        <div class = post_wrapper>
-                                            <img src="assets/Concurs poze Halloween Gata.png" alt="">
-                                        </div>
-                                        <figcaption>
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                            <span class="credit">Photo: Christian Joudrey</span>                            
-                                        </figcaption>
-                                    </figure>
-                                </li>
-                                <li class="carousel__slide">
-                                    <figure>
-                                        <div class = post_wrapper>
-                                            <img src="assets/poster - BIT Minecraft Server.jpg" alt="">
-                                        </div>
-                                        <figcaption>
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                            <span class="credit">Photo: Steve Carter</span>                            
-                                        </figcaption>
-                                    </figure>
-                                </li>
-                                <li class="carousel__slide">
-                                    <figure>
-                                        <div class = post_wrapper>
-                                            <img src="https://picsum.photos/id/1045/800/450" alt="">
-                                        </div>
-                                        <figcaption>
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                            <span class="credit">Photo: Aleksandra Boguslawska</span>                            
-                                        </figcaption>
-                                    </figure>
-                                </li>
-                                <li class="carousel__slide">
-                                    <figure>
-                                        <div class = post_wrapper>
-                                            <img src="https://picsum.photos/id/1049/800/450" alt="">
-                                        </div>
-                                        <figcaption>
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                            <span class="credit">Photo: Rosan Harmens</span>                            
-                                        </figcaption>
-                                    </figure>
-                                </li>
-                                <li class="carousel__slide">
-                                    <figure>
-                                        <div class = post_wrapper>
-                                            <img src="https://picsum.photos/id/1052/800/450" alt="">
-                                        </div>
-                                        <figcaption>
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                            <span class="credit">Photo: Annie Spratt</span>                            
-                                        </figcaption>
-                                    </figure>
-                                </li>
-                            </ul>    
-                            <ul class="carousel__thumbnails">
-                                <li>
-                                    <label for="slide-1"><img src="assets/Afis Socials Editia 2.jpg" alt=""></label>
-                                </li>
-                                <li>
-                                    <label for="slide-2"><img src="assets/Concurs poze Halloween Gata.png" alt=""></label>
-                                </li>
-                                <li>
-                                    <label for="slide-3"><img src="assets/poster - BIT Minecraft Server.jpg" alt=""></label>
-                                </li>
-                                <li>
-                                    <label for="slide-4"><img src="https://picsum.photos/id/1045/150/150" alt=""></label>
-                                </li>
-                                <li>
-                                    <label for="slide-5"><img src="https://picsum.photos/id/1049/150/150" alt=""></label>
-                                </li>
-                                <li>
-                                    <label for="slide-6"><img src="https://picsum.photos/id/1052/150/150" alt=""></label>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-                
+
+        <div class="form-group input-row">
+          <textarea
+            [(ngModel)]="descriptionContent"
+            name="description"
+            type="text"
+            class="input-field"
+            required
+            placeholder=" "
+          ></textarea>
+          <div class="labelline" id="labelline-description">Description</div>
+        </div>
+
+        <div class="form-group input-row">
+          <input
+            id="picture"
+            type="file"
+            (change)="onFileSelected($event)"
+            accept="image/*"
+            name="picture"
+            class="input-field"
+            class="choose-file"
+            required
+          />
+          <label for="picture" class="custom-file-label">
+            <div class="Documents-btn">
+              <span class="folderContainer">
+                <svg
+                  class="fileBack"
+                  width="146"
+                  height="113"
+                  viewBox="0 0 146 113"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M0 4C0 1.79086 1.79086 0 4 0H50.3802C51.8285 0 53.2056 0.627965 54.1553 1.72142L64.3303 13.4371C65.2799 14.5306 66.657 15.1585 68.1053 15.1585H141.509C143.718 15.1585 145.509 16.9494 145.509 19.1585V109C145.509 111.209 143.718 113 141.509 113H3.99999C1.79085 113 0 111.209 0 109V4Z"
+                    fill="url(#paint0_linear_117_4)"
+                  ></path>
+                  <defs>
+                    <linearGradient
+                      id="paint0_linear_117_4"
+                      x1="0"
+                      y1="0"
+                      x2="72.93"
+                      y2="95.4804"
+                      gradientUnits="userSpaceOnUse"
+                    >
+                      <stop stop-color="#a040fd"></stop>
+                      <stop offset="1" stop-color="#5f41f3"></stop>
+                    </linearGradient>
+                  </defs>
+                </svg>
+                <svg
+                  class="filePage"
+                  width="88"
+                  height="99"
+                  viewBox="0 0 88 99"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect
+                    width="88"
+                    height="99"
+                    fill="url(#paint0_linear_117_6)"
+                  ></rect>
+                  <defs>
+                    <linearGradient
+                      id="paint0_linear_117_6"
+                      x1="0"
+                      y1="0"
+                      x2="81"
+                      y2="160.5"
+                      gradientUnits="userSpaceOnUse"
+                    >
+                      <stop stop-color="white"></stop>
+                      <stop offset="1" stop-color="#686868"></stop>
+                    </linearGradient>
+                  </defs>
+                </svg>
+
+                <svg
+                  class="fileFront"
+                  width="160"
+                  height="79"
+                  viewBox="0 0 160 79"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M0.29306 12.2478C0.133905 9.38186 2.41499 6.97059 5.28537 6.97059H30.419H58.1902C59.5751 6.97059 60.9288 6.55982 62.0802 5.79025L68.977 1.18034C70.1283 0.410771 71.482 0 72.8669 0H77H155.462C157.87 0 159.733 2.1129 159.43 4.50232L150.443 75.5023C150.19 77.5013 148.489 79 146.474 79H7.78403C5.66106 79 3.9079 77.3415 3.79019 75.2218L0.29306 12.2478Z"
+                    fill="url(#paint0_linear_117_5)"
+                  ></path>
+                  <defs>
+                    <linearGradient
+                      id="paint0_linear_117_5"
+                      x1="38.7619"
+                      y1="8.71323"
+                      x2="66.9106"
+                      y2="82.8317"
+                      gradientUnits="userSpaceOnUse"
+                    >
+                      <stop stop-color="#a040fd"></stop>
+                      <stop offset="1" stop-color="#5251f2"></stop>
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </span>
+              <p class="text">{{ fileName }}</p>
             </div>
+          </label>
+          <p></p>
+          @if (errorMessage) {
+            <div class="error-message-container">
+                <svg
+                  class="attention-sign"
+                  fill="#ff0000"
+                  height="24px"
+                  width="24px"
+                  version="1.1"
+                  id="Capa_1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  viewBox="0 0 246.027 246.027"
+                  xml:space="preserve"
+                  stroke="#ff0000"
+                >
+                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                  <g
+                    id="SVGRepo_tracerCarrier"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></g>
+                  <g id="SVGRepo_iconCarrier">
+                    <path
+                      d="M242.751,196.508L143.937,25.358c-4.367-7.564-12.189-12.081-20.924-12.081c-8.735,0-16.557,4.516-20.924,12.081 L3.276,196.508c-4.368,7.564-4.368,16.596,0,24.161s12.189,12.081,20.924,12.081h197.629c8.734,0,16.556-4.516,20.923-12.08 C247.119,213.105,247.118,204.073,242.751,196.508z M123.014,204.906c-8.672,0-15.727-7.055-15.727-15.727 c0-8.671,7.055-15.726,15.727-15.726s15.727,7.055,15.727,15.726C138.74,197.852,131.685,204.906,123.014,204.906z M138.847,137.68 c0,8.73-7.103,15.833-15.833,15.833s-15.833-7.103-15.833-15.833V65.013c0-4.142,3.358-7.5,7.5-7.5h16.667 c4.143,0,7.5,3.358,7.5,7.5V137.68z"
+                    ></path>
+                  </g>
+                </svg>
+                <span class="error-message">{{ errorMessage }}</span>
+              </div>
+          }
+        </div>
+
+        <div class="button-container form-buttons">
+          <button
+            type="button"
+            class="form-button button"
+            onclick="closeDialog()"
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            [disabled]="!imageUploadForm.valid"
+            class="form-button button"
+          >
+            Submit
+          </button>
+        </div>
+      </form>
     </div>
+    <div class="preview">
+      <section>
+        <div class="container">
+          <div class="carousel">
+            <input type="radio" name="slides" checked="checked" id="slide-1" />
+            <input type="radio" name="slides" id="slide-2" />
+            <input type="radio" name="slides" id="slide-3" />
+            <input type="radio" name="slides" id="slide-4" />
+            <input type="radio" name="slides" id="slide-5" />
+            <input type="radio" name="slides" id="slide-6" />
+            <ul class="carousel__slides">
+              <li class="carousel__slide">
+                <figure>
+                  @if ("imageUrl"){
+                  <div class="post_wrapper">
+                    <img
+                      [src]="imageUrl || defaultImageUrl"
+                      alt="Image preview"
+                      style="max-width: 100%; height: auto"
+                    />
+                  </div>
+                  } @else{
+                  <img src="assets/Afis Socials Editia 2.jpg" />
+                  }
+                  <figcaption>
+                    <span class="title">{{ titleContent }}</span>
+                    <p>{{ descriptionContent }}</p>
+                    <span class="credit">Photo: Tim Marshall</span>
+                  </figcaption>
+                </figure>
+              </li>
+              <li class="carousel__slide">
+                <figure>
+                  <div class="post_wrapper">
+                    <img src="assets/Concurs poze Halloween Gata.png" alt="" />
+                  </div>
+                  <figcaption>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    <span class="credit">Photo: Christian Joudrey</span>
+                  </figcaption>
+                </figure>
+              </li>
+              <li class="carousel__slide">
+                <figure>
+                  <div class="post_wrapper">
+                    <img
+                      src="assets/poster - BIT Minecraft Server.jpg"
+                      alt=""
+                    />
+                  </div>
+                  <figcaption>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    <span class="credit">Photo: Steve Carter</span>
+                  </figcaption>
+                </figure>
+              </li>
+              <li class="carousel__slide">
+                <figure>
+                  <div class="post_wrapper">
+                    <img src="https://picsum.photos/id/1045/800/450" alt="" />
+                  </div>
+                  <figcaption>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    <span class="credit">Photo: Aleksandra Boguslawska</span>
+                  </figcaption>
+                </figure>
+              </li>
+              <li class="carousel__slide">
+                <figure>
+                  <div class="post_wrapper">
+                    <img src="https://picsum.photos/id/1049/800/450" alt="" />
+                  </div>
+                  <figcaption>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    <span class="credit">Photo: Rosan Harmens</span>
+                  </figcaption>
+                </figure>
+              </li>
+              <li class="carousel__slide">
+                <figure>
+                  <div class="post_wrapper">
+                    <img src="https://picsum.photos/id/1052/800/450" alt="" />
+                  </div>
+                  <figcaption id="description_preview">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    <span class="credit">Photo: Annie Spratt</span>
+                  </figcaption>
+                </figure>
+              </li>
+            </ul>
+            <ul class="carousel__thumbnails">
+              <li>
+                <label for="slide-1">
+                    <img [src]="imageUrl || 'assets/Afis Socials Editia 2.jpg'" alt="Uploaded Image" />
+                  </label>
+              </li>
+              <li>
+                <label for="slide-2"
+                  ><img src="assets/Concurs poze Halloween Gata.png" alt=""
+                /></label>
+              </li>
+              <li>
+                <label for="slide-3"
+                  ><img src="assets/poster - BIT Minecraft Server.jpg" alt=""
+                /></label>
+              </li>
+              <li>
+                <label for="slide-4"
+                  ><img src="https://picsum.photos/id/1045/150/150" alt=""
+                /></label>
+              </li>
+              <li>
+                <label for="slide-5"
+                  ><img src="https://picsum.photos/id/1049/150/150" alt=""
+                /></label>
+              </li>
+              <li>
+                <label for="slide-6"
+                  ><img src="https://picsum.photos/id/1052/150/150" alt=""
+                /></label>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

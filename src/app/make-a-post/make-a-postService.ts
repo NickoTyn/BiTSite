@@ -29,4 +29,5 @@ export class DialogService {
       this.dialogRef = null;
     }
   }
+
 }

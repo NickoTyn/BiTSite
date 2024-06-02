@@ -1,5 +1,5 @@
 import { Injectable, inject, signal } from "@angular/core";
-import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile, user } from "@angular/fire/auth";
+import { Auth, EmailAuthProvider, createUserWithEmailAndPassword, reauthenticateWithCredential, signInWithEmailAndPassword, signOut, updatePassword, updateProfile, user } from "@angular/fire/auth";
 import { Observable, from } from "rxjs";
 import { UserInterface } from "./user.interface";
 
@@ -8,6 +8,7 @@ import { UserInterface } from "./user.interface";
 })
 
 export class AuthService {
+   
     firebaseAuth = inject(Auth);
     user$ = user(this.firebaseAuth)
     currentUserSig = signal<UserInterface | null | undefined>(undefined)
@@ -31,6 +32,29 @@ export class AuthService {
         ).then(() => {});
 
         return from(promise);
+    }
+
+    updateDisplayName(newDisplayName: string): Observable<void> {
+        const user = this.firebaseAuth.currentUser;
+        if (user) {
+            const promise = updateProfile(user, { displayName: newDisplayName });
+            return from(promise);
+        } else {
+            throw new Error("No user is currently signed in");
+        }
+    }
+
+    changePassword(currentPassword: string, newPassword: string): Observable<void> {
+        const user = this.firebaseAuth.currentUser;
+        if (user) {
+            const credential = EmailAuthProvider.credential(user.email!, currentPassword);
+            const promise = reauthenticateWithCredential(user, credential).then(() => {
+                return updatePassword(user, newPassword);
+            });
+            return from(promise);
+        } else {
+            throw new Error("No user is currently signed in");
+        }
     }
 
     logout():Observable<void>{
