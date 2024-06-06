@@ -80,6 +80,10 @@ textarea:focus {
   pointer-events: none;
 }
 
+#labelline-add-info{
+  margin-top: -65px
+}
+
 input:focus + .labelline,
 textarea:focus + .labelline,
 .filled + .labelline {

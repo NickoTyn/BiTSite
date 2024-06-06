@@ -121,10 +121,13 @@ section {
   /* Stronger and larger glow on hover */
 }
 
-#idk:hover ~ #poza{
-  opacity:0%;
-  /* Stronger and larger glow on hover */
+
+.poza {
+  opacity: 1;
+  transition: opacity 0.3s ease;
 }
+
+
 
 .carousel__slides {
   position: relative;
