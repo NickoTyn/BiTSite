@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import {MatDialogModule} from '@angular/material/dialog';
-import { Auth, getAuth, onAuthStateChanged, User } from '@angular/fire/auth';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AuthService } from '../auth.service';
 import { MakeAPostComponent } from '../make-a-post/make-a-post.component';
-import { DialogBoxComponent } from '../dialog-box/dialog-box.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -103,7 +101,6 @@ onChangePassword() {
 
   openDialog(): void {
     this.dialog.open(MakeAPostComponent, {
-      panelClass: 'custom-dialog-container'
     });
   }
 

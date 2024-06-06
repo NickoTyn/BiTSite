@@ -1,0 +1,146 @@
+<div class="custom-dialog-content">
+  <div class="announcement-dialog form-container">
+    <div class="preview">
+      <section>
+        <div class="container">
+          <div class="carousel">
+            <input type="radio" name="slides" checked="checked" id="slide-1" />
+            <input type="radio" name="slides" id="slide-2" />
+            <input type="radio" name="slides" id="slide-3" />
+            <input type="radio" name="slides" id="slide-4" />
+            <input type="radio" name="slides" id="slide-5" />
+            <input type="radio" name="slides" id="slide-6" />
+            <ul class="carousel__slides">
+              <li class="carousel__slide">
+                <figure>
+                  @if ("imageUrl"){
+                  <div class="post_wrapper">
+                    <img
+                      [src]="imageUrl || defaultImageUrl"
+                      alt="Image preview"
+                      style="max-width: 100%; height: auto"
+                    />
+                  </div>
+                  } @else{
+                  <img src="assets/Afis Socials Editia 2.jpg" />
+                  }
+                  <figcaption>
+                    <span class="title">{{ titleContent }}</span>
+                    <p>{{ descriptionContent }}</p>
+                    <span class="credit">Photo: Tim Marshall</span>
+                  </figcaption>
+                </figure>
+              </li>
+              <li class="carousel__slide">
+                <figure>
+                  <div class="post_wrapper">
+                    <img src="assets/Concurs poze Halloween Gata.png" alt="" />
+                  </div>
+                  <figcaption>
+                    Aveti la dispozitie 24 de ore pentru a captura fotografii de
+                    Halloween! 🎃 Le puteti pune la story si sa ne dati tag
+                    #asociatiabit, sa le postati cu hashtag-ul
+                    #bitphotochallenge sau sa ni le trimiteti ca mesaj! - Luati
+                    in considerare faptul ca nu avem acces sa vedem postarile
+                    conturilor private! Daca nu preferati instagram, puteti
+                    posta pozele si pe serverul de discord al asociatiei, in
+                    canalul #activities-spot ⚡️ Who's in for the title of the
+                    spookiest photographer? 👻
+                    <span class="credit">Photo: Christian Joudrey</span>
+                  </figcaption>
+                </figure>
+              </li>
+              <li class="carousel__slide">
+                <figure>
+                  <div class="post_wrapper">
+                    <img
+                      src="assets/poster - BIT Minecraft Server.jpg"
+                      alt=""
+                    />
+                  </div>
+                  <figcaption>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    <span class="credit">Photo: Steve Carter</span>
+                  </figcaption>
+                </figure>
+              </li>
+              <li class="carousel__slide">
+                <figure>
+                  <div class="post_wrapper">
+                    <img src="https://picsum.photos/id/1045/800/450" alt="" />
+                  </div>
+                  <figcaption>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    <span class="credit">Photo: Aleksandra Boguslawska</span>
+                  </figcaption>
+                </figure>
+              </li>
+              <li class="carousel__slide">
+                <figure>
+                  <div class="post_wrapper">
+                    <img src="https://picsum.photos/id/1049/800/450" alt="" />
+                  </div>
+                  <figcaption>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    <span class="credit">Photo: Rosan Harmens</span>
+                  </figcaption>
+                </figure>
+              </li>
+              <li class="carousel__slide">
+                <figure>
+                  <div class="post_wrapper">
+                    <img src="https://picsum.photos/id/1052/800/450" alt="" />
+                  </div>
+                  <figcaption id="description_preview">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    <span class="credit">Photo: Annie Spratt</span>
+                  </figcaption>
+                </figure>
+              </li>
+            </ul>
+            <ul class="carousel__thumbnails">
+              <li>
+                <label for="slide-1">
+                  <img
+                    [src]="imageUrl || 'assets/Afis Socials Editia 2.jpg'"
+                    alt="Uploaded Image"
+                  />
+                </label>
+              </li>
+              <li>
+                <label for="slide-2"
+                  ><img src="assets/Concurs poze Halloween Gata.png" alt=""
+                /></label>
+              </li>
+              <li>
+                <label for="slide-3"
+                  ><img src="assets/poster - BIT Minecraft Server.jpg" alt=""
+                /></label>
+              </li>
+              <li>
+                <label for="slide-4"
+                  ><img src="https://picsum.photos/id/1045/150/150" alt=""
+                /></label>
+              </li>
+              <li>
+                <label for="slide-5"
+                  ><img src="https://picsum.photos/id/1049/150/150" alt=""
+                /></label>
+              </li>
+              <li>
+                <label for="slide-6"
+                  ><img src="https://picsum.photos/id/1052/150/150" alt=""
+                /></label>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div>
+      <button class="approve">Approve</button>
+      <button class="reject">Reject</button>
+    </div>
+  </div>
+</div>

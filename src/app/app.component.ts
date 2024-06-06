@@ -12,6 +12,9 @@ import { SignInUpComponent } from './sign-in-up/components/sign-in-up.component'
 import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
 import { MakeAPostComponent } from './make-a-post/make-a-post.component';
+import { PostValidationComponent } from './post-validation/post-validation.component';
+
+import { PostValidationHubComponent } from './post-validation-hub/post-validation-hub.component';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
@@ -39,6 +42,8 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
     SignInUpComponent,
     MatDialogModule, 
     MakeAPostComponent,
+    PostValidationHubComponent,
+    PostValidationComponent
   ]
 })
 export class AppComponent {

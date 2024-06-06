@@ -3,7 +3,9 @@ import { Auth, EmailAuthProvider, createUserWithEmailAndPassword, reauthenticate
 import { Observable, from } from "rxjs";
 import { UserInterface } from "./user.interface";
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { Firestore, getFirestore, setDoc, doc } from "firebase/firestore"; // Import Firestore methods
+//import { AngularFirestore } from "@angular/fire/compat/firestore";
+
 
 @Injectable({
     providedIn: 'root'
@@ -15,8 +17,17 @@ export class AuthService {
     
     user$ = user(this.firebaseAuth)
     currentUserSig = signal<UserInterface | null | undefined>(undefined)
+   
+    //firestore = inject(AngularFirestore);
+   
+   /* firestore: Firestore;
 
-    
+    constructor() {
+        const app = initializeApp({
+            // Your Firebase configuration
+        });
+        this.firestore = getFirestore(app); // Initialize Firestore
+    }*/
 
     register(
         email: string,
