@@ -2,7 +2,7 @@ import { Injectable, inject, signal } from "@angular/core";
 import { Auth, EmailAuthProvider, createUserWithEmailAndPassword, reauthenticateWithCredential, signInWithEmailAndPassword, signOut, updatePassword, updateProfile, user } from "@angular/fire/auth";
 import { Observable, from } from "rxjs";
 import { UserInterface } from "./user.interface";
-import { initializeApp } from "firebase/app";
+import { getApp } from "firebase/app";
 import { Firestore, getFirestore, setDoc, doc } from "firebase/firestore"; // Import Firestore methods
 //import { AngularFirestore } from "@angular/fire/compat/firestore";
 
@@ -20,14 +20,11 @@ export class AuthService {
    
     //firestore = inject(AngularFirestore);
    
-   /* firestore: Firestore;
+   firestore: Firestore;
 
     constructor() {
-        const app = initializeApp({
-            // Your Firebase configuration
-        });
-        this.firestore = getFirestore(app); // Initialize Firestore
-    }*/
+        this.firestore = getFirestore(getApp()); // Initialize Firestore
+    }
 
     register(
         email: string,
@@ -45,7 +42,8 @@ export class AuthService {
             this.firebaseAuth, 
             email, 
             password
-        ).then(() => {});
+        ).then((cred) => {
+        });
 
         return from(promise);
     }

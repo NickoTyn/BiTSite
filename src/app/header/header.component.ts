@@ -62,7 +62,8 @@ export class HeaderComponent {
 
     openDialog(){
       this.dialog.open(DialogBoxComponent,{
-        backdropClass: 'userActivationDialog'
+        // backdropClass: 'userActivationDialog'
+        panelClass: 'loginDialogPanel',
       })
     }
     

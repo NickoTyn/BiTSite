@@ -23,7 +23,11 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideHttpClient(),
-    importProvidersFrom([], provideFirebaseApp(() => initializeApp(firebaseConfig)),
-    provideAuth(() => getAuth()),), provideAnimationsAsync('noop'),
+    importProvidersFrom(
+      [], 
+      provideFirebaseApp(() => initializeApp(firebaseConfig)),
+      provideAuth(() => getAuth()),
+    ), 
+    provideAnimationsAsync('noop'),
   ],
 };
