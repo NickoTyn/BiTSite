@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogBoxComponent } from '../dialog-box/dialog-box.component';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule, RouterOutlet } from '@angular/router';
 import { AccountComponent } from '../account/account.component';
 import { Auth, User, getAuth, onAuthStateChanged } from '@angular/fire/auth';
 
@@ -10,7 +10,7 @@ import { Auth, User, getAuth, onAuthStateChanged } from '@angular/fire/auth';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterOutlet, AccountComponent],
+  imports: [RouterOutlet, AccountComponent, RouterModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })

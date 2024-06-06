@@ -11,7 +11,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { LoginComponent } from '../login/login.component';
 import { RegisterComponent } from '../register/register.component';
-import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-make-a-post',
@@ -89,4 +88,6 @@ export class MakeAPostComponent implements OnInit {
       console.log('Form submitted successfully!');
     }
   }
+
+  
 }
