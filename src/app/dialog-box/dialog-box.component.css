@@ -21,6 +21,14 @@
 
 }
 
+.loginComponent{
+    background-color: red;
+}
+
+.registerComponent{
+    background-color: blue;
+}
+
 #chk {
     display: none;
 }
