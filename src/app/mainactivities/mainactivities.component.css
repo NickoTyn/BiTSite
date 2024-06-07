@@ -293,3 +293,25 @@ svg{
 /*   bottom:20vh ; */
 /*   left: ; */
 }
+
+
+@media (max-width: 1068px) {
+.poza{
+  display: none;
+}
+  
+ .carousel__slides{
+  margin-left: 7px;
+  margin-top: 50px;
+  margin-bottom: 30px;
+ }
+
+ .carousel__slide img{
+  width: 320px;
+  height: 320px;
+ }
+
+  figcaption{
+    display: none;
+  }
+}

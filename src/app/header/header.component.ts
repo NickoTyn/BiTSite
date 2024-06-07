@@ -59,8 +59,10 @@ export class HeaderComponent {
   }
 
 
- onScrollToTarget(): void {
-    this.scrollService.scrollToElement('join-us-form');
+  onScrollToTarget(): void {
+    this.router.navigate(['/home']).then(() => {
+      this.scrollService.scrollToElement('join-us-form');
+    });
   }
 
 
