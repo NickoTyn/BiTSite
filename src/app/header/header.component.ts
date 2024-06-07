@@ -2,9 +2,10 @@ import { Component, inject } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogBoxComponent } from '../dialog-box/dialog-box.component';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { AccountComponent } from '../account/account.component';
 import { Auth, User, getAuth, onAuthStateChanged } from '@angular/fire/auth';
+import { ScrollService } from '../scrollService';
 
 
 @Component({
@@ -17,18 +18,19 @@ import { Auth, User, getAuth, onAuthStateChanged } from '@angular/fire/auth';
 export class HeaderComponent {
 
 
-  
+
   username: string | null = null;
   auth: Auth;
 
-  constructor(public dialog: MatDialog){
+  constructor(public dialog: MatDialog, private router: Router, private scrollService: ScrollService) {
     this.auth = getAuth(); // Initialize the Auth instance
   };
+
 
   authService = inject(AuthService);
 
   ngOnInit(): void {
-   
+
     this.authService.user$.subscribe(user => {
       if (user) {
         this.authService.currentUserSig.set({
@@ -55,19 +57,51 @@ export class HeaderComponent {
       }
     });
   }
+
+
+
+  openDialog() {
+    this.dialog.open(DialogBoxComponent, {
+      // backdropClass: 'userActivationDialog'
+      panelClass: 'loginDialogPanel',
+    })
+  }
+
+  
   
 
+  /* Scroll To Element */
+
+  onScrollToTarget(): void {
+    this.router.navigate(['/home']).then(() => {
+      this.scrollService.scrollToElement('join-us-form');
+    });
+console.log("HI THERE");
+  }
 
 
-
-    openDialog(){
-      this.dialog.open(DialogBoxComponent,{
-        // backdropClass: 'userActivationDialog'
-        panelClass: 'loginDialogPanel',
-      })
-    }
-    
-
+  
 }
 
+
+document.addEventListener('DOMContentLoaded', () => {
+    const dropdownBtn = document.querySelector('.dropdown-btn') as HTMLElement;
+    const dropdown = document.querySelector('.dropdown') as HTMLElement;
+
+    dropdownBtn.addEventListener('click', () => {
+        if (dropdown.style.display === 'block') {
+            dropdown.style.display = 'none';
+        } else {
+            dropdown.style.display = 'block';
+        }
+    });
+
+    window.addEventListener('click', (event: MouseEvent) => {
+        if (!(event.target as HTMLElement).matches('.dropdown-btn')) {
+            if (dropdown.style.display === 'block') {
+                dropdown.style.display = 'none';
+            }
+        }
+    });
+});
 
