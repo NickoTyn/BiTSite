@@ -59,7 +59,9 @@ export class HeaderComponent {
   }
 
 
-
+ onScrollToTarget(): void {
+    this.scrollService.scrollToElement('join-us-form');
+  }
 
 
     openDialog(){
@@ -70,4 +72,23 @@ export class HeaderComponent {
 
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+  const dropdownBtn = document.querySelector('.dropdown-btn') as HTMLElement;
+  const dropdown = document.querySelector('.dropdown') as HTMLElement;
 
+  dropdownBtn.addEventListener('click', () => {
+      if (dropdown.style.display === 'block') {
+          dropdown.style.display = 'none';
+      } else {
+          dropdown.style.display = 'block';
+      }
+  });
+
+  window.addEventListener('click', (event: MouseEvent) => {
+      if (!(event.target as HTMLElement).matches('.dropdown-btn')) {
+          if (dropdown.style.display === 'block') {
+              dropdown.style.display = 'none';
+          }
+      }
+  });
+});
