@@ -60,48 +60,14 @@ export class HeaderComponent {
 
 
 
-  openDialog() {
-    this.dialog.open(DialogBoxComponent, {
-      // backdropClass: 'userActivationDialog'
-      panelClass: 'loginDialogPanel',
-    })
-  }
-
-  
-  
-
-  /* Scroll To Element */
-
-  onScrollToTarget(): void {
-    this.router.navigate(['/home']).then(() => {
-      this.scrollService.scrollToElement('join-us-form');
-    });
-console.log("HI THERE");
-  }
 
 
-  
+    openDialog(){
+      this.dialog.open(DialogBoxComponent,{
+      })
+    }
+    
+
 }
 
-
-document.addEventListener('DOMContentLoaded', () => {
-    const dropdownBtn = document.querySelector('.dropdown-btn') as HTMLElement;
-    const dropdown = document.querySelector('.dropdown') as HTMLElement;
-
-    dropdownBtn.addEventListener('click', () => {
-        if (dropdown.style.display === 'block') {
-            dropdown.style.display = 'none';
-        } else {
-            dropdown.style.display = 'block';
-        }
-    });
-
-    window.addEventListener('click', (event: MouseEvent) => {
-        if (!(event.target as HTMLElement).matches('.dropdown-btn')) {
-            if (dropdown.style.display === 'block') {
-                dropdown.style.display = 'none';
-            }
-        }
-    });
-});
 

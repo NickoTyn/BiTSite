@@ -63,14 +63,46 @@ export class DialogBoxComponent implements OnInit {
   showLogin = true;
   showRegister = false;
 
-  toggleLoginComponent(){
-    this.showLogin = !this.showLogin;
-    this.showRegister = !this.showRegister;
-  }
 
-  toggleRegisterComponent() {
-    this.showRegister = !this.showRegister;
-    this.showLogin = !this.showLogin;
-  }
+
+  
+    toggleLoginComponent(){
+      this.showLogin = !this.showLogin;
+      this.showRegister = !this.showRegister;
+    } 
+  
+    toggleRegisterComponent() {
+      this.showRegister = !this.showRegister;
+      this.showLogin = !this.showLogin;
+    }
+
+
 
 }
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const changeClassButton = document.getElementById('changeClassButton');
+  const resetClassButton = document.getElementById('resetClassButton');
+
+  if (changeClassButton && resetClassButton) {
+    changeClassButton.addEventListener('click', changeClass);
+    resetClassButton.addEventListener('click', resetClass);
+  }
+});
+
+function changeClass() {
+  const myDiv = document.getElementById('registerComponent');
+  if (myDiv) {
+    myDiv.className = 'loginComponent';
+  }
+}
+
+// Function to reset the class of the div
+function resetClass() {
+  const myDiv = document.getElementById('loginComponent');
+  if (myDiv) {
+    myDiv.className = 'registerComponent';
+  }
+}
+

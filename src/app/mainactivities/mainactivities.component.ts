@@ -39,19 +39,27 @@ export class MainactivitiesComponent {
 document.addEventListener('DOMContentLoaded', (event) => {
     const postWrappers = document.querySelectorAll('.post_wrapper');
     const poza = document.querySelector('.poza') as HTMLElement;
+    const scrisElements = document.querySelectorAll('.titleDescriptionCompany') as NodeListOf<HTMLElement>;
 
     postWrappers.forEach((postWrapper) => {
         postWrapper.addEventListener('mouseover', () => {
-            poza.style.opacity = '0.5';
+            poza.style.opacity = '0.1';
             poza.style.filter = 'blur(1px)';
+            scrisElements.forEach((scris) => {
+                scris.style.opacity = '100%';
+            });
         });
 
         postWrapper.addEventListener('mouseout', () => {
             poza.style.opacity = '1';
             poza.style.filter = 'blur(0)';
+            scrisElements.forEach((scris) => {
+                scris.style.opacity = '0%';
+            });
         });
     });
 });
+
 document.addEventListener("DOMContentLoaded", () => {
   const carousel = new MainactivitiesComponent();
   document.querySelector(".prev")!.addEventListener("click", () => carousel.moveSlide(-1));
