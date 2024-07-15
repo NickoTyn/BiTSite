@@ -173,6 +173,7 @@ textarea.input-field {
 }
 
 .button-container {
+  margin-top: 10px;
   display: flex;
   justify-content: center;
 }
@@ -271,6 +272,11 @@ button:focus::after {
 
   .form-header p {
     font-size: 20px;
+  }
+
+  .button-container {
+    margin-top: 0px;
+
   }
 
   .button {
