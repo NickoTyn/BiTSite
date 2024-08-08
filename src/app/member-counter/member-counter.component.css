@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  flex-direction: column;
+  background-color: #222;
+  color: #fff;
+}
+
+.odometer{
+    font-size: 4rem;
+}
+
+.container {
+  position: absolute;
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
+
+.odometer {
+  font-size: calc(2rem + 5vw);
+}
+
+.title {
+  letter-spacing: 1.5px;
+  line-height: 1.25;
+}
