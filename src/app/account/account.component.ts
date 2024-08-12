@@ -11,7 +11,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   selector: 'app-account',
   standalone: true,
   imports: [
-    MakeAPostComponent,
     MatDialogModule,
     FormsModule,
     ReactiveFormsModule

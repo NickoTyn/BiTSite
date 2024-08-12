@@ -25,7 +25,7 @@ export class AuthService {
    
    firestore: Firestore;
 
-    constructor() {
+    constructor(private auth: Auth) {
         this.firestore = getFirestore(getApp());
         this.loadUserRankFromLocalStorage();
         this.checkAuthState();
@@ -47,6 +47,10 @@ export class AuthService {
         localStorage.removeItem('userRank');
       }
     
+      getCurrentUser(): User | null {
+        return this.auth.currentUser;
+      }
+
       getUserRank(): string | null {
         return this.currentUserRank;
       }
