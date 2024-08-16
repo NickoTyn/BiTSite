@@ -1,50 +1,90 @@
-import { Component } from '@angular/core';
-import { PostValidationComponent } from '../post-validation/post-validation.component';
+import { Component, inject, OnInit } from '@angular/core';
+import { Firestore, collection, doc, getDocs, getDoc } from '@angular/fire/firestore';
+import { CommonModule } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
-import {MatDialogModule} from '@angular/material/dialog';
+import { PostValidationComponent } from '../post-validation/post-validation.component';
 import { AdditionalQuestionComponent } from '../additional-question/additional-question.component';
+
+export interface Announcement {
+  description: string;
+  imageUrl?: string | null;
+  title: string;
+  username: string;
+}
 
 @Component({
   selector: 'app-post-validation-hub',
   standalone: true,
   imports: [
-    PostValidationComponent,
-    MatDialogModule,
-    AdditionalQuestionComponent
+    CommonModule, 
   ],
   templateUrl: './post-validation-hub.component.html',
-  styleUrl: './post-validation-hub.component.css'
+  styleUrls: ['./post-validation-hub.component.css']
 })
-export class PostValidationHubComponent {
+export class PostValidationHubComponent implements OnInit {
 
-constructor(public dialog: MatDialog){}
+  private firestore: Firestore = inject(Firestore);
+  announcements: Announcement[] = [];
 
-  announcements = [
-    { id: 1, title: 'Dummy Announcement', content: 'This is a dummy announcement content for testing purposes. The actual announcements will be dynamically loaded here.', date: '2024-06-06' },
-    { id: 2, title: 'Announcement 2', content: 'Content for announcement 2', date: '2024-06-02' },
-    // Add more announcements here
-  ];
+  constructor(public dialog: MatDialog) {}
+
+  ngOnInit() {
+    this.fetchAnnouncements();
+  }
 
 
-  approveAnnouncement(id: number) {
+  
+  async fetchAnnouncements() {
+    try {
+      // Reference to the document 'non-validated-post-id' in the collection 'non-validated-post'
+      const docRef = doc(this.firestore, 'non-validated-post/YUVQgiBG57gEiOPk1YVx');
+      const docSnap = await getDoc(docRef);
+
+      // Check if the document exists
+      if (!docSnap.exists()) {
+        console.log('Document with ID non-validated-post-id does not exist.');
+        this.announcements = [];
+        return;
+      }
+
+      // Get a list of subcollection titles (assumed to be direct children of the document)
+      const subcollections = ['Test', 'Post2']; // Replace this with actual titles
+
+      for (const title of subcollections) {
+        const subcollectionRef = collection(docRef, title);
+        const subcollectionDocs = await getDocs(subcollectionRef);
+
+        subcollectionDocs.forEach(doc => {
+          const data = doc.data() as Omit<Announcement, 'title'>;
+          this.announcements.push({
+            title, 
+            ...data
+          });
+        });
+      }
+
+      // Log the fetched data
+      console.log('Fetched announcements:', this.announcements);
+    } catch (error) {
+      console.error('Error fetching announcements:', error);
+    }
+  }
+
+  approveAnnouncement(title: string) {
+    console.log('Approved announcement with title:', title);
     // Implement approval logic here
-    console.log('Approved announcement with ID:', id);
   }
 
-  rejectAnnouncement(id: number) {
+  rejectAnnouncement(title: string) {
+    console.log('Rejected announcement with title:', title);
     // Implement rejection logic here
-    console.log('Rejected announcement with ID:', id);
   }
-
 
   openDialog(): void {
-    this.dialog.open(PostValidationComponent, {
-    });
+    this.dialog.open(PostValidationComponent, {});
   }
 
   openAdditionalQuestionDialog(): void {
-    this.dialog.open(AdditionalQuestionComponent, {
-    });
+    this.dialog.open(AdditionalQuestionComponent, {});
   }
-
 }

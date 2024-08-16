@@ -11,6 +11,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { LoginComponent } from '../login/login.component';
 import { RegisterComponent } from '../register/register.component';
+import { getDownloadURL, getStorage, ref, uploadBytes } from '@angular/fire/storage';
+import { Observable, take } from 'rxjs';
+import { Auth, authState } from '@angular/fire/auth';
+import { Firestore, doc, setDoc, getDoc, collection } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-make-a-post',
@@ -37,6 +41,12 @@ import { RegisterComponent } from '../register/register.component';
 })
 
 export class MakeAPostComponent implements OnInit {
+  fb = inject(FormBuilder);
+  auth = inject(Auth);
+  private firestore: Firestore = inject(Firestore);
+
+
+  user$: Observable<any> = authState(this.auth); // Observable for user state
 
   titleContent: string = '';
   descriptionContent: string = '';
@@ -45,31 +55,36 @@ export class MakeAPostComponent implements OnInit {
   errorMessage: string | null = null;
   fileName: string = 'Choose File';
   defaultImageUrl = 'https://via.placeholder.com/500';
+  file: File | null = null;
 
-  constructor(private fb: FormBuilder) {
+  downloadURL: string | null = null;
+
+
+
+  constructor() {
     this.imageUploadForm = this.fb.group({
       image: [null, Validators.required]
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files[0]) {
-      const file = input.files[0];
-      this.fileName = file.name;
+      this.file = input.files[0];
+      this.fileName = this.file.name;
       const reader = new FileReader();
 
       reader.onload = () => {
         const img = new Image();
         img.src = reader.result as string;
-        
+
         img.onload = () => {
           if (img.width === img.height) {
             this.imageUrl = reader.result;
             this.errorMessage = null;
-            this.imageUploadForm.get('image')?.setValue(file);
+            this.imageUploadForm.get('image')?.setValue(this.file);
           } else {
             this.errorMessage = 'The image must be 1x1 aspect ratio.';
             this.imageUrl = null;
@@ -78,16 +93,70 @@ export class MakeAPostComponent implements OnInit {
         };
       };
 
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(this.file);
     }
   }
 
-  onSubmit(): void {
-    if (this.imageUploadForm.valid) {
-      // Handle the form submission logic here
-      console.log('Form submitted successfully!');
-    }
-  }
-
+  async onSubmit() {
+    let downloadURL: string;
   
+    if (this.imageUploadForm.valid) {
+      console.log('Form submitted successfully!');
+      downloadURL = await this.uploadPhoto();
+    }
+  
+    this.user$.pipe(take(1)).subscribe(async (user) => {
+      if (user) {
+        // Reference to the new collection under the user's document
+        const userCollection = collection(this.firestore, `users/${user.uid}/${this.titleContent}`);
+        const postCollection = collection(this.firestore, `non-validated-post/YUVQgiBG57gEiOPk1YVx/${this.titleContent}`);
+
+        // Create a new document in the 'titles' collection with auto-generated ID
+        const newTitleDoc = doc(userCollection);
+        const postDoc = doc(postCollection);
+        await setDoc(newTitleDoc, {
+          title: this.titleContent,
+          description: this.descriptionContent,
+          imageLink: downloadURL // Use the downloadURL obtained from uploadPhoto()
+        }, { merge: true });
+
+        await setDoc(postDoc, {
+          title: this.titleContent,
+          description: this.descriptionContent,
+          username: user.displayName || user.username,
+          imageLink: downloadURL // Use the downloadURL obtained from uploadPhoto()
+        }, { merge: true });
+      }
+
+        
+
+    });
+  }
+  
+  async uploadPhoto(): Promise<string> {
+    const storage = getStorage();
+  
+    return new Promise((resolve, reject) => {
+      this.user$.pipe(take(1)).subscribe(async (user) => {
+        if (user) {
+          const folder = ref(storage, `make_a_post/${user.uid}/${this.titleContent}/${this.fileName}`);
+  
+          if (this.file) {
+            await uploadBytes(folder, this.file);
+            console.log('Uploaded a blob or file!');
+          }
+  
+          try {
+            const downloadURL = await getDownloadURL(folder);
+            resolve(downloadURL);
+          } catch (error) {
+            console.error('Error getting download URL:', error);
+            reject(error);
+          }
+        } else {
+          reject('No user found');
+        }
+      });
+    });
+  }
 }

@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="form-container">
+      <div class="form-header">
+        <img src="assets/contact-icon.png" alt="Contact" class="image" />
+        <p>Contact <span class="highlight">Us</span></p>
+      </div>
+      <form>
+        <div class="input-row name">
+          <div>
+            <input type="text" (focus)="onInputFocus($event)" (input)="onInputChange($event)" id="name" required>
+            <label for="first-name" class="labelline">Full Name</label>
+          </div>
+        </div>
+        <div class="input-row contact">
+          <input type="email" (focus)="onInputFocus($event)" (input)="onInputChange($event)" id="email" required>
+          <label for="email" class="labelline">Email</label>
+        </div>
+        <div class="input-row contact">
+          <input type="tel" (focus)="onInputFocus($event)" (input)="onInputChange($event)" id="phone-number" required>
+          <label for="phone-number" class="labelline">Phone Number</label>
+        </div>
+        <div class="input-row additional-info">
+          <textarea id="additional-info" (focus)="onInputFocus($event)" (input)="onInputChange($event)" class="input-field" required></textarea>
+          <label for="additional-info" id="labelline-add-info" class="labelline">Additional Information</label>
+        </div>
+        <div class="button-container">
+          <button type="submit" class="button">Submit</button>
+        </div>
+      </form>
+    </div>
+    <!--
+    <div class="notification-container">
+      <div class="notification-content">
+        <p class="notification-message">Your message has been sent! <span class="highlight">Thank you</span> for contacting us.</p>
+      </div>
+    </div>
+    -->
+  </div>
+  
