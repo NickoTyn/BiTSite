@@ -22,6 +22,7 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 
 
 
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -43,7 +44,8 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
     MatDialogModule, 
     MakeAPostComponent,
     PostValidationHubComponent,
-    PostValidationComponent
+    PostValidationComponent,
+
   ]
 })
 export class AppComponent {
