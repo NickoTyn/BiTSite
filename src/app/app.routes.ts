@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { PostValidationHubComponent } from './post-validation-hub/post-validation-hub.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { PastActivitiesComponent } from './past-activities/past-activities.component';
+import { ContactComponent } from './contact/contact.component';
 
 
 export const routes: Routes = [
@@ -15,7 +16,8 @@ export const routes: Routes = [
   { path: 'account', component: AccountComponent },
   { path: 'validation', component: PostValidationHubComponent},
   { path: 'about-us', component: AboutUsComponent},
-  { path: 'past-activities', component: PastActivitiesComponent}
+  { path: 'past-activities', component: PastActivitiesComponent},
+  { path: 'contact', component: ContactComponent}
 
 
 

@@ -19,16 +19,18 @@ export class AuthService {
     currentUserSig = signal<UserInterface | null | undefined>(undefined)
 
     private currentUserRank: string | null = null;
-   
-    
+  
+
     //firestore = inject(AngularFirestore);
    
    firestore: Firestore;
 
-    constructor() {
+    constructor(private auth: Auth) {
         this.firestore = getFirestore(getApp());
         this.loadUserRankFromLocalStorage();
+        this.checkAuthState();
     }
+
 
     private saveUserRankToLocalStorage(rank: string): void {
         localStorage.setItem('userRank', rank);
@@ -45,6 +47,10 @@ export class AuthService {
         localStorage.removeItem('userRank');
       }
     
+      getCurrentUser(): User | null {
+        return this.auth.currentUser;
+      }
+
       getUserRank(): string | null {
         return this.currentUserRank;
       }
@@ -134,4 +140,23 @@ export class AuthService {
         console.error('An error occurred', error);
         return Promise.reject(error.message || error);
       }
+
+      private checkAuthState(): void {
+        const user = this.firebaseAuth.currentUser;
+        if (user) {
+            // User is signed in
+            this.currentUserSig.set({ 
+                email: user.email || '',
+                username: user.displayName || ''
+            });
+        } else {
+            // User is signed out
+            this.currentUserSig.set(null);
+        }
+    }
+
+    isUserSignedIn(): boolean {
+        return this.firebaseAuth.currentUser !== null;
+    }
+
     }
