@@ -24,6 +24,7 @@ export class HeaderComponent {
 
   constructor(public dialog: MatDialog, private router: Router, private scrollService: ScrollService) {
     this.auth = getAuth(); // Initialize the Auth instance
+   /*  this.openDialog(); */ //DELETE THIS WHEN READY
   };
 
 
@@ -41,6 +42,7 @@ export class HeaderComponent {
         this.authService.currentUserSig.set(null);
       }
       console.log(this.authService.currentUserSig());
+      this.dialog.closeAll(); //closes the dialogbox after login/register
     })
 
 
@@ -67,8 +69,8 @@ export class HeaderComponent {
 
 
     openDialog(){
-      this.dialog.open(DialogBoxComponent,{
-      })
+       this.dialog.open(DialogBoxComponent,{
+      }) 
     }
     
 

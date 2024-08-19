@@ -1,23 +1,134 @@
-
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Grey+Qo&display=swap"
+  rel="stylesheet"
+/>
 
 <div class="body">
   <div class="main">
-          <input type="checkbox" id="chk" aria-hidden="true">
-    @if (authService.currentUserSig() == null){
-    <div class="test">
+    <input type="checkbox" id="chk" aria-hidden="true" />
 
-@if(showLogin){
-        <label for="chk" aria-hidden="true" (click)="toggleRegisterComponent()">Login</label>
-      <button (click)="toggleRegisterComponent()">Register</button>n
-      <app-login> </app-login>
-}    
-@else{
-        <label for="chk" aria-hidden="true">SingUp</label>
-      <button (click)="toggleLoginComponent()">Login</button>
-      <app-register> </app-register>
-}
+    <div class="signup">
+      <form [formGroup]="form" (ngSubmit)="onSubmit('register')">
+        <label class="label" aria-hidden="true">Sign Up</label>
+
+        <div class="inputs">
+
+         <div class="username">
+            @if(form.controls.username.invalid && (form.controls.username.touched ||
+            form.controls.username.dirty || isSubmitted) ){
+            @if(form.controls.username.errors?.['required']){
+            <small class="error">*Username is required</small>
+            }  }
+            <input
+              type="username"
+              name="username"
+              placeholder="Username"
+              formControlName="username"
+              required=""
+              [class.invalid]="form.get('username')?.invalid && form.controls.username.touched"
+            />
+          </div>
+
+          <div class="email">
+            @if(form.controls.email.invalid && (form.controls.email.touched ||
+            form.controls.email.dirty || isSubmitted)){
+            @if(form.controls.email.errors?.['required']){
+            <small class="error">*Email is required</small>
+            } @if(form.controls.email.errors?.['email']){
+            <small class="error">*Invalid email</small>
+            } }
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              formControlName="email"
+              required=""
+              [class.invalid]="form.get('email')?.invalid && form.controls.email.touched"
+            />
+          </div>
+
+          <div class="password">
+            @if(form.controls.password.invalid &&
+            (form.controls.password.touched || form.controls.password.dirty ||
+            isSubmitted)){ @if(form.controls.password.errors?.['required']){
+            <small class="error">*Password is required</small>
+            } @if(form.controls.password.errors?.['minlength']){
+            <small class="error"
+              >*Password must be at least 6 characters</small
+            >
+            } }
+            <input
+              type="password"
+              name="pswd"
+              placeholder="Password"
+              formControlName="password"
+              required=""
+              [class.invalid]="form.get('password')?.invalid && form.controls.password.touched"
+            />
+          </div>
+
+          <button type="submit">Sign Up</button>
+
+          <label for="chk" class="switchLoginRegister" aria-hidden="true"
+            >Already have an account? Log In</label
+          >
+        </div>
+      </form>
     </div>
-    }
+    <!--   </div>
+ } -->
 
+    <div class="login">
+      <form [formGroup]="form" (ngSubmit)="onSubmit('login')">
+        <label for="chk" class="label" aria-hidden="true">Log In</label>
+
+        <div class="email">
+          @if(form.controls.email.invalid && (form.controls.email.touched ||
+          form.controls.email.dirty || isSubmitted)){
+          @if(form.controls.email.errors?.['required']){
+          <small class="error">*Email is required</small>
+          } @if(form.controls.email.errors?.['email']){
+          <small class="error">*Invalid email</small>
+          } }
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            formControlName="email"
+            required=""
+            [class.invalid]="form.get('email')?.invalid && form.controls.email.touched"
+          />
+        </div>
+
+        <div class="password">
+          @if(form.controls.password.invalid &&
+          (form.controls.password.touched || form.controls.password.dirty ||
+          isSubmitted)){ @if(form.controls.password.errors?.['required']){
+          <small class="error">*Password is required</small>
+          } @if(form.controls.password.errors?.['minlength']){
+          <small class="error"
+            >*Password must be at least 6 characters</small
+          >
+          } }
+          <input
+            type="password"
+            name="pswd"
+            placeholder="Password"
+            formControlName="password"
+            required=""
+            [class.invalid]="form.get('password')?.invalid && form.controls.password.touched"
+          />
+        </div>
+
+        <button type="submit">Login</button>
+        <label for="chk" aria-hidden="true" class="switchLoginRegister"
+          >Don't have an account? Register</label
+        >
+      </form>
+    </div>
+
+    <div class="footer"></div>
   </div>
 </div>

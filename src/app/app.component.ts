@@ -25,6 +25,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 
 
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -48,6 +49,7 @@ import { BrowserModule } from '@angular/platform-browser';
     PostValidationHubComponent,
     PostValidationComponent,
     GoogleMapsModule
+
   ]
 })
 export class AppComponent {

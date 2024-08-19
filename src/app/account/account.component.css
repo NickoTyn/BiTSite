@@ -23,11 +23,12 @@ h1 {
     line-height: 0.9;
     text-transform: capitalize;
     text-align: center;
-    color: white;
+    color: rgb(255, 255, 255);
     margin:40px;
     margin-top:0px;
     padding:10px;
     padding-top:0px;
+    line-height: 70px;
 }
 
 p {
