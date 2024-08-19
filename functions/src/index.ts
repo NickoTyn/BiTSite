@@ -68,3 +68,41 @@ exports.firestoreEmail = functions.firestore
 
         return null; // Ensure that the function always returns a value
     });
+
+
+
+    exports.sendContactMessageEmail = functions.firestore
+    .document(`contactMessages`)
+    .onCreate(async (snap, context) => {
+        const data = snap.data();
+
+      console.log('Email sent to!!! ');
+
+        try {
+            
+            // Send the email to the user
+            console.log(`Confirmation email sent to ${data.email}`);
+
+            // Construct the email to send to the admin
+            const adminMsg = {
+                to: 'cezar.branga2004@gmail.com',
+                from: 'asociatiabit@gmail.com',
+                subject: 'New Contact Message Received',
+                templateId: 'd-b072901a3ce343dd8d0c0dc11c35fef7 ',
+                dynamic_template_data: {
+                    name: data.name,
+                    email: data.email,
+                    phone: data.phoneNumber,
+                    additionalInfo: data.additionalInfo
+                }
+            };
+
+            // Send the email to the admin
+            await sgMail.send(adminMsg);
+            console.log('Notification email sent to admin');
+        } catch (error) {
+            console.error('Error sending email:', error);
+        }
+
+        return null;
+    });

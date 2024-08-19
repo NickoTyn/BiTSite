@@ -18,6 +18,9 @@ import { PostValidationHubComponent } from './post-validation-hub/post-validatio
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { GoogleMapsModule } from "@angular/google-maps";
+import { BrowserModule } from '@angular/platform-browser';
+
 
 
 
@@ -43,7 +46,8 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
     MatDialogModule, 
     MakeAPostComponent,
     PostValidationHubComponent,
-    PostValidationComponent
+    PostValidationComponent,
+    GoogleMapsModule
   ]
 })
 export class AppComponent {

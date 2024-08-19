@@ -147,7 +147,7 @@ input:-webkit-autofill:active {
 
 input:-webkit-autofill + .labelline {
   color: #d7bce8;
-  box-shadow: 0px -2px 3px rgba(205, 19, 204, 0.7), 0px -2px 35px rgba(103, 95, 255, 0.7);
+  box-shadow: 0px -2px 3px #cd13ccb3, 0px -2px 35px rgba(103, 95, 255, 0.7);
   height: 30px;
   line-height: 30px;
   transform: translateY(-120%) scale(0.88);
