@@ -17,6 +17,7 @@
     max-height: 600px;
     min-width:300px;
     overflow: hidden;
+<<<<<<< Updated upstream
     /*     background: linear-gradient(to bottom,#d7bce8,#cd13cc); *//*
     
     background: linear-gradient(to top, #440c59 0%,#440c59 70%, #5e2573 70.1%,#5e2573 100%);
@@ -27,6 +28,12 @@ inset 0 0 10px rgba(0, 0, 0, 0.5), /* Inner shadow *//*
 inset 0 0 20px rgba(0, 0, 0, 0.3), /* Inner shadow */ /*
 inset 0 0 30px rgba(0, 0, 0, 0.2); /* Inner shadow *//*
 
+=======
+    /*     background: linear-gradient(to bottom,#d7bce8,#cd13cc); */
+    background-color: #d1b2e0;
+    border-radius: 30px;
+    box-shadow: 5px 20px 50px #ffffff;
+>>>>>>> Stashed changes
 
 }
 
