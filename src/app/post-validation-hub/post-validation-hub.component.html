@@ -9,12 +9,13 @@
     <div *ngFor="let announcement of announcements" class="announcement">
       <h3>{{ announcement.title }}</h3>
         <p>{{ announcement.description }}</p>
+        
 
       
       <p>Posted by: {{ announcement.username }}</p>
     
       <div class="button-container">
-        <button class="button-preview" mat-button (click)="openDialog()">Preview</button>
+        <button class="button-preview" mat-button (click)="openDialog(announcement.title, announcement.description, announcement.imageLink, announcement.username)">Preview</button>
         <div>
           <button class="approve" (click)="approveAnnouncement(announcement.title)">Approve</button>
           <button class="reject" mat-button (click)="rejectAnnouncement(announcement.title)">Reject</button>
@@ -22,27 +23,9 @@
       </div>
     </div>
 
-      <div class="announcement">
-      <h3>Announcement Title2</h3>
-      <p>
-        Aveti la dispozitie 24 de ore pentru a captura fotografii de Halloween!
-        🎃 Le puteti pune la story si sa ne dati tag #asociatiabit, sa le
-        postati cu hashtag-ul #bitphotochallenge sau sa ni le trimiteti ca
-        mesaj! - Luati in considerare faptul ca nu avem acces sa vedem postarile
-        conturilor private! Daca nu preferati instagram, puteti posta pozele si
-        pe serverul de discord al asociatiei, in canalul #activities-spot ⚡️
-        Who's in for the title of the spookiest photographer? 👻
-      </p>
 
-      <p>Posted by: username</p>
-      <div class="button-container">
-        <button mat-button (click)="openDialog()">Preview</button>
-        <div>
-        <button class="approve">Approve</button>
-        <button class="reject" (click)="openAdditionalQuestionDialog()">Reject</button>
-        </div>
-      </div>
+
+
       
     </div>
   </div>
-</div>

@@ -5,9 +5,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { PostValidationComponent } from '../post-validation/post-validation.component';
 import { AdditionalQuestionComponent } from '../additional-question/additional-question.component';
 
+
 export interface Announcement {
   description: string;
-  imageUrl?: string | null;
+  imageLink: string;
   title: string;
   username: string;
 }
@@ -47,8 +48,9 @@ export class PostValidationHubComponent implements OnInit {
         return;
       }
 
+
       // Get a list of subcollection titles (assumed to be direct children of the document)
-      const subcollections = ['Test', 'Post2']; // Replace this with actual titles
+      const subcollections = ["New Post"]; // Replace this with actual titles
 
       for (const title of subcollections) {
         const subcollectionRef = collection(docRef, title);
@@ -64,7 +66,6 @@ export class PostValidationHubComponent implements OnInit {
       }
 
       // Log the fetched data
-      console.log('Fetched announcements:', this.announcements);
     } catch (error) {
       console.error('Error fetching announcements:', error);
     }
@@ -80,9 +81,17 @@ export class PostValidationHubComponent implements OnInit {
     // Implement rejection logic here
   }
 
-  openDialog(): void {
-    this.dialog.open(PostValidationComponent, {});
+  openDialog(title: string, description: string, imageUrl: string, username: string): void {
+    this.dialog.open(PostValidationComponent, {
+      data: {
+        title,
+        description,
+        imageUrl,
+        username
+      }
+    });
   }
+  
 
   openAdditionalQuestionDialog(): void {
     this.dialog.open(AdditionalQuestionComponent, {});
