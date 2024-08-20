@@ -19,7 +19,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { RegisterComponent } from '../register/register.component';
 import { CommonModule } from '@angular/common';
-import { updateCurrentUser } from '@angular/fire/auth';
+import { EmailAuthCredential, updateCurrentUser } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-dialog-box',
@@ -99,7 +99,12 @@ password:this.fb.control('',{validators: [Validators.required, Validators.minLen
     let authObservable;
 
     if (action === 'login') {
-      authObservable = this.authService.login(rawForm.email, rawForm.password);
+      if (EmailAuthCredential != null) {
+        // Display error message
+        this.errorMessage = 'Invalid email or password';
+    } else {
+        authObservable = this.authService.login(rawForm.email, rawForm.password);
+    }
     } else if (action === 'register') {
       authObservable = this.authService.register(rawForm.email, rawForm.username, rawForm.password);
     }
