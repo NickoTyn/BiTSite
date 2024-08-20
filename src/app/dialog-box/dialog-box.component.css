@@ -100,6 +100,7 @@ label {
     font-weight: bold;
     cursor: pointer;
     transition: 0.5s ease-in-out;
+} 
 
 input {
     width: 60%;
@@ -180,6 +181,7 @@ button:hover {
     font-size: 40px;
     color:white;
 }
+*/
 .body{
     margin:0;
     padding:0px;
@@ -207,6 +209,7 @@ border: #ffffff;
     background:url("https://images7.alphacoders.com/134/1342751.png")no-repeat center/cover;
 outline: none;
 
+background: url("..\\src\\assets\\file.png") no-repeat center/cover;
    border-radius: 20px;
 
 }
