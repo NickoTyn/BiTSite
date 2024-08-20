@@ -16,7 +16,7 @@
                   @if ("imageUrl"){
                   <div class="post_wrapper">
                     <img
-                      [src]="imageUrl || defaultImageUrl"
+                      [src]="imageUrl"
                       alt="Image preview"
                       style="max-width: 100%; height: auto"
                     />
@@ -27,7 +27,7 @@
                   <figcaption>
                     <span class="title">{{ titleContent }}</span>
                     <p>{{ descriptionContent }}</p>
-                    <span class="credit">Photo: Tim Marshall</span>
+                    <span class="credit">Posted by:</span>
                   </figcaption>
                 </figure>
               </li>
