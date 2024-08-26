@@ -29,7 +29,11 @@
               "src/assets"
             ],
             "styles": [
+<<<<<<< Updated upstream
               "@angular/material/prebuilt-themes/indigo-pink.css",
+=======
+              "src/custom-theme.scss",
+>>>>>>> Stashed changes
               "src/styles.css"
             ],
             "scripts": ["node_modules/jquery/dist/jquery.min.js"]

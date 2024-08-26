@@ -1,7 +1,15 @@
+<<<<<<< Updated upstream
 import { Component, TemplateRef, inject } from '@angular/core';
 import { Router, RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import { HeaderComponent } from './header/header.component';
+=======
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+
+import { HomepageComponent } from './homepage/homepage.component';
+import { HeaderComponent } from './header/header.component'; 
+>>>>>>> Stashed changes
 import { MainactivitiesComponent } from './mainactivities/mainactivities.component';
 import { JoinUsFormComponent } from './join-us-form/join-us-form.component';
 import { LoginComponent } from './login/login.component';
@@ -15,6 +23,8 @@ import { MakeAPostComponent } from './make-a-post/make-a-post.component';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+
+
 
 
 
@@ -43,6 +53,7 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 })
 export class AppComponent {
   title = 'BiTSite';
+<<<<<<< Updated upstream
 
   authService = inject(AuthService);
 
@@ -60,6 +71,9 @@ export class AppComponent {
     })
   }
 
+=======
+  showSignInPopup: boolean = false;
+>>>>>>> Stashed changes
 }
 
 
