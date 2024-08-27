@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+/* import { Auth, GoogleAuthProvider, signInWithPopup } from '@angular/fire/auth'; */
 import $ from 'jquery';
 
 @Component({
@@ -12,7 +13,19 @@ export class FooterComponent {
     
   }
 
+  constructor(/* private auth: Auth */) {}
 
+
+/*   signInWithGoogle() {
+    signInWithPopup(this.auth, new GoogleAuthProvider())
+      .then(() => {
+        console.log('logged in');
+      })
+      .catch((error: any) => {
+        console.log(error);
+      });
+  }
+ */
 
 }
 

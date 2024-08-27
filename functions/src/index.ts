@@ -2,6 +2,7 @@ import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import * as sgMail from '@sendgrid/mail';
 
+
 admin.initializeApp(functions.config().firebase);
 
 const SENDGRID_API_KEY = functions.config().sendgrid.key;

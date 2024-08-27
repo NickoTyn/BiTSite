@@ -69,7 +69,7 @@
             />
           </div>
 
-          <button type="submit">Sign Up</button>
+          <button class="button" type="submit">Sign Up</button>
 
           <label for="chk" class="switchLoginRegister" aria-hidden="true"
             >Already have an account? Log In</label
@@ -123,7 +123,13 @@
           />
         </div>
 
-        <button type="submit">Login</button>
+        <button class="button" type="submit">Login</button>
+        <div class="google-login-container">
+          <button type="button" class="button" (click)="signInWithGoogle()" class="google-login-button">
+              <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google logo">
+              Login with Google
+          </button>
+      </div>
         <label for="chk" aria-hidden="true" class="switchLoginRegister"
           >Don't have an account? Register</label
         >

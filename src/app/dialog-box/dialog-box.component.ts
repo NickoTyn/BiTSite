@@ -19,7 +19,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { RegisterComponent } from '../register/register.component';
 import { CommonModule } from '@angular/common';
-import { EmailAuthCredential, updateCurrentUser } from '@angular/fire/auth';
+import { Auth, EmailAuthCredential, GoogleAuthProvider, signInWithPopup, updateCurrentUser } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-dialog-box',
@@ -43,7 +43,7 @@ import { EmailAuthCredential, updateCurrentUser } from '@angular/fire/auth';
   styleUrls: ['./dialog-box.component.css']
 })
 export class DialogBoxComponent implements OnInit {
-  constructor() {  
+  constructor(private auth: Auth) {  
     
 
 }
@@ -88,23 +88,43 @@ password:this.fb.control('',{validators: [Validators.required, Validators.minLen
     });
   }
 
+  signInWithGoogle() {
+    signInWithPopup( this.auth,new GoogleAuthProvider())
+      .then(() => {
+        console.log('logged in');
+
+          this.router.navigateByUrl('/');
+        
+      })
+      .catch((error: any) => {
+        console.log(error);
+      });
+  }
+
 
   onNoClick(): void {
     // Close dialog logic can be handled in the DialogService
+  }
+
+  private areCredentialsValid(email: string, password: string): boolean {
+    // Implement your logic to validate the credentials
+    // For example, check if email and password are not empty
+    return email !== '' && password !== '';
   }
 
   onSubmit(action: 'login' | 'register'): void {
 
     const rawForm = this.form.getRawValue();
     let authObservable;
-
+    console.log("", action);
     if (action === 'login') {
-      if (EmailAuthCredential != null) {
+      if (!this.areCredentialsValid(rawForm.email, rawForm.password)) {
         // Display error message
         this.errorMessage = 'Invalid email or password';
-    } else {
-        authObservable = this.authService.login(rawForm.email, rawForm.password);
-    }
+      } else {
+          authObservable = this.authService.login(rawForm.email, rawForm.password);
+    
+      }
     } else if (action === 'register') {
       authObservable = this.authService.register(rawForm.email, rawForm.username, rawForm.password);
     }
@@ -123,9 +143,6 @@ password:this.fb.control('',{validators: [Validators.required, Validators.minLen
 
 
   }
-
- 
-
 }
 
 
