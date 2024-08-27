@@ -1,8 +1,11 @@
 import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
-import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
-import { getAuth, provideAuth } from '@angular/fire/auth';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { provideAuth, getAuth } from '@angular/fire/auth';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { provideStorage, getStorage } from '@angular/fire/storage';
+import { provideFunctions, getFunctions } from '@angular/fire/functions';
 
 
 
@@ -11,7 +14,7 @@ import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 <<<<<<< Updated upstream
 
-const firebaseConfig = {
+export const firebaseConfig = {
   apiKey: "AIzaSyC3eNmZkrMTTOSEZrpNaFtigFh0XMQaCgY",
   authDomain: "bitsite-9353e.firebaseapp.com",
   projectId: "bitsite-9353e",
@@ -24,8 +27,15 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideHttpClient(),
-    importProvidersFrom([], provideFirebaseApp(() => initializeApp(firebaseConfig)),
-    provideAuth(() => getAuth()),), provideAnimationsAsync('noop'),
+    importProvidersFrom(
+      [], 
+      provideFirebaseApp(() => initializeApp(firebaseConfig)),
+      provideAuth(() => getAuth()),
+      provideFirestore(() => getFirestore()),
+      provideStorage(() => getStorage()),
+      provideFunctions(() => getFunctions())
+    ), 
+    provideAnimationsAsync('noop'),
   ],
 =======
 

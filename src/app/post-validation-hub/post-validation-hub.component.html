@@ -1,0 +1,31 @@
+<div class="container">
+  <h1>Admin Hub Page</h1>
+  <div class="announcement-list">
+
+    <div *ngIf="announcements.length === 0">
+      <p>No announcements available.</p>
+    </div>
+    
+    <div *ngFor="let announcement of announcements" class="announcement">
+      <h3>{{ announcement.title }}</h3>
+        <p>{{ announcement.description }}</p>
+        
+
+      
+      <p>Posted by: {{ announcement.username }}</p>
+    
+      <div class="button-container">
+        <button class="button-preview" mat-button (click)="openDialog(announcement.title, announcement.description, announcement.imageLink, announcement.username)">Preview</button>
+        <div>
+          <button class="approve" (click)="approveAnnouncement(announcement.title)">Approve</button>
+          <button class="reject" mat-button (click)="rejectAnnouncement(announcement.title)">Reject</button>
+        </div>
+      </div>
+    </div>
+
+
+
+
+      
+    </div>
+  </div>

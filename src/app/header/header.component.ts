@@ -2,33 +2,36 @@ import { Component, inject } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogBoxComponent } from '../dialog-box/dialog-box.component';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { AccountComponent } from '../account/account.component';
 import { Auth, User, getAuth, onAuthStateChanged } from '@angular/fire/auth';
+import { ScrollService } from '../scrollService';
 
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterOutlet, AccountComponent],
+  imports: [RouterOutlet, AccountComponent, RouterModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
 
 
-  
+
   username: string | null = null;
   auth: Auth;
 
-  constructor(public dialog: MatDialog){
+  constructor(public dialog: MatDialog, private router: Router, private scrollService: ScrollService) {
     this.auth = getAuth(); // Initialize the Auth instance
+   /*  this.openDialog(); */ //DELETE THIS WHEN READY
   };
+
 
   authService = inject(AuthService);
 
   ngOnInit(): void {
-   
+
     this.authService.user$.subscribe(user => {
       if (user) {
         this.authService.currentUserSig.set({
@@ -39,6 +42,7 @@ export class HeaderComponent {
         this.authService.currentUserSig.set(null);
       }
       console.log(this.authService.currentUserSig());
+      this.dialog.closeAll(); //closes the dialogbox after login/register
     })
 
 
@@ -55,18 +59,40 @@ export class HeaderComponent {
       }
     });
   }
-  
 
 
+  onScrollToTarget(): void {
+    this.router.navigate(['/home']).then(() => {
+      this.scrollService.scrollToElement('join-us-form');
+    });
+  }
 
 
     openDialog(){
-      this.dialog.open(DialogBoxComponent,{
-        backdropClass: 'userActivationDialog'
-      })
+       this.dialog.open(DialogBoxComponent,{
+      }) 
     }
     
 
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+  const dropdownBtn = document.querySelector('.dropdown-btn') as HTMLElement;
+  const dropdown = document.querySelector('.dropdown') as HTMLElement;
 
+  dropdownBtn.addEventListener('click', () => {
+      if (dropdown.style.display === 'block') {
+          dropdown.style.display = 'none';
+      } else {
+          dropdown.style.display = 'block';
+      }
+  });
+
+  window.addEventListener('click', (event: MouseEvent) => {
+      if (!(event.target as HTMLElement).matches('.dropdown-btn')) {
+          if (dropdown.style.display === 'block') {
+              dropdown.style.display = 'none';
+          }
+      }
+  });
+});

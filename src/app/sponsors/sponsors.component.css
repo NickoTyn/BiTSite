@@ -1,0 +1,85 @@
+/* General styles for partners section */
+.partners-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    padding: 20px;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    border-radius: 20px; /* Slightly rounded corners */
+    box-sizing: border-box;
+  }
+  
+  .partners-intro {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .partners-intro .heading {
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+    color: #d7bce8; /* Use a light color for text */
+  }
+  
+  .partners-intro .heading strong {
+    color: #d40dc4; /* Highlighted text color */
+  }
+  
+  .partners {
+    margin: 0 135px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  
+  .partners__item {
+    width: 175px;
+    height: 175px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    text-align: center;
+    border-radius: 20px;
+    background-color: #330329;
+  }
+  
+  .partner__logo img {
+    width: auto;
+    height: auto;
+    max-width: 100px; /* Ensure logos don't get too big */
+    margin-top: 30px ;
+  }
+  
+  
+  .partner__name {
+    margin-top: 10px;
+    font-size: 1rem;
+    color: #d7bce8;
+  }
+  
+  @media (max-width: 768px) {
+    .partners {
+        margin: 0;
+        flex-direction: row;
+        flex-wrap: wrap; /* Allow items to wrap onto new lines */
+        justify-content: center; /* Center items horizontally */
+        gap: 10px; /* Space between items */
+    }
+    
+    .partners__item {
+        width: calc(50% - 10px); /* Two items per row with a gap */
+        height: 150px; /* Adjust height automatically */
+        margin: 0; /* Remove margin to use gap instead */
+    }
+    
+    .partner__logo img {
+        max-width: 100px; /* Adjust size to fit the layout */
+    }
+  
+    .partners-intro .heading {
+        font-size: 1.2rem; /* Adjust font size for mobile */
+    }
+}
+
+  

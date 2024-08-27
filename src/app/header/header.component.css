@@ -1,3 +1,22 @@
+/* styles.css */
+@media (max-width: 600px) {
+  .mobile {
+    display: block;
+  }
+  .desktop {
+    display: none;
+  }
+}
+
+@media (min-width: 601px) {
+  .mobile {
+    display: none;
+  }
+  .desktop {
+    display: block;
+  }
+}
+
 .site-header {
   display: flex;
   align-items: center; /* Center items when in column mode */
@@ -11,8 +30,7 @@
   padding: 10px;
   z-index: 1000;
   transition: all 1.2s ease;
-  box-shadow: 0 4px 10px #db0ed148, /* Deeper glow */
-  0 1px 3px #0301022e; /* Subtle inner shadow */
+  box-shadow: 0 4px 10px #db0ed148, /* Deeper glow */ 0 1px 3px #0301022e; /* Subtle inner shadow */
 }
 
 .site-header {
@@ -20,9 +38,12 @@
   max-height: 10vh;
 }
 
+.logo__image {
+  height: 100px;
+}
 
 .logo-link {
-  flex-shrink: 0; 
+  flex-shrink: 0;
   scale: 1.45;
   margin-left: 20px;
 }
@@ -64,13 +85,15 @@
 
 .nav-button:hover {
   transform: translateY(-2px);
-  box-shadow: 
-  0 7px 14px rgba(0, 0, 0, 0.3), 
-  0 3px 6px rgba(0, 0, 0, 0.08),
-  0 0 0 2px rgba(255, 255, 255, 0.7), /* Semi-transparent white outline */
-  0 0 0 3px #FF98FF, /* Violet ring */
-  0 0 10px rgba(242, 0, 255, 0.7), /* Soft violet glow for extra effect */
-  0 0 15px rgba(255, 255, 255, 0.5); /* Outer violet glow */
+  box-shadow: 0 7px 14px rgba(0, 0, 0, 0.3), 0 3px 6px rgba(0, 0, 0, 0.08),
+    0 0 0 2px rgba(255, 255, 255, 0.7),
+    /* Semi-transparent white outline */ 0 0 0 3px #ff98ff,
+    /* Violet ring */ 0 0 10px rgba(242, 0, 255, 0.7),
+    /* Soft violet glow for extra effect */ 0 0 15px rgba(255, 255, 255, 0.5); /* Outer violet glow */
+}
+
+a:hover {
+  cursor: pointer;
 }
 
 .nav-list li a {
@@ -129,7 +152,7 @@ body {
   margin-right: 50px;
 }
 
-.nav-button-login span{
+.nav-button-login span {
   overflow: hidden;
 }
 
@@ -139,13 +162,11 @@ body {
 
 .nav-button-login:hover {
   transform: translateY(-2px);
-  box-shadow: 
-  0 7px 14px rgba(0, 0, 0, 0.3), 
-  0 3px 6px rgba(0, 0, 0, 0.08),
-  0 0 0 2px rgba(255, 255, 255, 0.7), /* Semi-transparent white outline */
-  0 0 0 3px #FF98FF, /* Violet ring */
-  0 0 10px rgba(242, 0, 255, 0.7), /* Soft violet glow for extra effect */
-  0 0 15px rgba(255, 255, 255, 0.5); /* Outer violet glow */
+  box-shadow: 0 7px 14px rgba(0, 0, 0, 0.3), 0 3px 6px rgba(0, 0, 0, 0.08),
+    0 0 0 2px rgba(255, 255, 255, 0.7),
+    /* Semi-transparent white outline */ 0 0 0 3px #ff98ff,
+    /* Violet ring */ 0 0 10px rgba(242, 0, 255, 0.7),
+    /* Soft violet glow for extra effect */ 0 0 15px rgba(255, 255, 255, 0.5); /* Outer violet glow */
 }
 
 .nav-list-login li a {
@@ -164,24 +185,105 @@ body {
   background-color: #674dff; /* Optional: change background color to give feedback */
 }
 
-.login-text{
+.login-text {
   overflow: hidden;
 }
 
 /* Media Query for screens less than 768px wide */
 @media (max-width: 1068px) {
   .activities-container {
-      flex-direction: column; /* Stacks flex items vertically */
+    flex-direction: column; /* Stacks flex items vertically */
   }
 
   .activity {
-      width: auto; /* Allows each activity to fill the container */
-      margin: 10px auto; /* Adjust margin as needed for mobile layout */
+    width: auto; /* Allows each activity to fill the container */
+    margin: 10px auto; /* Adjust margin as needed for mobile layout */
   }
 }
 
+.loginDialogPanel {
+  background-color: red;
+  padding: 15px;
+}
 
-@media (max-width: 768px) {
+/*MOBILE*/
 
-    
-  }
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;
+  background-color: transparent;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-btn{
+  display: inline-block;
+  margin: 10px;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #fff;
+  background: linear-gradient(145deg, #cd13cc, #675fff);
+  border: none;
+  border-radius: 30px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-transform: uppercase;
+}
+
+.dropdown-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 14px rgba(0, 0, 0, 0.3), 0 3px 6px rgba(0, 0, 0, 0.08),
+    0 0 0 2px rgba(255, 255, 255, 0.7),
+    /* Semi-transparent white outline */ 0 0 0 3px #ff98ff,
+    /* Violet ring */ 0 0 10px rgba(242, 0, 255, 0.7),
+    /* Soft violet glow for extra effect */ 0 0 15px rgba(255, 255, 255, 0.5); /* Outer violet glow */
+}
+
+.dropdown-btn:active {
+  transform: scale(0.95); /* Slightly reduce the size */
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2); /* Soften the shadow for a pressed effect */
+  background-color: #674dff; /* Optional: change background color to give feedback */
+}
+
+#mobile-nav-list{
+
+  margin-left: -25px;
+}
+
+.dropdown a:hover {
+  background-color: #575757;
+}
+.nav-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+.nav-button {
+  cursor: pointer;
+}
+
+.mobile-login-svg{
+   margin-right: 1px !important; 
+}
+
+
+.mobile-svg {
+  height: 30px;
+  width: 30px;
+}
+
+.mobile-svg-home {
+  height: 30px;
+  width: 30px;
+}
+.mobile-svg-join-us {
+  height: 30px;
+  width: 30px;
+}
+
+.mobile-login-svg {
+  margin: 0;
+  margin-right: -10px;
+}

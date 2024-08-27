@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
 @mixin aspect-ratio($width, $height) {
   position: relative;
 
@@ -24,7 +27,7 @@ section {
 }
 
 .container {
-  max-width: 1044px;
+  max-width: 1094px;
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -127,7 +130,44 @@ section {
   transition: opacity 0.3s ease;
 }
 
+.titleDescriptionCompany{
+  padding:20px;
+  color:white;
+  opacity:0%;
+  transition: opacity 0.4s ease; 
+  margin:20px;
 
+  max-width:450px;
+display: flex;
+flex-direction: column;
+justify-content: flex-start;
+margin-top:-450px;
+}
+
+.titleDescriptionCompany h1{ 
+  justify-content: flex-start;
+  text-align: center;
+  height:100%;
+  font-family:'Dancing Script' ,cursive;
+  font-size:54px;
+  text-transform: capitalize;
+  justify-content: center;
+  line-height: 1.3; /* Adjust line height to prevent merging */
+  margin: 20px; /* Ensure no extra margin that could affect spacing */
+  padding: 0; /* Ensure no extra padding that could affect spacing */
+}
+
+.titleDescriptionCompany h2{
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 14px;
+  text-transform: uppercase;
+  justify-content: center;
+  text-shadow: black;
+}
+
+.Company{
+  justify-content:end;
+}
 
 .carousel__slides {
   position: relative;
@@ -174,9 +214,7 @@ section {
 
   figcaption {
     align-self: flex-end;
-    padding: 20px 20px 0 20px;
-    flex: 0 0 auto;
-    width: 25%;
+    width:100%;
     min-width: 150px;
   }
 
@@ -255,3 +293,25 @@ svg{
 /*   bottom:20vh ; */
 /*   left: ; */
 }
+
+
+@media (max-width: 1068px) {
+.poza{
+  display: none;
+}
+  
+ .carousel__slides{
+  margin-left: 7px;
+  margin-top: 50px;
+  margin-bottom: 30px;
+ }
+
+ .carousel__slide img{
+  width: 320px;
+  height: 320px;
+ }
+
+  figcaption{
+    display: none;
+  }
+} 

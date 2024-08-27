@@ -1,114 +1,401 @@
-<header class="site-header full-page-header">
-  <a class="logo-link">
-      <img
-          class="logo__image"
-          src="assets/Logo BIT.png"
-          alt="BiT Logo"
-          height="100px"
-      />
-  </a>
+<div class="desktop">
+  <header class="site-header full-page-header">
+    <a class="logo-link">
+      <img class="logo__image" src="assets/Logo BIT.png" alt="BiT Logo" />
+    </a>
 
-  <div class="nav-container">
+    <div class="nav-container">
       <nav class="main-nav">
-          <ul class="nav-list">
-              <li>
-                  <a class="button nav-button" href="#education-training">Home</a>
-              </li>
-              <li>
-                  <a href="#work-experience" class="nav-button">Events</a>
-              </li>
-              <li><a href="#portfolio" class="nav-button">Past Activities</a></li>
-              <li><a href="#" class="nav-button">Join Us</a></li>
-          </ul>
+        <ul class="nav-list">
+          <li>
+            <a class="button nav-button" href="#education-training">Home</a>
+          </li>
+          
+          <li><a href="#portfolio" class="nav-button">Past Activities</a></li>
+          <li>
+            <a href="#" class="nav-button" (click)="onScrollToTarget()"
+              >Join Us</a
+            >
+          </li>
+          <li>
+            <a href="#work-experience" class="nav-button" routerLink="about-us">About Us</a>
+          </li>
+        </ul>
       </nav>
 
       @if (authService.currentUserSig() == null){
-        <button mat-button class="nav-button-login" (click)="openDialog()">
-            <svg width="24px" height="24px" viewBox="0 0 24.00 24.00" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff">
-                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.192"></g>
-                <g id="SVGRepo_iconCarrier">
-                    <path d="M20 12C20 7.58172 16.4183 4 12 4M12 20C14.5264 20 16.7792 18.8289 18.2454 17" stroke="#ffffff" stroke-width="1.7759999999999998" stroke-linecap="round"></path>
-                    <path d="M4 12H14M14 12L11 9M14 12L11 15" stroke="#ffffff" stroke-width="1.7759999999999998" stroke-linecap="round" stroke-linejoin="round"></path>
-                </g>
-            </svg>
-            <span class="login-text">Sign In</span>
-        </button>
-        } 
-
-        @if (authService.currentUserSig()){
-       <div>
+      <button mat-button class="nav-button-login" (click)="openDialog()">
+        <svg
+          width="24px"
+          height="24px"
+          viewBox="0 0 24.00 24.00"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          stroke="#ffffff"
+        >
+          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g
+            id="SVGRepo_tracerCarrier"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke="#CCCCCC"
+            stroke-width="0.192"
+          ></g>
+          <g id="SVGRepo_iconCarrier">
+            <path
+              d="M20 12C20 7.58172 16.4183 4 12 4M12 20C14.5264 20 16.7792 18.8289 18.2454 17"
+              stroke="#ffffff"
+              stroke-width="1.7759999999999998"
+              stroke-linecap="round"
+            ></path>
+            <path
+              d="M4 12H14M14 12L11 9M14 12L11 15"
+              stroke="#ffffff"
+              stroke-width="1.7759999999999998"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+          </g>
+        </svg>
+        <span class="login-text">Sign In</span>
+      </button>
+      } @if (authService.currentUserSig()){
+      <div>
         <button class="nav-button-login" routerLink="/account">
-            <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-              <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-              <g id="SVGRepo_iconCarrier">
-                <path d="M12 12C14.7614 12 17 9.76142 17 7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7C7 9.76142 9.23858 12 12 12Z" fill="#ffffff"></path>
-                <path d="M12.0002 14.5C6.99016 14.5 2.91016 17.86 2.91016 22C2.91016 22.28 3.13016 22.5 3.41016 22.5H20.5902C20.8702 22.5 21.0902 22.28 21.0902 22C21.0902 17.86 17.0102 14.5 12.0002 14.5Z" fill="#ffffff"></path>
-              </g>
-            </svg>
-            <span class="login-text">Hi {{username}}</span>
-          </button>
-</div>
-        }
-  </div>
-</header>
+          <svg
+            width="24px"
+            height="24px"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g
+              id="SVGRepo_tracerCarrier"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></g>
+            <g id="SVGRepo_iconCarrier">
+              <path
+                d="M12 12C14.7614 12 17 9.76142 17 7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7C7 9.76142 9.23858 12 12 12Z"
+                fill="#ffffff"
+              ></path>
+              <path
+                d="M12.0002 14.5C6.99016 14.5 2.91016 17.86 2.91016 22C2.91016 22.28 3.13016 22.5 3.41016 22.5H20.5902C20.8702 22.5 21.0902 22.28 21.0902 22C21.0902 17.86 17.0102 14.5 12.0002 14.5Z"
+                fill="#ffffff"
+              ></path>
+            </g>
+          </svg>
+          <span class="login-text">Hi {{ username }}</span>
+        </button>
+      </div>
+      }
+    </div>
+  </header>
 
-<router-outlet></router-outlet>
-<header class="site-header full-page-header">
-  <a class="logo-link">
-      <img
-          class="logo__image"
-          src="assets/Logo BIT.png"
-          alt="BiT Logo"
-          height="100px"
-      />
-  </a>
+  <header class="site-header full-page-header">
+    <a class="logo-link" href="/">
+      <img class="logo__image" src="assets/Logo BIT.png" alt="BiT Logo" />
+    </a>
 
-  <div class="nav-container">
+    <div class="nav-container">
       <nav class="main-nav">
-          <ul class="nav-list">
-              <li>
-                  <a class="button nav-button" href="#education-training">Home</a>
-              </li>
-              <li>
-                  <a href="#work-experience" class="nav-button">Events</a>
-              </li>
-              <li><a href="#portfolio" class="nav-button">Past Activities</a></li>
-              <li><a href="#" class="nav-button">Join Us</a></li>
-          </ul>
+        <ul class="nav-list">
+          <li>
+            <a class="button nav-button" href="#education-training">Home</a>
+          </li>
+          
+          <li><a href="#portfolio" class="nav-button" routerLink="past-activities">Past Activities</a></li>
+          <li>
+            <a class="nav-button" (click)="onScrollToTarget()">Join Us</a>
+          </li>
+          <li>
+            <a href="#work-experience" class="nav-button" routerLink="about-us">About Us</a>
+          </li>
+        </ul>
       </nav>
 
       @if (authService.currentUserSig() == null){
-        <button mat-button class="nav-button-login" (click)="openDialog()">
-            <svg width="24px" height="24px" viewBox="0 0 24.00 24.00" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff">
-                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.192"></g>
-                <g id="SVGRepo_iconCarrier">
-                    <path d="M20 12C20 7.58172 16.4183 4 12 4M12 20C14.5264 20 16.7792 18.8289 18.2454 17" stroke="#ffffff" stroke-width="1.7759999999999998" stroke-linecap="round"></path>
-                    <path d="M4 12H14M14 12L11 9M14 12L11 15" stroke="#ffffff" stroke-width="1.7759999999999998" stroke-linecap="round" stroke-linejoin="round"></path>
-                </g>
-            </svg>
-            <span class="login-text">Sign In</span>
-        </button>
-        } 
-
-        @if (authService.currentUserSig()){
-       <div>
+      <button mat-button class="nav-button-login" (click)="openDialog()">
+        <svg
+          width="24px"
+          height="24px"
+          viewBox="0 0 24.00 24.00"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          stroke="#ffffff"
+        >
+          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g
+            id="SVGRepo_tracerCarrier"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke="#CCCCCC"
+            stroke-width="0.192"
+          ></g>
+          <g id="SVGRepo_iconCarrier">
+            <path
+              d="M20 12C20 7.58172 16.4183 4 12 4M12 20C14.5264 20 16.7792 18.8289 18.2454 17"
+              stroke="#ffffff"
+              stroke-width="1.7759999999999998"
+              stroke-linecap="round"
+            ></path>
+            <path
+              d="M4 12H14M14 12L11 9M14 12L11 15"
+              stroke="#ffffff"
+              stroke-width="1.7759999999999998"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+          </g>
+        </svg>
+        <span class="login-text">Sign In</span>
+      </button>
+      } @if (authService.currentUserSig()){
+      <div>
         <button class="nav-button-login" routerLink="/account">
-            <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-              <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-              <g id="SVGRepo_iconCarrier">
-                <path d="M12 12C14.7614 12 17 9.76142 17 7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7C7 9.76142 9.23858 12 12 12Z" fill="#ffffff"></path>
-                <path d="M12.0002 14.5C6.99016 14.5 2.91016 17.86 2.91016 22C2.91016 22.28 3.13016 22.5 3.41016 22.5H20.5902C20.8702 22.5 21.0902 22.28 21.0902 22C21.0902 17.86 17.0102 14.5 12.0002 14.5Z" fill="#ffffff"></path>
-              </g>
-            </svg>
-            <span class="login-text">Hi {{username}}</span>
-          </button>
+          <svg
+            width="24px"
+            height="24px"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g
+              id="SVGRepo_tracerCarrier"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></g>
+            <g id="SVGRepo_iconCarrier">
+              <path
+                d="M12 12C14.7614 12 17 9.76142 17 7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7C7 9.76142 9.23858 12 12 12Z"
+                fill="#ffffff"
+              ></path>
+              <path
+                d="M12.0002 14.5C6.99016 14.5 2.91016 17.86 2.91016 22C2.91016 22.28 3.13016 22.5 3.41016 22.5H20.5902C20.8702 22.5 21.0902 22.28 21.0902 22C21.0902 17.86 17.0102 14.5 12.0002 14.5Z"
+                fill="#ffffff"
+              ></path>
+            </g>
+          </svg>
+          <span class="login-text">Hi {{ username }}</span>
+        </button>
+      </div>
+      }
+    </div>
+  </header>
 </div>
-        }
-  </div>
-</header>
+
+<div class="mobile">
+  <header class="site-header full-page-header">
+    <a class="logo-link" href="/">
+      <img class="logo__image" src="assets/Logo BIT.png" alt="BiT Logo" />
+    </a>
+
+    <div class="nav-container">
+      <nav class="main-nav">
+        <div class="dropdown-btn">Menu</div>
+        <div class="dropdown">
+          <ul id="mobile-nav-list" class="nav-list">
+            <li>
+              <a class="button nav-button" href="#education-training">
+                <svg
+                  class="mobile-svg-home"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                  <g
+                    id="SVGRepo_tracerCarrier"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></g>
+                  <g id="SVGRepo_iconCarrier">
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M21.4498 10.275L11.9998 3.1875L2.5498 10.275L2.9998 11.625H3.7498V20.25H20.2498V11.625H20.9998L21.4498 10.275ZM5.2498 18.75V10.125L11.9998 5.0625L18.7498 10.125V18.75H14.9999V14.3333L14.2499 13.5833H9.74988L8.99988 14.3333V18.75H5.2498ZM10.4999 18.75H13.4999V15.0833H10.4999V18.75Z"
+                      fill="#ffffff"
+                    ></path>
+                  </g>
+                </svg>
+              </a>
+            </li>
+
+            <li>
+              <a href="#" class="nav-button" routerLink="past-activities">
+                <svg
+                  class="mobile-svg"
+                  height="200px"
+                  width="200px"
+                  version="1.1"
+                  id="_x32_"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  viewBox="0 0 512 512"
+                  xml:space="preserve"
+                  fill="#000000"
+                >
+                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                  <g
+                    id="SVGRepo_tracerCarrier"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></g>
+                  <g id="SVGRepo_iconCarrier">
+                    <style type="text/css">
+                      .st0 {
+                        fill: #ffffff;
+                      }
+                    </style>
+                    <g>
+                      <path
+                        class="st0"
+                        d="M118.612,89.298c9.483,0,17.177-7.686,17.177-17.168v-54.96C135.788,7.687,128.094,0,118.612,0 c-9.482,0-17.176,7.687-17.176,17.169v54.96C101.436,81.611,109.13,89.298,118.612,89.298z"
+                      ></path>
+                      <path
+                        class="st0"
+                        d="M255.992,89.298c9.483,0,17.176-7.686,17.176-17.168v-54.96C273.169,7.687,265.475,0,255.992,0 c-9.483,0-17.169,7.687-17.169,17.169v54.96C238.824,81.611,246.51,89.298,255.992,89.298z"
+                      ></path>
+                      <path
+                        class="st0"
+                        d="M393.372,89.298c9.49,0,17.176-7.686,17.176-17.168v-54.96C410.549,7.687,402.863,0,393.372,0 c-9.482,0-17.169,7.687-17.169,17.169v54.96C376.204,81.611,383.89,89.298,393.372,89.298z"
+                      ></path>
+                      <path
+                        class="st0"
+                        d="M196.576,275.986h23.082c1.611,0,2.683-1.071,2.683-2.682v-20.931c0-1.079,0.539-1.611,1.611-1.611h61.142 v0.802l-59.578,151.904c-0.802,1.881,0,2.953,1.611,2.953h25.495c2.143,0,2.683-0.54,3.492-2.413l60.379-151.635 c0.54-1.341,0.81-2.683,0.81-4.834v-20.931c0-1.611-1.072-2.682-2.683-2.682H196.576c-1.611,0-2.682,1.071-2.682,2.682v46.696 C193.894,274.915,194.965,275.986,196.576,275.986z"
+                      ></path>
+                      <path
+                        class="st0"
+                        d="M424.286,44.899v27.23c0,17.038-13.861,30.906-30.914,30.906c-17.038,0-30.906-13.869-30.906-30.906v-27.23 h-75.559v27.23c0,17.038-13.869,30.906-30.914,30.906c-17.038,0-30.907-13.869-30.907-30.906v-27.23h-75.558v27.23 c0,17.038-13.87,30.906-30.915,30.906c-17.038,0-30.914-13.869-30.914-30.906v-27.23H17.866V512h476.267V44.899H424.286z M450.86,468.735H61.132V143.116H450.86V468.735z"
+                      ></path>
+                    </g>
+                  </g>
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a  class="nav-button" href="#join-us"  (click)="onScrollToTarget()">
+                <svg
+                  class="mobile-svg-join-us"
+                  fill="#ffffff"
+                  viewBox="0 0 24 24"
+                  role="img"
+                  xmlns="http://www.w3.org/2000/svg"
+                  stroke="#ffffff"
+                >
+                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                  <g
+                    id="SVGRepo_tracerCarrier"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></g>
+                  <g id="SVGRepo_iconCarrier">
+                    <path
+                      d="M2.284 22.158c.001.95.679 1.752 1.62 1.792 1.31.055 2.623.022 3.935.022.954 0 1.786-.865 1.76-1.954-.029-1.221.018-2.445.029-3.667l.045-4.988c.003-.305.046-.362.335-.44a4.242 4.242 0 0 1 2.013-.067c1.23.262 2.129 1.21 2.261 2.46.066.62.07 1.249.078 1.874.025 1.64.038 3.28.054 4.921.01 1.087.796 1.877 1.883 1.882 1.171.006 2.342.008 3.513.007 1.106-.002 1.895-.778 1.898-1.883.007-3.371.007-6.742.01-10.113 0-.052 0-.105-.005-.156-.03-.355-.169-.658-.483-.838a2.638 2.638 0 0 0-.695-.291 7.484 7.484 0 0 0-2.887-.123c-.743.113-1.476.293-2.213.442-.97.196-1.946.28-2.934.178-1.268-.129-2.37-.666-3.402-1.38a32.36 32.36 0 0 0-1.494-.984c-.62-.38-1.314-.505-2.03-.544-.77-.043-1.536-.063-2.293.111-.59.136-.899.479-.966 1.077a3.438 3.438 0 0 0-.021.379m7.337-6.184a3.675 3.675 0 1 0-7.35-.031 3.675 3.675 0 0 0 7.35.03zm8.335-1.81a3.673 3.673 0 0 0-3.69 3.652 3.672 3.672 0 0 0 3.67 3.697 3.678 3.678 0 0 0 3.68-3.665 3.677 3.677 0 0 0-3.66-3.685z"
+                    ></path>
+                  </g>
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a href="#work-experience" class="nav-button" routerLink="about-us">
+                <svg
+                  class="mobile-svg"
+                  fill="#ffffff"
+                  viewBox="0 0 1920 1920"
+                  xmlns="http://www.w3.org/2000/svg"
+                  stroke="#ffffff"
+                >
+                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                  <g
+                    id="SVGRepo_tracerCarrier"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></g>
+                  <g id="SVGRepo_iconCarrier">
+                    <path
+                      d="M1229.93 594.767c36.644 37.975 50.015 91.328 43.72 142.909-9.128 74.877-30.737 144.983-56.093 215.657-27.129 75.623-54.66 151.09-82.332 226.512-44.263 120.685-88.874 241.237-132.65 362.1-10.877 30.018-18.635 62.072-21.732 93.784-3.376 34.532 21.462 51.526 52.648 36.203 24.977-12.278 49.288-28.992 68.845-48.768 31.952-32.31 63.766-64.776 94.805-97.98 15.515-16.605 30.86-33.397 45.912-50.438 11.993-13.583 24.318-34.02 40.779-42.28 31.17-15.642 55.226 22.846 49.582 49.794-5.39 25.773-23.135 48.383-39.462 68.957l-1.123 1.416a1559.53 1559.53 0 0 0-4.43 5.6c-54.87 69.795-115.043 137.088-183.307 193.977-67.103 55.77-141.607 103.216-223.428 133.98-26.65 10.016-53.957 18.253-81.713 24.563-53.585 12.192-112.798 11.283-167.56 3.333-40.151-5.828-76.246-31.44-93.264-68.707-29.544-64.698-8.98-144.595 6.295-210.45 18.712-80.625 46.8-157.388 75.493-234.619l2.18-5.867 1.092-2.934 2.182-5.87 2.182-5.873c33.254-89.517 67.436-178.676 101.727-267.797 31.294-81.296 62.72-162.537 93.69-243.95 2.364-6.216 5.004-12.389 7.669-18.558l1-2.313c6.835-15.806 13.631-31.617 16.176-48.092 6.109-39.537-22.406-74.738-61.985-51.947-68.42 39.4-119.656 97.992-170.437 156.944l-6.175 7.17c-15.78 18.323-31.582 36.607-47.908 54.286-16.089 17.43-35.243 39.04-62.907 19.07-29.521-21.308-20.765-48.637-3.987-71.785 93.18-128.58 205.056-248.86 350.86-316.783 60.932-28.386 146.113-57.285 225.882-58.233 59.802-.707 116.561 14.29 157.774 56.99Zm92.038-579.94c76.703 29.846 118.04 96.533 118.032 190.417-.008 169.189-182.758 284.908-335.53 212.455-78.956-37.446-117.358-126.202-98.219-227.002 26.494-139.598 183.78-227.203 315.717-175.87Z"
+                      fill-rule="evenodd"
+                    ></path>
+                  </g>
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      @if (authService.currentUserSig() == null){
+      <button mat-button class="nav-button-login" (click)="openDialog()">
+        <svg
+          class="mobile-login-svg"
+          width="24px"
+          height="24px"
+          viewBox="0 0 24.00 24.00"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          stroke="#ffffff"
+        >
+          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g
+            id="SVGRepo_tracerCarrier"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke="#CCCCCC"
+            stroke-width="0.192"
+          ></g>
+          <g id="SVGRepo_iconCarrier">
+            <path
+              d="M20 12C20 7.58172 16.4183 4 12 4M12 20C14.5264 20 16.7792 18.8289 18.2454 17"
+              stroke="#ffffff"
+              stroke-width="1.7759999999999998"
+              stroke-linecap="round"
+            ></path>
+            <path
+              d="M4 12H14M14 12L11 9M14 12L11 15"
+              stroke="#ffffff"
+              stroke-width="1.7759999999999998"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+          </g>
+        </svg>
+      </button>
+      } @if (authService.currentUserSig()){
+      <div>
+        <button class="nav-button-login" routerLink="/account">
+          <svg
+            class="mobile-login-svg"
+            width="24px"
+            height="24px"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g
+              id="SVGRepo_tracerCarrier"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></g>
+            <g id="SVGRepo_iconCarrier">
+              <path
+                d="M12 12C14.7614 12 17 9.76142 17 7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7C7 9.76142 9.23858 12 12 12Z"
+                fill="#ffffff"
+              ></path>
+              <path
+                d="M12.0002 14.5C6.99016 14.5 2.91016 17.86 2.91016 22C2.91016 22.28 3.13016 22.5 3.41016 22.5H20.5902C20.8702 22.5 21.0902 22.28 21.0902 22C21.0902 17.86 17.0102 14.5 12.0002 14.5Z"
+                fill="#ffffff"
+              ></path>
+            </g>
+          </svg>
+        </button>
+      </div>
+      }
+    </div>
+  </header>
+</div>
 
 <router-outlet></router-outlet>

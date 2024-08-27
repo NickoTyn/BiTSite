@@ -1,35 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #972ba5;
     margin: 0;
     padding: 0;
+    font:white;
 }
 
 .container {
     max-width: 800px;
-    margin: 200px auto;
+    margin: 160px auto;
     padding: 20px;
-    background-color: #fff;
+    background-color: #050b2d;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
+    font-family: 'Dancing Script';
+    font-size: 60px;
+    line-height: 0.9;
+    text-transform: capitalize;
     text-align: center;
-    color: #333;
+    color: rgb(255, 255, 255);
+    margin:40px;
+    margin-top:0px;
+    padding:10px;
+    padding-top:0px;
+    line-height: 70px;
+}
+
+p {
+    color:#cd13cc;
+    font-size: 18px;
+}
+
+input{
+    background-color:#cd13cd77;
+    color:white;
 }
 
 h2 {
-    color: #555;
+
+    margin:20px;
+    margin-left:0px;
+
+    color:white;
+    font-family:Verdana, Geneva, Tahoma, sans-serif ;
+    text-decoration: none;
+    
+    font-size:18px;
+  text-transform: capitalize;
+  text-transform: uppercase;
+
 }
 
 section {
-    margin-bottom: 30px;
+    border-top: 1px solid #d40dc4;
+    padding:12px;
+    margin-top:10px;
+    margin-bottom:10px;
+
+}
+
+.Logout{
+    text-align: end;
+    padding-top:10px;
+    padding-right: 0px;
 }
 
 label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
+    color:white;
+    font-family:Verdana, Geneva, Tahoma, sans-serif ;
+    text-decoration: none;
+  text-transform: capitalize;
+  font-style:italic;
+
 }
 
 input[type="text"],
@@ -38,20 +88,60 @@ input[type="password"] {
     width: 100%;
     padding: 8px;
     margin-bottom: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #d40dc4;
     border-radius: 4px;
+    margin:10px 30px 30px 0px;
+    
+}
+
+input:focus {
+  z-index: 1111;
+  box-shadow: 0 0 8px 3px rgba(205, 19, 204, 0.7), 0 0 25px 5px rgba(103, 95, 255, 0.7);
+}
+
+.make-post{
+    align-items: center;
+    text-align: center;
+}
+
+.make-post button{
+    margin-top: 7px;
+}
+
+.Logout button{
+    background: linear-gradient(145deg, #cd1313, #a05d5d7a);
+}
+
+.Logout button:hover{
+    transform: translateY(-2px);
+    box-shadow: 
+    0 7px 14px rgba(0, 0, 0, 0.3), 
+    0 3px 6px rgba(0, 0, 0, 0.08),
+    0 0 0 2px rgba(255, 255, 255, 0.296), /* Semi-transparent white outline */
+    0 0 0 3px #fb8585, /* Violet ring */
+    0 0 10px rgba(255, 0, 4, 0.7), /* Soft violet glow for extra effect */
+    0 0 15px rgba(206, 49, 201, 0.5); /* Outer violet glow */
 }
 
 button {
     display: inline-block;
-    background-color: #28a745;
+    background: linear-gradient(145deg, #cd13cc, #675fff);
+    font-size:15px;
     color: #fff;
     padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
+
+    border-radius: 30px;
     cursor: pointer;
+    scale: 3px;
 }
 
 button:hover {
-    background-color: #218838;
+    transform: translateY(-2px);
+    box-shadow: 
+    0 7px 14px rgba(0, 0, 0, 0.3), 
+    0 3px 6px rgba(0, 0, 0, 0.08),
+    0 0 0 2px rgba(255, 255, 255, 0.7), /* Semi-transparent white outline */
+    0 0 0 3px #FF98FF, /* Violet ring */
+    0 0 10px rgba(242, 0, 255, 0.7), /* Soft violet glow for extra effect */
+    0 0 15px rgba(255, 255, 255, 0.5); /* Outer violet glow */
 }

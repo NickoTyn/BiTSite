@@ -1,9 +1,9 @@
 <section>
 
     <div class="container">
-       
+
         <div class="carousel">
-          
+
             <input type="radio" name="slides" checked="checked" id="slide-1">
             <input type="radio" name="slides" id="slide-2">
             <input type="radio" name="slides" id="slide-3">
@@ -15,103 +15,136 @@
             <ul class="carousel__slides">
                 <div class="design">
                     <img class="poza" src="assets/People.png">
-                 </div>
+                </div>
                 <li class="carousel__slide">
                     <figure>
-                        <div class=post_wrapper>
-                            <img src="assets/Afis Socials Editia 2.jpg">
+                        <div class="post_wrapper">
+                            <a href="https://www.instagram.com/p/C678TzqI2pZ/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank">
+                            <img src= {{queue[0].imageLink}}>
+                        </a>
                         </div>
                         <figcaption>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            <span class="credit">Photo: Tim Marshall</span>
+                            <div class="titleDescriptionCompany">
+                                <h1>{{queue[0].title}}</h1>
+                                <h2>{{queue[0].description}}</h2>
+                                <span class="Company">Provided by: {{queue[0].username}} </span>
+                            </div>
+
                         </figcaption>
                     </figure>
                 </li>
                 <li class="carousel__slide">
                     <figure>
-                        <div class=post_wrapper>
-                            <img src="assets/Concurs poze Halloween Gata.png" alt="">
+                        <div class="post_wrapper">
+                            <a href="https://www.instagram.com/p/Czlp9l7IDHR/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank">
+                            <img src= {{queue[1].imageLink}} alt="">
+                        </a>
                         </div>
                         <figcaption>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            <span class="credit">Photo: Christian Joudrey</span>
+                            <div class="titleDescriptionCompany">
+                                <h1>{{queue[1].title}}</h1>
+                                <h2>{{queue[1].description}}
+                                </h2>
+                                
+                                <span class="Company">Provided by: {{queue[1].username}} </span>
+                            </div>
                         </figcaption>
                     </figure>
                 </li>
                 <li class="carousel__slide">
                     <figure>
-                        <div class=post_wrapper>
-                            <img src="assets/poster - BIT Minecraft Server.jpg" alt="">
+                        <div class="post_wrapper">
+                            <a href="https://www.instagram.com/asociatiabit/" target="_blank">
+                            <img src= {{queue[2].imageLink}} alt="">
+                        </a>
                         </div>
                         <figcaption>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            <span class="credit">Photo: Steve Carter</span>
+                            <div class="titleDescriptionCompany">
+                                <h1>{{queue[2].title}}</h1>
+                                <h2>{{queue[2].description}}
+                                </h2>
+                                
+                                <span class="Company">Provided by: {{queue[2].username}} </span>
+                            </div>
                         </figcaption>
                     </figure>
                 </li>
                 <li class="carousel__slide">
                     <figure>
-                        <div class=post_wrapper>
-                            <img src="https://picsum.photos/id/1045/800/450" alt="">
+                        <div class="post_wrapper">
+                            <a href="https://www.instagram.com/asociatiabit/" target="_blank">
+                            <img src= {{queue[3].imageLink}} alt="">
+                        </a>
                         </div>
                         <figcaption>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            <span class="credit">Photo: Aleksandra Boguslawska</span>
+                            <div class="titleDescriptionCompany">
+                                <h1>{{queue[3].title}}</h1>
+                                <h2>{{queue[3].description}}
+                                </h2>
+                                
+                                <span class="Company">Provided by: {{queue[3].username}} </span>
+                            </div>
                         </figcaption>
                     </figure>
                 </li>
                 <li class="carousel__slide">
                     <figure>
-                        <div class=post_wrapper>
-                            <img src="https://picsum.photos/id/1049/800/450" alt="">
+                        <div class="post_wrapper">
+                            <a href="https://www.instagram.com/asociatiabit/" target="_blank">
+                            <img src= {{queue[4].imageLink}} alt="">
+                        </a>
                         </div>
                         <figcaption>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            <span class="credit">Photo: Rosan Harmens</span>
+                            <div class="titleDescriptionCompany">
+                                <h1>{{queue[4].title}}</h1>
+                                <h2>{{queue[4].description}}
+                                </h2>
+                                
+                                <span class="Company">Provided by: {{queue[4].username}} </span>
+                            </div>
                         </figcaption>
                     </figure>
                 </li>
                 <li class="carousel__slide">
                     <figure>
-                        <div class=post_wrapper>
-                            <img src="https://picsum.photos/id/1052/800/450" alt="">
+                        <div class="post_wrapper">
+                            <a href="https://www.instagram.com/asociatiabit/" target="_blank">
+                            <img src= {{queue[5].imageLink}} alt="">
+                        </a>
                         </div>
                         <figcaption>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            <span class="credit">Photo: Annie Spratt</span>
+                            <div class="titleDescriptionCompany">
+                                <h1>{{queue[5].title}}</h1>
+                                <h2>{{queue[5].description}}
+                                </h2>
+                                
+                                <span class="Company">Provided by: {{queue[5].username}} </span>
+                            </div>
                         </figcaption>
                     </figure>
                 </li>
                 <li class="carousel__slide">
-                    <figure>
-                        <div class=post_wrapper>
-                            <img src="assets/poster - BIT Minecraft Server.jpg" alt="">
-                        </div>
-                        <figcaption>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            <span class="credit">Photo: Steve Carter</span>
-                        </figcaption>
-                    </figure>
+                    
                 </li>
             </ul>
             <ul class="carousel__thumbnails">
                 <li>
-                    <label for="slide-1"><img src="assets/Afis Socials Editia 2.jpg" alt=""></label>
+                    <label for="slide-1"><img src= {{queue[0].imageLink}} alt=""></label>
                 </li>
                 <li>
-                    <label for="slide-2"><img src="assets/Concurs poze Halloween Gata.png" alt=""></label>
+                    <label for="slide-2"><img src= {{queue[1].imageLink}} alt=""></label>
                 </li>
                 <li>
-                    <label for="slide-3"><img src="assets/poster - BIT Minecraft Server.jpg" alt=""></label>
+                    <label for="slide-3"><img src= {{queue[2].imageLink}} alt=""></label>
                 </li>
                 <li>
-                    <label for="slide-4"><img src="https://picsum.photos/id/1045/150/150" alt=""></label>
+                    <label for="slide-4"><img src= {{queue[3].imageLink}} alt=""></label>
                 </li>
                 <li>
-                    <label for="slide-5"><img src="https://picsum.photos/id/1049/150/150" alt=""></label>
+                    <label for="slide-5"><img src= {{queue[4].imageLink}} alt=""></label>
                 </li>
                 <li>
-                    <label for="slide-6"><img src="https://picsum.photos/id/1052/150/150" alt=""></label>
+                    <label for="slide-6"><img src= {{queue[5].imageLink}} alt=""></label>
                 </li>
             </ul>
         </div>

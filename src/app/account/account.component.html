@@ -1,6 +1,14 @@
 <div class="container">
     <h1>Account Handling Page</h1>
   
+    @if (isAdmin() == true){
+      <section class="make-post">
+        <button mat-button (click)="openDialog()">Make a Post</button>
+      </section>
+    }
+    
+  
+
     <section class="account-info">
       <h2>Account Information</h2>
       <p>Current Username: {{ username }}</p>
@@ -54,14 +62,11 @@
       
     </section>
 
-  <section class="make-post">
-    <h2>Make a Post</h2>
-    <button mat-button (click)="openDialog()">Make a Post</button>
-  </section>
-
-  <div>
+<section>
+  <div class="Logout">
     <button mat-button (click)="logout()">Logout</button>
   </div>
+</section>
 </div>
 
 

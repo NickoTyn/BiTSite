@@ -3,13 +3,12 @@ import { Component, TemplateRef, inject } from '@angular/core';
 import { Router, RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import { HeaderComponent } from './header/header.component';
-=======
-import { Component } from '@angular/core';
+
+
 import { FormsModule } from '@angular/forms';
 
 import { HomepageComponent } from './homepage/homepage.component';
-import { HeaderComponent } from './header/header.component'; 
->>>>>>> Stashed changes
+
 import { MainactivitiesComponent } from './mainactivities/mainactivities.component';
 import { JoinUsFormComponent } from './join-us-form/join-us-form.component';
 import { LoginComponent } from './login/login.component';
@@ -20,9 +19,16 @@ import { SignInUpComponent } from './sign-in-up/components/sign-in-up.component'
 import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
 import { MakeAPostComponent } from './make-a-post/make-a-post.component';
+import { PostValidationComponent } from './post-validation/post-validation.component';
+
+import { PostValidationHubComponent } from './post-validation-hub/post-validation-hub.component';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { GoogleMapsModule } from "@angular/google-maps";
+import { BrowserModule } from '@angular/platform-browser';
+
+
 
 
 
@@ -49,11 +55,14 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
     SignInUpComponent,
     MatDialogModule, 
     MakeAPostComponent,
+    PostValidationHubComponent,
+    PostValidationComponent,
+    GoogleMapsModule
   ]
 })
 export class AppComponent {
   title = 'BiTSite';
-<<<<<<< Updated upstream
+
 
   authService = inject(AuthService);
 
@@ -71,9 +80,11 @@ export class AppComponent {
     })
   }
 
-=======
+
   showSignInPopup: boolean = false;
->>>>>>> Stashed changes
+
+
+
 }
 
 
