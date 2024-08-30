@@ -60,7 +60,7 @@ async fetchAnnouncements() {
             }
 
             // Reference to the subcollection
-            const subcollectionRef = collection(this.firestore, `non-validated-post/YUVQgiBG57gEiOPk1YVx/${title}`);
+            const subcollectionRef = collection(this.firestore, `validated-posts/qS8Y1Iwky1k3MxKXQJNe/${title}`);
             const subcollectionDocs = await getDocs(subcollectionRef);
 
             subcollectionDocs.forEach(doc => {

@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { MakeAPostComponent } from '../make-a-post/make-a-post.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-account',
@@ -30,7 +31,8 @@ export class AccountComponent {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router
   ) {
     this.updateForm = this.fb.group({
       newUsername: ['', Validators.required],
@@ -109,7 +111,8 @@ export class AccountComponent {
   }
 
   logout(): void {
-    this.authService.logout();
+    this.authService.logout();  // Call the logout method from your AuthService
+    this.router.navigate(['/']); // Navigate to the homepage (root route)
   }
 
 }

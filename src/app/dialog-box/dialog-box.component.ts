@@ -99,7 +99,7 @@ password:this.fb.control('',{validators: [Validators.required, Validators.minLen
     let authObservable;
 
     if (action === 'login') {
-      if (EmailAuthCredential != null) {
+      if (EmailAuthCredential == null) {
         // Display error message
         this.errorMessage = 'Invalid email or password';
     } else {
