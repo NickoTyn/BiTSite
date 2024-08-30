@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { Firestore, doc, setDoc, getDoc } from '@angular/fire/firestore';
-import { Auth, authState } from '@angular/fire/auth';
+
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../auth.service';
 import { HeaderComponent } from '../header/header.component';
@@ -11,7 +10,7 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'app-join-us-form',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, HeaderComponent],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './join-us-form.component.html',
   styleUrls: ['./join-us-form.component.css']
 })
@@ -44,12 +43,6 @@ export class JoinUsFormComponent implements OnInit {
     this.applyForm.controls['email'].valueChanges.subscribe(() => {
       this.toggleFilledClass('email');
     });
-    this.applyForm.controls['telnr'].valueChanges.subscribe(() => {
-      this.toggleFilledClass('telnr');
-    });
-    this.applyForm.controls['discord'].valueChanges.subscribe(() => {
-      this.toggleFilledClass('discord');
-    });
   }
 
   ngOnInit(): void {
@@ -76,15 +69,8 @@ export class JoinUsFormComponent implements OnInit {
   toggleFilledClass(controlName: string) {
     const control = this.applyForm.get(controlName);
     if (control && control.value !== '') {
-      const inputElement = document.querySelector(`[formControlName="${controlName}"]`) as HTMLInputElement;
-      if (inputElement) {
-        inputElement.classList.add('filled');
-      }
-    } else {
-      const inputElement = document.querySelector(`[formControlName="${controlName}"]`) as HTMLInputElement;
-      if (inputElement) {
-        inputElement.classList.remove('filled');
-      }
+      control.updateValueAndValidity(); // Update the validation status
+      control.markAsDirty(); // Mark the control as dirty to trigger validation
     }
   }
 

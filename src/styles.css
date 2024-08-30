@@ -11,12 +11,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
-
-
-
 /* Custom Scrollbar Styles */
 ::-webkit-scrollbar {
     width: 12px; 
@@ -37,7 +31,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   ::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(135deg, #675fff, #d40dc4);
   }
+
   
   body.mat-typography{
     background-color: #050b2d;
   }
+

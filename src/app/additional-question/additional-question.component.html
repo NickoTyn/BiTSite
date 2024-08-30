@@ -4,17 +4,9 @@
         <div class="announcement">
             <p>Are you sure you want to reject this post?</p>
             <div class="button-container">
-                <button class="reject" onclick="showConfirmation()">Reject</button>
+                <button class="reject" (click)="showConfirmation()">Reject</button>
             </div>
         </div>
     </div>
 </div>
 
-<div id="confirmation-div" class="confirmation-div">
-    <div class="confirmation-content">
-        <h2>Are you sure you want to reject this post?</h2>
-        <div class="button-container">
-            <button class="reject" onclick="rejectPost()">Reject</button>
-        </div>
-    </div>
-</div>

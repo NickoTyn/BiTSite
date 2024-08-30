@@ -1,7 +1,14 @@
+<<<<<<< Updated upstream
 import { Component, TemplateRef, inject } from '@angular/core';
 import { Router, RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import { HeaderComponent } from './header/header.component';
+
+
+import { FormsModule } from '@angular/forms';
+
+import { HomepageComponent } from './homepage/homepage.component';
+
 import { MainactivitiesComponent } from './mainactivities/mainactivities.component';
 import { JoinUsFormComponent } from './join-us-form/join-us-form.component';
 import { LoginComponent } from './login/login.component';
@@ -21,6 +28,8 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { GoogleMapsModule } from "@angular/google-maps";
 import { BrowserModule } from '@angular/platform-browser';
 import { Auth, GoogleAuthProvider, signInWithPopup } from '@angular/fire/auth';
+
+
 
 
 
@@ -50,11 +59,11 @@ import { Auth, GoogleAuthProvider, signInWithPopup } from '@angular/fire/auth';
     PostValidationHubComponent,
     PostValidationComponent,
     GoogleMapsModule
-
   ]
 })
 export class AppComponent {
   title = 'BiTSite';
+
 
   authService = inject(AuthService);
 
@@ -73,7 +82,10 @@ export class AppComponent {
   }
 
 
-  
+  showSignInPopup: boolean = false;
+
+
+
 }
 
 
