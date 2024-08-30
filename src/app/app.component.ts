@@ -27,6 +27,7 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { GoogleMapsModule } from "@angular/google-maps";
 import { BrowserModule } from '@angular/platform-browser';
+import { Auth, GoogleAuthProvider, signInWithPopup } from '@angular/fire/auth';
 
 
 

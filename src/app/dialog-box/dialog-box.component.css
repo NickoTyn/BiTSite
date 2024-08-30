@@ -261,7 +261,7 @@ color: #050b2d !important;
 
 }
 
-button {
+.button {
     display: block;
     margin: 10px auto;
     padding: 10px 20px;
@@ -347,7 +347,7 @@ button:active {
     color:#dd3acf;
     justify-content: center;
     align-items: center;
-    margin: 20px;
+    margin: 8px;
     font-size: 1.2em;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     transition: 0.5 ease-in-out;
@@ -388,3 +388,43 @@ button:active {
 input.invalid{
     border: 3px solid #fe8c8c;
 }
+
+/* Add this to your component's CSS file (dialog-box.component.css) */
+/* Add this to your component's CSS file (dialog-box.component.css) */
+.google-login-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.google-login-button {
+    background-color: white;
+    color: #4285F4;
+    border: 1px solid #4285F4;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    width:60%;
+    height:40px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.google-login-button img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+
+.google-login-button:active {
+    transform: scale(0.95); /* Slightly reduce the size */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2); /* Soften the shadow for a pressed effect */
+    background-color: #674dff; /* Optional: change background color to give feedback */
+    background: linear-gradient(145deg, #cd13cc, #675fff);
+    color:white;
+  }
