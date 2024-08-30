@@ -38,3 +38,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     background: linear-gradient(135deg, #675fff, #d40dc4);
   }
   
+  body.mat-typography{
+    background-color: #050b2d;
+  }
