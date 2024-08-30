@@ -1317,6 +1317,12 @@
             >Additional Information</label
           >
         </div>
+
+        <div class="agreement">By clicking "Submit" you agree to our
+        <a  href="https://www.termsfeed.com/legal/terms-of-use/" target="_blank">Terms of Use</a> and
+        <a  href="https://www.termsfeed.com/legal/privacy-policy/" target="_blank">Privacy Policy</a>
+        </div>
+
         <div class="button-container">
           <button type="submit" class="button">Submit</button>
         </div>
@@ -1325,13 +1331,17 @@
   </div>
 
   <div class="custom-map-container">
+
+    <div class="map" background-color="red" width="700px" height="700px">
     <google-map
       width="650px"
       height="650px"
+      color="red"
+      background-color="red"
       [options]="options"
-      (mapInitialized)="handleMapInitialized($event)"
-    >
+      (mapInitialized)="handleMapInitialized($event)">
     </google-map>
+  </div>
     <div class="contact-info">
         <h2>Find <span calss="highlight">Us</span></h2>
         <p>Facultatea de Inginerie Sibiu<br>
