@@ -12,7 +12,6 @@ import { provideFunctions, getFunctions } from '@angular/fire/functions';
 
 import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-<<<<<<< Updated upstream
 
 export const firebaseConfig = {
   apiKey: "AIzaSyC3eNmZkrMTTOSEZrpNaFtigFh0XMQaCgY",
@@ -39,9 +38,4 @@ export const appConfig: ApplicationConfig = {
     ), 
     provideAnimationsAsync('noop'),
   ],
-=======
-
-export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideAnimationsAsync()]
->>>>>>> Stashed changes
 };

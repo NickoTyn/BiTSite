@@ -1,11 +1,10 @@
 {
   "dependencies": {
-<<<<<<< Updated upstream
     "@angular/animations": "^17.3.0",
     "@angular/cdk": "^17.3.10",
     "@angular/common": "^17.3.0",
     "@angular/compiler": "^17.3.0",
-    "@angular/core": "^17.3.0",
+    "@angular/core": "^17.3.12",
     "@angular/fire": "^17.0.1",
     "@angular/forms": "^17.3.0",
     "@angular/google-maps": "^17.3.10",
@@ -37,15 +36,5 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "typescript": "~5.4.2"
-=======
-    "@angular-devkit/schematics": "^18.0.1",
-    "@angular/animations": "^17.0.0 || ^18.0.0",
-    "@angular/cdk": "^17.3.10",
-    "@angular/forms": "^17.0.0 || ^18.0.0",
-    "@angular/material": "^17.3.10"
-  },
-  "devDependencies": {
-    "typescript": "^5.4.5"
->>>>>>> Stashed changes
   }
 }

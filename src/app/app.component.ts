@@ -1,4 +1,4 @@
-<<<<<<< Updated upstream
+
 import { Component, TemplateRef, inject } from '@angular/core';
 import { Router, RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
@@ -7,7 +7,6 @@ import { HeaderComponent } from './header/header.component';
 
 import { FormsModule } from '@angular/forms';
 
-import { HomepageComponent } from './homepage/homepage.component';
 
 import { MainactivitiesComponent } from './mainactivities/mainactivities.component';
 import { JoinUsFormComponent } from './join-us-form/join-us-form.component';

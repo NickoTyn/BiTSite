@@ -6,6 +6,8 @@ import { AuthService } from '../auth.service';
 import { HeaderComponent } from '../header/header.component';
 import { inject } from '@angular/core';
 import { Observable } from 'rxjs';
+import { doc, Firestore, getDoc, setDoc } from '@angular/fire/firestore';
+import { Auth, authState } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-join-us-form',
