@@ -8,6 +8,7 @@ import { PostValidationHubComponent } from './post-validation-hub/post-validatio
 import { AboutUsComponent } from './about-us/about-us.component';
 import { PastActivitiesComponent } from './past-activities/past-activities.component';
 import { ContactComponent } from './contact/contact.component';
+import { PastActivitiesGalleryComponent } from './past-activities-gallery/past-activities-gallery.component';
 
 
 export const routes: Routes = [
@@ -17,6 +18,7 @@ export const routes: Routes = [
   { path: 'validation', component: PostValidationHubComponent},
   { path: 'about-us', component: AboutUsComponent},
   { path: 'past-activities', component: PastActivitiesComponent},
+  { path: 'past-activities-gallery', component: PastActivitiesGalleryComponent},
   { path: 'contact', component: ContactComponent}
 
 

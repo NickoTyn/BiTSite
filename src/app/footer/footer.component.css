@@ -6,12 +6,13 @@
   color: #fff;
   padding: 8px 0;
   padding-top:20px;
-  background-color: transparent;
+  background-color: #db0ed12e;
   text-align: center;
-
-  border-top: 1px solid #d40dc4;
+  
+  border-top: 3px solid #d40dc4;
   margin-top:40px;
   z-index: 500;
+  box-shadow: 0 4px 200px 20px #db0ed148, /* Deeper glow */ 0 1px 3px #0301022e; /* Subtle inner shadow */
 }
 
 .footer-container {

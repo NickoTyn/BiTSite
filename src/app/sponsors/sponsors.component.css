@@ -48,7 +48,7 @@
     width: auto;
     height: auto;
     max-width: 100px; /* Ensure logos don't get too big */
-    margin-top: 30px ;
+    margin-top: 25px ;
   }
   
   
@@ -56,6 +56,27 @@
     margin-top: 10px;
     font-size: 1rem;
     color: #d7bce8;
+  }
+
+  #ntt{
+    transform: scale(1.7);
+    margin-bottom: 9px;
+  }
+
+  #wenglor .partner__logo{
+    transform: scale(1.5);
+    margin-bottom: 3px;
+  }
+
+  #continental .partner__logo{
+    transform: scale(1.5);
+    margin-top: -20px;
+    margin-bottom: -18px;
+  }
+
+  #marquardt .partner__logo{
+    transform: scale(1.1);
+
   }
   
   @media (max-width: 768px) {
@@ -69,7 +90,7 @@
     
     .partners__item {
         width: calc(50% - 10px); /* Two items per row with a gap */
-        height: 150px; /* Adjust height automatically */
+        height: 170px; /* Adjust height automatically */
         margin: 0; /* Remove margin to use gap instead */
     }
     

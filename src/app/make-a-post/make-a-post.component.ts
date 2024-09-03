@@ -99,53 +99,54 @@ export class MakeAPostComponent implements OnInit {
 
   async onSubmit() {
     let downloadURL: string;
-  
+
     if (this.imageUploadForm.valid) {
-      console.log('Form submitted successfully!');
-      downloadURL = await this.uploadPhoto();
+        console.log('Form submitted successfully!');
+        downloadURL = await this.uploadPhoto();
     }
-  
+
     this.user$.pipe(take(1)).subscribe(async (user) => {
-      if (user) {
-        // Reference to the new collection under the user's document
-        const userCollection = collection(this.firestore, `users/${user.uid}/${this.titleContent}`);
-        const postCollection = collection(this.firestore, `non-validated-post/YUVQgiBG57gEiOPk1YVx/${this.titleContent}`);
+        if (user) {
+            // Reference to the new collection under the user's document
+            const userCollection = collection(this.firestore, `users/${user.uid}/${this.titleContent}`);
+            const postCollection = collection(this.firestore, `non-validated-post`);
 
-        // Create a new document in the 'titles' collection with auto-generated ID
-        const newTitleDoc = doc(userCollection);
-        const postDoc = doc(postCollection);
-        await setDoc(newTitleDoc, {
-          title: this.titleContent,
-          description: this.descriptionContent,
-          imageLink: downloadURL // Use the downloadURL obtained from uploadPhoto()
-        }, { merge: true });
+            // Create a new document in the 'titles' collection with auto-generated ID
+            const newTitleDoc = doc(userCollection);
+            await setDoc(newTitleDoc, {
+                title: this.titleContent,
+                description: this.descriptionContent,
+                imageLink: downloadURL
+            }, { merge: true });
 
-        await setDoc(postDoc, {
-          title: this.titleContent,
-          description: this.descriptionContent,
-          username: user.displayName || user.username,
-          imageLink: downloadURL // Use the downloadURL obtained from uploadPhoto()
-        }, { merge: true });
-      }
-
-        
-
+            // Use the title as the document ID for the post document
+            const postDoc = doc(postCollection, this.titleContent);
+            await setDoc(postDoc, {
+                title: this.titleContent,
+                description: this.descriptionContent,
+                username: user.displayName || user.username,
+                imageLink: downloadURL,
+                status: 'none',
+                pastActivity: false
+            }, { merge: true });
+        }
     });
-  }
-  
+}
+
+
   async uploadPhoto(): Promise<string> {
     const storage = getStorage();
-  
+
     return new Promise((resolve, reject) => {
       this.user$.pipe(take(1)).subscribe(async (user) => {
         if (user) {
           const folder = ref(storage, `make_a_post/${user.uid}/${this.titleContent}/${this.fileName}`);
-  
+
           if (this.file) {
             await uploadBytes(folder, this.file);
             console.log('Uploaded a blob or file!');
           }
-  
+
           try {
             const downloadURL = await getDownloadURL(folder);
             resolve(downloadURL);

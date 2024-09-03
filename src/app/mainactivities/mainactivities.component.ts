@@ -34,55 +34,46 @@ export class MainactivitiesComponent {
         this.fetchAnnouncements();
     }
 
-async fetchAnnouncements() {
-    try {
-        // Reference to the specific document in the 'non-validated-post' collection
-        const docRef = doc(this.firestore, 'validated-posts/qS8Y1Iwky1k3MxKXQJNe');
-        const docSnap = await getDoc(docRef);
-
-        // Check if the document exists
-        if (!docSnap.exists()) {
-            console.log('Document with ID non-validated-post-id does not exist.');
-            this.queue = [];
-            return;
-        }
-
-
-        const subcollections = [
-            "New Post", "Acum este momentul tau!", "This is a new Post",
-            "Sansa ta de Halloween!", "Deschidem porțile unui nou univers Minecraft!",
-            "♟Creează un joc de șah!♟", "Seară de jocuri!🎮"
-        ];
-
-        for (const title of subcollections) {
-            if (this.queue.length >= 6) {
-                break;
+    async fetchAnnouncements() {
+        try {
+            // Reference to the 'validated-posts' collection
+            const collectionRef = collection(this.firestore, 'validated-posts');
+            const collectionSnapshot = await getDocs(collectionRef);
+    
+            // Check if the collection has documents
+            if (collectionSnapshot.empty) {
+                console.log('No documents found in the validated-posts collection.');
+                this.queue = [];
+                return;
             }
-
-            // Reference to the subcollection
-            const subcollectionRef = collection(this.firestore, `validated-posts/qS8Y1Iwky1k3MxKXQJNe/${title}`);
-            const subcollectionDocs = await getDocs(subcollectionRef);
-
-            subcollectionDocs.forEach(doc => {
+    
+            // Iterate over the documents and add them to the queue
+            this.queue = []; // Clear the queue before adding new data
+            collectionSnapshot.forEach(doc => {
                 if (this.queue.length >= 6) {
-                    return;
+                    return; // Stop adding more if queue already has 6 items
                 }
-
-                const data = doc.data() as Omit<Announcement, 'title'>;
-                this.queue.push({
-                    title,
-                    ...data
-                });
+    
+                const data = doc.data() as Omit<Announcement, 'title'>; // Assuming `Announcement` type
+    
+                // Check if the status is 'active' before adding to the queue
+                if (data.status === 'approved') {
+                    this.queue.push({
+                        title: doc.id, // Assuming the document ID or a specific field should be used as title
+                        ...data
+                    });
+                }
             });
+    
+            // Log the fetched data DE STERS AT LAUNCH
+            console.log('Fetched Announcements:', this.queue);
+        } catch (error) {
+            console.error('Error fetching announcements:', error);
         }
-
-        // Log the fetched data DE STERS AT LAUNCH
-        console.log('Fetched Announcements:', this.queue);
-    } catch (error) {
-        console.error('Error fetching announcements:', error);
     }
-}
-
+    
+    
+    
 
 
     public moveSlide(n: number): void {

@@ -1,109 +1,195 @@
 .container {
-    max-width: 1044px;
-    margin: 0 auto;
-    margin-top: 150px;
-    padding: 20px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background-color: #330329;
-    color: #fff;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 0.3);
-  }
+  max-width: 1044px;
+  margin: 0 auto;
+  margin-top: 150px;
+  padding: 20px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-color: #330329;
+  color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 0.3);
+}
   
-  h1 {
-    font-family: "Dancing Script", cursive;
-    font-size: 34px;
-    text-transform: capitalize;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 10px 20px;
-    margin: 20px 0;
-    border-radius: 10px;
-    background-color: rgba(205, 19, 204, 0.7);
-    word-spacing: 4px;
-    text-align: center;
-  }
+h1 {
+  font-family: "Dancing Script", cursive;
+  font-size: 34px;
+  text-transform: capitalize;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px 20px;
+  margin: 20px 0;
+  border-radius: 10px;
+  background-color: rgba(205, 19, 204, 0.7);
+  word-spacing: 4px;
+  text-align: center;
+}
   
-  .announcement-list {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
+.announcement-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
   
+.announcement {
+  background-color: rgba(205, 19, 204, 0.7);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 0.3);
+  position: relative; /* To position the status label and button */
+}
+  
+.announcement h3 {
+  font-size: 24px;
+  color: #fff;
+  margin-bottom: 10px;
+}
+  
+.announcement p {
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 20px;
+}
+  
+.button-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+button {
+  margin: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-family: "Nunito", sans-serif;
+  color: white;
+  background: linear-gradient(125deg, #cd13cc 0%, #675fff 100%);
+  border: none;
+  border-radius: 25px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+  
+button.approve {
+  background: linear-gradient(125deg, #13cc45 0%, #67ff95 100%);
+}
+
+.approve:focus {
+  box-shadow: 0 0 20px 4px rgba(0, 255, 0, 0.7); /* Green glow */
+}
+  
+button.reject {
+  background: linear-gradient(125deg, #cc1313 0%, #ff6767 100%);
+}
+  
+.reject:focus {
+  box-shadow: 0 0 20px 4px #cc1313ca; /* Red glow */
+}
+
+button:hover {
+  transform: translateY(-3px);
+}
+  
+.button-preview:focus {
+  outline: none;
+  box-shadow: 0 0 8px 3px rgba(205, 19, 204, 0.7), 0 0 25px 5px rgba(103, 95, 255, 0.7);
+}
+
+.status-label {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #4caf50; /* Green background for active status */
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+}
+  
+.deactivate {
+  position: absolute;
+  top: 10px;
+  right: 120px; /* Adjust to avoid overlapping with status label */
+  background-color: #ff9800; /* Orange background for deactivate */
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+.deactivate:focus {
+  outline: none;
+  box-shadow: 0 0 8px 3px rgba(255, 152, 0, 0.7); /* Orange glow */
+}
+
+.title-container {
+  display: flex;
+  align-items: center;
+}
+
+.title-container h3 {
+  margin-right: 10px; /* Adjust as needed */
+}
+
+.pin-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-top: -7px;
+  margin-left: 10px; /* Adjust as needed */
+}
+
+.pin-button svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+
+.upload-button {
+  display: inline-flex;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #4A5699;
+  border: none;
+  cursor: pointer;
+  margin-left:30px;
+  transition: background-color 0.3s ease;
+}
+
+.upload-button:hover {
+  background-color: #3c4571;
+}
+
+.upload-button .icon {
+  margin-top: 3px;
+  width: 30px;
+  height: 30px;
+  fill: white;
+}
+
+
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+
   .announcement {
-    background-color: rgba(205, 19, 204, 0.7);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 0.3);
-  }
-  
-  .announcement h3 {
-    font-size: 24px;
-    color: #fff;
-    margin-bottom: 10px;
-  }
-  
-  .announcement p {
-    font-size: 16px;
-    color: #fff;
-    margin-bottom: 20px;
-  }
-  
-  .button-container{
-    display: flex;
-    justify-content: space-around;
+    padding: 10px;
   }
 
   button {
-    margin: 5px;
-    padding: 10px 20px;
-    font-size: 16px;
-    font-family: "Nunito", sans-serif;
-    color: white;
-    background: linear-gradient(125deg, #cd13cc 0%, #675fff 100%);
-    border: none;
-    border-radius: 25px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-  }
-  
-  button.approve {
-    background: linear-gradient(125deg, #13cc45 0%, #67ff95 100%);
+    padding: 8px 16px;
+    font-size: 14px;
   }
 
-  .approve:focus {
-    box-shadow: 0 0 20px 4px rgba(0, 255, 0, 0.7); /* Green glow */
-}
-  
-  button.reject {
-    background: linear-gradient(125deg, #cc1313 0%, #ff6767 100%);
+  .deactivate {
+    top: 10px;
+    right: 10px; /* Adjust for smaller screens */
   }
-  
-  .reject:focus {
-    box-shadow: 0 0 20px 4px #cc1313ca; /* Green glow */
 }
 
-  button:hover {
-    transform: translateY(-3px);
-  }
-  
-  .button-preview:focus {
-    outline: none;
-    box-shadow: 0 0 8px 3px rgba(205, 19, 204, 0.7), 0 0 25px 5px rgba(103, 95, 255, 0.7);
-  }
-  
-  @media (max-width: 768px) {
-    .container {
-      padding: 10px;
-    }
-  
-    .announcement {
-      padding: 10px;
-    }
-  
-    button {
-      padding: 8px 16px;
-      font-size: 14px;
-    }
-  }
-  

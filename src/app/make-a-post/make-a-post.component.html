@@ -25,6 +25,7 @@
             class="input-field"
             required
             placeholder=" "
+            maxlength="550"
           ></textarea>
           <div class="labelline" id="labelline-description">Description</div>
         </div>
@@ -180,6 +181,9 @@
       </form>
     </div>
     <div class="preview">
+      <div class="info-message">
+          For best preview use your whole screen!
+      </div>
       <section>
         <div class="container">
           <div class="carousel">
@@ -208,8 +212,8 @@
 
                     
                     <h1><span class="title">{{ titleContent }}</span></h1>
-                    <h2>{{ descriptionContent }}</h2>
-                    <span class="credit">Photo: BiT</span>
+                    <h2 class="description">{{ descriptionContent }}</h2>
+                    <span class="credit">Provided by:</span>
                   </div>
                   </figcaption>
                   

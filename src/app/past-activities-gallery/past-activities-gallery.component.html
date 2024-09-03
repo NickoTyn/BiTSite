@@ -1,0 +1,31 @@
+<section>
+  <div class="container">
+    <div class="carousel">
+      <ul class="carousel__slides">
+        <li class="carousel__slide">
+          <figure>
+            <div class="post_wrapper">
+              <img [src]="announcement?.imageLink" alt="{{announcement?.title}}">
+            </div>
+            <figcaption>
+              <div class="titleDescriptionCompany">
+                <h1>{{announcement?.title}}</h1>
+                <h2>{{announcement?.description}}</h2>
+                <span class="Company">Provided by: {{announcement?.username}}</span>
+              </div>
+            </figcaption>
+          </figure>
+          
+        </li>
+      </ul>
+    </div>
+    <div class="container-img">
+      <div class="image-grid">
+        <div *ngFor="let image of imageUrls" class="image-item" [ngStyle]="{'--aspect-ratio': image.aspectRatio}">
+          <img [src]="image.url" alt="Uploaded Image">
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</section>

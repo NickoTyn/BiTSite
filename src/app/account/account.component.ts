@@ -66,6 +66,7 @@ export class AccountComponent {
 
 
   isAdmin(): boolean {
+    console.log("USER RANK", this.authService.getUserRank());
     return this.authService.getUserRank() === 'admin';
   }
 

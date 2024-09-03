@@ -89,7 +89,7 @@ password:this.fb.control('',{validators: [Validators.required, Validators.minLen
   }
 
   signInWithGoogle() {
-    signInWithPopup( this.auth,new GoogleAuthProvider())
+    signInWithPopup(this.auth ,new GoogleAuthProvider())
       .then(() => {
         console.log('logged in');
 
