@@ -28,11 +28,12 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideHttpClient(),
-      provideFirebaseApp(() => initializeApp(firebaseConfig)),
+    
+      importProvidersFrom(provideFirebaseApp(() => initializeApp(firebaseConfig)),
       provideAuth(() => getAuth()),
       provideFirestore(() => getFirestore()),
       provideStorage(() => getStorage()),
-      provideFunctions(() => getFunctions()),
+      provideFunctions(() => getFunctions())),
     provideAnimationsAsync('noop'),
   ],
 };
