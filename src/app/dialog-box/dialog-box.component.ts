@@ -93,7 +93,9 @@ password:this.fb.control('',{validators: [Validators.required, Validators.minLen
       .then(() => {
         console.log('logged in');
 
-          this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/').then(() => {
+          window.location.reload();
+        });
         
       })
       .catch((error: any) => {
@@ -123,6 +125,7 @@ password:this.fb.control('',{validators: [Validators.required, Validators.minLen
         this.errorMessage = 'Invalid email or password';
       } else {
           authObservable = this.authService.login(rawForm.email, rawForm.password);
+          
     
       }
     } else if (action === 'register') {
@@ -132,7 +135,9 @@ password:this.fb.control('',{validators: [Validators.required, Validators.minLen
     if (authObservable) {
       authObservable.subscribe({
         next: () => {
-          this.router.navigateByUrl('/');
+          this.router.navigateByUrl('/').then(() => {
+            window.location.reload();
+          });
         },
         error: (err) => {
           this.errorMessage = err.code;
