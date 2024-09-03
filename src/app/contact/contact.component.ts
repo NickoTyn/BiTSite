@@ -20,6 +20,8 @@ import { GoogleMap } from '@angular/google-maps';
 export class ContactComponent implements OnInit {
   private firestore: Firestore = inject(Firestore);
 
+
+  
   name: string = '';
   email: string = '';
   phoneNumber: string = '';
