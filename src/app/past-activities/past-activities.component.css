@@ -111,7 +111,7 @@ figcaption {
 }
 
 /* Responsive Styles */
-@media (max-width: 1068px) {
+@media (max-width: 1168px) {
   .carousel__slide {
     flex-direction: column; /* Stack image and text vertically on small screens */
     align-items: center;
@@ -138,3 +138,16 @@ figcaption {
   }
 }
 
+@media (max-width: 868px) {
+  .titleDescriptionCompany{
+    display: none;
+  }
+
+  .post_wrapper.active {
+    filter: brightness(1.2); 
+    transform: scale(1.3) translatey(75px);
+    transition: transform 2.3s cubic-bezier(0.42, 0, 0.58, 1),
+                filter 2.3s cubic-bezier(0.42, 0, 0.58, 1);
+    z-index: 10; 
+  }
+}

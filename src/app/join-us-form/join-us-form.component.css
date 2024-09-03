@@ -324,6 +324,10 @@ button:focus::after {
 
 /* Responsive styles for smaller screens */
 @media (max-width: 768px) {
+  .container{
+    max-height: 900px;
+  }
+
   .form-container {
     flex-direction: column;
     padding: 20px;

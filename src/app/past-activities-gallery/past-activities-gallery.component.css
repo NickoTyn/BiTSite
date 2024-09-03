@@ -184,7 +184,13 @@
 }
 
 /* Responsive Styles */
-@media (max-width: 768px) {
+@media (max-width: 968px) {
+
+
+  .titleDescriptionCompany{
+    display:none;
+  }
+
   .image-grid {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   }
