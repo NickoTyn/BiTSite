@@ -70,6 +70,11 @@ export class AccountComponent {
     return this.authService.getUserRank() === 'admin';
   }
 
+  isModerator(): boolean {
+    console.log("USER RANK", this.authService.getUserRank());
+    return this.authService.getUserRank() === 'moderator';
+  }
+
   onUpdateUsername() {
     const newUsername = this.updateForm.get('newUsername')?.value;
     if (newUsername) {

@@ -73,15 +73,11 @@ exports.firestoreEmail = functions.firestore
 
 
     exports.sendContactMessageEmail = functions.firestore
-    .document(`contactMessages`)
+    .document('contactMessages/{docId}')
     .onCreate(async (snap, context) => {
         const data = snap.data();
 
-      console.log('Email sent to!!! ');
-
         try {
-            
-            // Send the email to the user
             console.log(`Confirmation email sent to ${data.email}`);
 
             // Construct the email to send to the admin
@@ -89,7 +85,7 @@ exports.firestoreEmail = functions.firestore
                 to: 'cezar.branga2004@gmail.com',
                 from: 'asociatiabit@gmail.com',
                 subject: 'New Contact Message Received',
-                templateId: 'd-b072901a3ce343dd8d0c0dc11c35fef7 ',
+                templateId: 'd-b072901a3ce343dd8d0c0dc11c35fef7',  // Make sure this ID is correct
                 dynamic_template_data: {
                     name: data.name,
                     email: data.email,
@@ -107,3 +103,43 @@ exports.firestoreEmail = functions.firestore
 
         return null;
     });
+
+
+
+
+const db = admin.firestore();
+
+// Trigger the function when a user is created
+exports.createUserDocument = functions.auth.user().onCreate((user) => {
+    const uid = user.uid;
+    const email = user.email;
+    
+
+    const userDoc = {
+        email: email,
+        rank: "student"  // You can change the default rank here
+    };
+
+    // Create a document in the "users" collection with the UID as the document ID
+    return db.collection('users').doc(uid).set(userDoc)
+    .then(() => {
+        console.log(`User document created for UID: ${uid}`);
+    })
+    .catch((error) => {
+        console.error(`Error creating user document for UID: ${uid}`, error);
+    });
+});
+
+
+exports.setCustomClaims = functions.https.onCall((data, context) => {
+    const uid = data.uid;
+    const rank = data.rank || 'user';
+  
+    return admin.auth().setCustomUserClaims(uid, { rank })
+      .then(() => {
+        return { message: "Custom claims set successfully!" };
+      })
+      .catch((error) => {
+        throw new functions.https.HttpsError('internal', error.message);
+      });
+  });
