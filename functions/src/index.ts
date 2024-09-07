@@ -134,12 +134,18 @@ exports.createUserDocument = functions.auth.user().onCreate((user) => {
 exports.setCustomClaims = functions.https.onCall((data, context) => {
     const uid = data.uid;
     const rank = data.rank || 'user';
-  
+
     return admin.auth().setCustomUserClaims(uid, { rank })
       .then(() => {
+        // Fetch the user to verify the claims were set
+        return admin.auth().getUser(uid);
+      })
+      .then((userRecord) => {
+        console.log(userRecord.customClaims); // Should log the claims
         return { message: "Custom claims set successfully!" };
       })
       .catch((error) => {
+        console.error('Error setting custom claims:', error.message);
         throw new functions.https.HttpsError('internal', error.message);
       });
-  });
+});

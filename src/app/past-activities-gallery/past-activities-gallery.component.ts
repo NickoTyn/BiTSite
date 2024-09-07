@@ -32,21 +32,16 @@ export class PastActivitiesGalleryComponent implements OnInit {
       const state = history.state as { galleryRef: string; announcement: Announcement };
       console.log('Received state:', state);
 
-      this.galleryRef = state.galleryRef;
       if (state.announcement) {
         this.announcement = state.announcement;
-      }
-
-      if (this.galleryRef) {
-        this.fetchImageUrls(this.galleryRef);
-      } else {
-        console.error('No galleryRef provided in route state');
+        this.galleryRef = this.announcement.imagesRef;
+        if (this.galleryRef) {
+          this.getAllImagesFromFolder(this.galleryRef);
+        } else {
+          console.error('No galleryRef provided in route state');
+        }
       }
     });
-
-    if (this.announcement && this.announcement.imagesRef) {
-      this.getAllImagesFromFolder(this.announcement.imagesRef);
-    } 
   }
 
   async fetchImageUrls(galleryRef: string) {

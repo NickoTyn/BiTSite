@@ -15,17 +15,15 @@
               </div>
             </figcaption>
           </figure>
-          
         </li>
       </ul>
     </div>
     <div class="container-img">
       <div class="image-grid">
-        <div *ngFor="let image of imageUrls" class="image-item" [ngStyle]="{'--aspect-ratio': image.aspectRatio}">
+        <div *ngFor="let image of imageUrls" class="image-item" [attr.data-aspect-ratio]="image.aspectRatio">
           <img [src]="image.url" alt="Uploaded Image">
         </div>
       </div>
     </div>
-    
   </div>
 </section>

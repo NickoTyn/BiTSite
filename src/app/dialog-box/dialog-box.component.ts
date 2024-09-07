@@ -93,7 +93,7 @@ password:this.fb.control('',{validators: [Validators.required, Validators.minLen
       .then(() => {
         console.log('logged in');
 
-        this.router.navigateByUrl('/').then(() => {
+        this.router.navigateByUrl('/home').then(() => {
           window.location.reload();
         });
         
@@ -135,7 +135,7 @@ password:this.fb.control('',{validators: [Validators.required, Validators.minLen
     if (authObservable) {
       authObservable.subscribe({
         next: () => {
-          this.router.navigateByUrl('/').then(() => {
+          this.router.navigateByUrl('/home').then(() => {
             window.location.reload();
           });
         },
