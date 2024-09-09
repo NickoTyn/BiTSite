@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing Script&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Dancing Script&display=swap");
 
 .client-count-wrp {
   background: #330329;
@@ -26,10 +26,8 @@
   margin-bottom: 30px;
   font-size: 45px;
   text-align: center;
-  font-family: 'Dancing Script';
+  font-family: "Dancing Script";
 }
-
-
 
 .cards {
   margin: 20px 0;
@@ -66,7 +64,6 @@
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-style: italic;
   margin-top: 10px;
-  
 }
 
 @media (min-width: 692px) {
@@ -92,10 +89,12 @@
   }
 }
 
+@media (max-width: 690px) {
+  h4 {
+    font-weight: 900;
+  }
 
-
-@media (max-width: 690px){
-  .client-count-wrp{
+  .client-count-wrp {
     border-radius: 75px;
     margin: auto;
   }

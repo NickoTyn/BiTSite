@@ -32,6 +32,7 @@ export class MainactivitiesComponent {
 
     ngOnInit() {
         this.fetchAnnouncements();
+        this.addThumbnailEventListeners();
     }
 
     async fetchAnnouncements() {
@@ -94,7 +95,21 @@ export class MainactivitiesComponent {
     this.slideIndex = index;
     this.showSlides();
   }
+
+  private addThumbnailEventListeners() {
+    const thumbnails = document.querySelectorAll('.carousel__thumbnails img');
+
+    thumbnails.forEach((thumbnail) => {
+        thumbnail.addEventListener('click', () => {
+            thumbnails.forEach(img => img.classList.remove('selected')); // Deselect all
+            (thumbnail as HTMLImageElement).classList.add('selected'); // Select clicked
+        });
+    });
 }
+  
+}
+
+
 
 document.addEventListener('DOMContentLoaded', (event) => {
     const postWrappers = document.querySelectorAll('.post_wrapper');

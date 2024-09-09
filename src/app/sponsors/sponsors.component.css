@@ -80,6 +80,10 @@
   }
   
   @media (max-width: 768px) {
+    .partners-wrapper{
+      padding: 0 5px;
+    }
+
     .partners {
         margin: 0;
         flex-direction: row;
@@ -88,11 +92,11 @@
         gap: 10px; /* Space between items */
     }
     
-    .partners__item {
-        width: calc(50% - 10px); /* Two items per row with a gap */
-        height: 170px; /* Adjust height automatically */
-        margin: 0; /* Remove margin to use gap instead */
-    }
+    .partners__item{
+      width: calc(50% - 10px); /* Two items per row with a gap */
+      height: 170px; /* Fixed height for items */
+      margin: 0; /* Remove margin to use gap instead */
+  }
     
     .partner__logo img {
         max-width: 100px; /* Adjust size to fit the layout */

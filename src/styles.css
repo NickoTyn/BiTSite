@@ -11,6 +11,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
 
+@media (min-width: 768px) {
 /* Custom Scrollbar Styles */
 ::-webkit-scrollbar {
     width: 12px; 
@@ -36,4 +37,4 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   body.mat-typography{
     background-color: #050b2d;
   }
-
+}

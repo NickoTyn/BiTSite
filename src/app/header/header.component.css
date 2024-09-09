@@ -255,11 +255,30 @@ body {
 .dropdown a:hover {
   background-color: #575757;
 }
+
 .nav-list {
   list-style-type: none;
   padding: 0;
   margin: 0;
+  display: flex; /* Makes the list items align horizontally */
 }
+
+.nav-list li {
+  margin-left: -7px; /* Adjust this value to make the gap smaller or larger */
+}
+
+.nav-list li:last-child {
+  margin-right: 0; /* Removes margin from the last item to avoid extra space */
+}
+
+.nav-button {
+  text-decoration: none;
+  color: #000; /* Adjust the text color as needed */
+  padding: 10px; /* Adjust padding if needed */
+}
+
+
+
 .nav-button {
   cursor: pointer;
 }

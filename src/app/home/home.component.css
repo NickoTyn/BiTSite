@@ -10,3 +10,24 @@ main{
     margin-top: 20vh;
 }
 
+.hse{
+    margin-top: 20vh;
+}
+
+@media (max-width: 767px) {
+    main {
+        margin-top: 7vh; /* Adjust as needed */
+    }
+
+    .member-counter {
+        margin-top: 8vh; /* Adjust as needed */
+    }
+
+    .join-us-form {
+        margin-top: 15vh; /* Adjust as needed */
+    }
+
+    .hse{
+        margin-top: 26vh;
+    }
+}

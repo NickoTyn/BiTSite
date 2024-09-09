@@ -364,12 +364,13 @@ button:focus::after {
 
   
   .form-header img {
+    margin-top: -10px;
     width: 100px;
     height: auto;
   }
 
   .image {
-    scale: 1.5;
+    scale: 2.1;
     margin: 20px auto;
   }
 }
