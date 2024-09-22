@@ -5,7 +5,7 @@
   flex-direction: row; /* Align items side by side */
   justify-content: space-between;
   max-width: 900px;
-  max-height: 500px;
+  max-height: 800px;
   margin: auto;
   margin-top: 175px;
   padding: 30px;
@@ -72,6 +72,7 @@ form {
     max-width: 100%;
   }
 
+  
   .form-container {
     padding: 20px;
   }
@@ -308,6 +309,7 @@ button:focus::after {
   background-color: #4a0033;
   padding: 15px;
   border-radius: 15px;
+  margin: 0 auto;
   margin-top: 20px;
   width: 100%;
   max-width: 650px;
@@ -422,7 +424,6 @@ svg#freepik_stories-contact-us.animated #freepik--speech-bubble--inject-5 {
 @media (max-width: 768px) {
 
   .container{
-    margin-left: 35px;
     padding: 30px 5px;
   }
 
@@ -434,12 +435,6 @@ svg#freepik_stories-contact-us.animated #freepik--speech-bubble--inject-5 {
     padding-left: 0;
   }
 
-  .form-container {
-    flex-direction: column;
-    padding: 20px;
-    max-width: 100%;
-    max-height: none;
-  }
 
   .name {
     flex-direction: column;
@@ -460,14 +455,25 @@ svg#freepik_stories-contact-us.animated #freepik--speech-bubble--inject-5 {
   }
 
   .custom-map-container {
-    transform: scale(0.7);
-    margin-left: -px;
+    transform: scale(0.5);
   }
 
   .contact-info{
-    width: 105%;
+    width: 90%;
     margin: auto;
     margin-top: 50px;
+  }
+
+  .contact-info {
+    padding: 15px;
+  }
+
+  .contact-info h2 {
+    font-size: 1.8rem;
+  }
+
+  .contact-info p {
+    font-size: 1rem;
   }
 }
 
@@ -481,7 +487,7 @@ svg#freepik_stories-contact-us.animated #freepik--speech-bubble--inject-5 {
   border: 2px solid #ffffff; /* White border color */
   width: 650px;
   height: 650px;
-  margin:20px;
+  margin: 20px;
 
 }
 
