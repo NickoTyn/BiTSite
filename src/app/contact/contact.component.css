@@ -388,13 +388,26 @@ svg#freepik_stories-contact-us.animated #freepik--speech-bubble--inject-5 {
   animation: 1.5s Infinite linear floating;
   animation-delay: 0s;
 }
-
 .agreement{
   display: inline-block;
   justify-content: center;
   align-items: center;
   color:#d7bce8;
 }
+.styled-checkbox{
+  display: inline-block;
+  position: relative;
+  padding-left: 35px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  font-size: 22px;
+  color: #d7bce8;
+
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add box shadow */
+  top: 2px; /* Adjust vertical alignment */
+}
+
 
 @keyframes slideUp {
   0% {

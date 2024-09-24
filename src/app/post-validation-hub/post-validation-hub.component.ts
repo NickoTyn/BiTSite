@@ -8,7 +8,7 @@ import { getDownloadURL, getStorage, listAll, ref, uploadBytes } from '@angular/
 
 export interface Announcement {
   description: string;
-  imageLink: string;
+  imageLink: string | '';
   title: string;
   username: string;
   status: string;

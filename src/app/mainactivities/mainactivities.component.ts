@@ -21,7 +21,8 @@ export class MainactivitiesComponent {
     public slides: HTMLCollectionOf<Element>;
     public queue: Announcement[] = [];
 
-    defaultImageUrl: string = 'path/to/default/image.jpg'; // Make sure to define your default image URL
+
+    defaultImageUrl: string = 'backgroundAboutUs.png'; // Make sure to define your default image URL
 
     private firestore: Firestore = inject(Firestore);
 

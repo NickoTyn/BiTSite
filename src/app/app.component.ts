@@ -1,5 +1,5 @@
 
-import { Component, TemplateRef, inject } from '@angular/core';
+import { Component, Renderer2, TemplateRef, inject } from '@angular/core';
 import { Router, RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import { HeaderComponent } from './header/header.component';
@@ -27,6 +27,7 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { GoogleMapsModule } from "@angular/google-maps";
 import { BrowserModule } from '@angular/platform-browser';
 import { Auth, GoogleAuthProvider, signInWithPopup } from '@angular/fire/auth';
+import { PolicyAndCookiesComponent } from './policy-and-cookies/policy-and-cookies.component';
 
 
 
@@ -57,12 +58,14 @@ import { Auth, GoogleAuthProvider, signInWithPopup } from '@angular/fire/auth';
     MakeAPostComponent,
     PostValidationHubComponent,
     PostValidationComponent,
-    GoogleMapsModule
+    GoogleMapsModule,
+    PolicyAndCookiesComponent,
   ]
 })
 export class AppComponent {
   title = 'BiTSite';
 
+  constructor(private renderer: Renderer2) { }
 
   authService = inject(AuthService);
 
@@ -78,14 +81,52 @@ export class AppComponent {
       }
       console.log(this.authService.currentUserSig());
     })
+
+
+    const cookiesBtn = this.renderer.selectRootElement('#cookies-btn', true);
+    this.renderer.listen(cookiesBtn, 'click', () => {
+      const cookiesElement = this.renderer.selectRootElement('#cookies', true);
+      this.renderer.setStyle(cookiesElement, 'display', 'none');
+      this.setCookie('cookie', 'accepted', 30);
+    });
+
+    window.addEventListener('load', this.cookieMessage);
   }
 
 
   showSignInPopup: boolean = false;
 
+  setCookie(cName: string, cValue: string, exDays: number): void {
+    const date = new Date();
+    date.setTime(date.getTime() + (exDays * 24 * 60 * 60 * 1000));
+    const expires = 'expires=' + date.toUTCString();
+    document.cookie = `${cName}=${cValue};${expires};path=/home, path=/account, path=/validation, path=/about-us, path=/past-activities, path=/past-activities-gallery, path=/contact, path=/policy-and-cookies, path=/, path=/policy-and-cookies#cookies-policy`;
+  }
 
+  getCookie = (cName: string): string => {
+    const name = cName + '=';
+    const decodedCookie = decodeURIComponent(document.cookie);
+    const ca = decodedCookie.split(';');
+    let value= '';
+    ca.forEach(val => {
+      if (val.indexOf(name) === 0) {
+        value = val.substring(name.length);
+      }
+    });
+    return value;
+  }
+
+  cookieMessage =()=>{ 
+    if(!this.getCookie('cookie')) {
+      const cookiesElement = document.querySelector('#cookies') as HTMLElement;
+      cookiesElement.style.display = 'block';
+    }
+  }
 
 }
+
+
+
 
 
 

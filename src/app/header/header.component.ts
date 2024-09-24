@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogBoxComponent } from '../dialog-box/dialog-box.component';
-import { Router, RouterModule, RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterModule, RouterOutlet } from '@angular/router';
 import { AccountComponent } from '../account/account.component';
 import { Auth, User, getAuth, onAuthStateChanged } from '@angular/fire/auth';
 import { ScrollService } from '../scrollService';
@@ -44,6 +44,16 @@ export class HeaderComponent {
       console.log(this.authService.currentUserSig());
       this.dialog.closeAll(); //closes the dialogbox after login/register
     })
+
+
+    
+
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        window.scrollTo(0, 0);
+      }
+    });
+
 
 
     onAuthStateChanged(this.auth, (user: User | null) => {

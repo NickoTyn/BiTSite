@@ -26,6 +26,8 @@ export class ContactComponent implements OnInit {
   email: string = '';
   phoneNumber: string = '';
   additionalInfo: string = '';
+  acceptedTerms: boolean = false; // New property
+
 
   /*MAP START*/ 
 
@@ -57,7 +59,7 @@ export class ContactComponent implements OnInit {
 
 
   async onSubmit(form: NgForm) {
-    if (form.valid) {
+    if (form.valid && this.acceptedTerms) { // Check if terms are accepted
       const contactMessage = {
         name: this.name,
         email: this.email,
@@ -70,12 +72,13 @@ export class ContactComponent implements OnInit {
         await setDoc(doc(collection(this.firestore, 'contactMessages')), contactMessage);
         console.log('Document written successfully.');
         form.reset(); // Reset the form after submission
+        this.acceptedTerms = false; // Reset the checkbox
       } catch (error) {
         console.error('Error adding document: ', error);
         alert('Error sending message. Please try again.');
       }
     } else {
-      alert('Please fill out all fields.');
+      alert('Please fill out all fields and accept the terms.');
     }
   }
 

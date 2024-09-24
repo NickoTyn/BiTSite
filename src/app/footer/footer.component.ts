@@ -1,52 +1,26 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-/* import { Auth, GoogleAuthProvider, signInWithPopup } from '@angular/fire/auth'; */
-import $ from 'jquery';
+import { NavigationEnd, Router, RouterModule } from '@angular/router';
+
 
 @Component({
   selector: 'app-footer',
   standalone: true,
+  imports:[RouterModule],
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent {
-  generateBalls(){
-    
-  }
 
-  constructor(/* private auth: Auth */) {}
+  constructor(private router: Router) {}
 
 
-/*   signInWithGoogle() {
-    signInWithPopup(this.auth, new GoogleAuthProvider())
-      .then(() => {
-        console.log('logged in');
-      })
-      .catch((error: any) => {
-        console.log(error);
-      });
-  }
- */
-
-}
-
-function generateBalls():void {
-  for (let i = 0; i < Math.floor(window.innerWidth / 20); i++) {
-    $(".gooey-animations").append(`<div class="ball"></div>`);
-    const colors = ['#000', '#fff'];
-    $(".ball").eq(i).css({
-      "bottom": "0px",
-      "left": Math.random() * (window.innerWidth - 100),
-      "animation-delay": Math.random() * 5 + "s",
-      "transform": "translateY(" + Math.random() * 10 + "px)",
-      "background-color": colors[i % 2]
+  ngOnInit(): void {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        window.scrollTo(0, 0);
+      }
     });
   }
 }
 
-  generateBalls();
-
-    window.addEventListener('resize',function(e) {
-  $(".gooey-animations .ball").remove();
-  generateBalls();
-    });
 

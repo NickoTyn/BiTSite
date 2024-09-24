@@ -8,17 +8,17 @@
       <nav class="main-nav">
         <ul class="nav-list">
           <li>
-            <a class="button nav-button" href="#education-training">Home</a>
+            <a class="button nav-button" routerLink="/" fragment="">Home</a>
           </li>
           
-          <li><a href="#portfolio" class="nav-button">Past Activities</a></li>
+          <li><a href="/" class="nav-button" routerLink="past-activities">Past Activities</a></li>
           <li>
             <a href="#" class="nav-button" (click)="onScrollToTarget()"
               >Join Us</a
             >
           </li>
           <li>
-            <a href="#work-experience" class="nav-button" routerLink="about-us">About Us</a>
+            <a href="/" class="nav-button" routerLink="about-us">About Us</a>
           </li>
         </ul>
       </nav>
@@ -102,15 +102,15 @@
       <nav class="main-nav">
         <ul class="nav-list">
           <li>
-            <a class="button nav-button" href="#education-training">Home</a>
+            <a class="button nav-button" routerLink="/" fragment="">Home</a>
           </li>
           
-          <li><a href="#portfolio" class="nav-button" routerLink="past-activities">Past Activities</a></li>
+          <li><a href="/" class="nav-button" routerLink="past-activities">Past Activities</a></li>
           <li>
             <a class="nav-button" (click)="onScrollToTarget()">Join Us</a>
           </li>
           <li>
-            <a href="#work-experience" class="nav-button" routerLink="about-us">About Us</a>
+            <a href="/" class="nav-button" routerLink="about-us">About Us</a>
           </li>
         </ul>
       </nav>
@@ -188,7 +188,7 @@
 
 <div class="mobile">
   <header class="site-header full-page-header">
-    <a class="logo-link" href="/">
+    <a class="logo-link" routerLink="/" fragment="">
       <img class="logo__image" src="assets/Logo BIT.png" alt="BiT Logo" />
     </a>
 
@@ -198,7 +198,7 @@
         <div class="dropdown">
           <ul id="mobile-nav-list" class="nav-list">
             <li>
-              <a class="button nav-button" href="#education-training">
+              <a class="button nav-button" href="/">
                 <svg
                   class="mobile-svg-home"
                   viewBox="0 0 24 24"
@@ -224,7 +224,7 @@
             </li>
 
             <li>
-              <a href="#" class="nav-button" routerLink="past-activities">
+              <a href="/" class="nav-button" routerLink="past-activities">
                 <svg
                   class="mobile-svg"
                   height="200px"
@@ -300,7 +300,7 @@
               </a>
             </li>
             <li>
-              <a href="#work-experience" class="nav-button" routerLink="about-us">
+              <a href="/" class="nav-button" routerLink="about-us">
                 <svg
                   class="mobile-svg"
                   fill="#ffffff"

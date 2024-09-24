@@ -3,11 +3,18 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;600&display=swap');
 
+*{
+	margin:0px;
+	padding:0px;
 
-body{
+}
+
+
+
+body{	
 	margin-top:120px;
 	font-family: 'Oswald', sans-serif;
-	background-color: #212121;
+	background-color: #050b2d;
 	color: #212529;}
 	section{
 		width: 90%;
@@ -26,7 +33,12 @@ body{
 .container {
     width: 90%;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 0px auto;
+	margin-top:200px;
+	min-height: 960px; /* Added to ensure container takes full height */
+    display: flex; /* Added for flexible layout */
+    flex-direction: column; /* Added for flexible layout */
+
 }
 .column {
     flex: 1 1 33%;
@@ -233,3 +245,4 @@ body{
         flex: 1 1 100%;
     }
 }
+

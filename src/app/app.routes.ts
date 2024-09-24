@@ -9,6 +9,7 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { PastActivitiesComponent } from './past-activities/past-activities.component';
 import { ContactComponent } from './contact/contact.component';
 import { PastActivitiesGalleryComponent } from './past-activities-gallery/past-activities-gallery.component';
+import { PolicyAndCookiesComponent } from './policy-and-cookies/policy-and-cookies.component';
 
 
 export const routes: Routes = [
@@ -19,7 +20,8 @@ export const routes: Routes = [
   { path: 'about-us', component: AboutUsComponent},
   { path: 'past-activities', component: PastActivitiesComponent},
   { path: 'past-activities-gallery', component: PastActivitiesGalleryComponent},
-  { path: 'contact', component: ContactComponent}
+  { path: 'contact', component: ContactComponent},
+  { path: 'policy-and-cookies', component: PolicyAndCookiesComponent},
 
 
 
