@@ -1,0 +1,125 @@
+body {
+    background-color: #050b2d; /* Dark background */
+    color: #f8f9fa; /* Light text for contrast */
+    font-family: Arial, sans-serif; /* Clean font */
+    margin-top: 150px; /* Add space at the top of the page */
+}
+
+h1, h2 {
+    color: #ffffff; /* Ensure headers are bright white */
+    font-weight: 600;
+}
+
+p, li {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #f1f1f1; /* Lighter gray for the body text */
+}
+
+ul {
+    margin-left: 20px;
+}
+
+a {
+    color: #a3d4ff; /* Light blue link color */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.policy-section {
+    background-color: #0d1440; /* Slightly lighter dark background for content */
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.policy-section h2 {
+    margin-top: 20px;
+}
+
+.container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 15px;
+}
+
+
+body {
+    background-color: #050b2d; /* Dark background */
+    color: #f8f9fa; /* Light text for contrast */
+    font-family: Arial, sans-serif; /* Clean font */
+}
+
+h1, h2 {
+    color: #d40dc4; /* Highlight important sections */
+    font-weight: 600;
+}
+
+p, li {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #f1f1f1; /* Lighter gray for body text */
+}
+
+ul {
+    margin-left: 20px;
+}
+
+a {
+    color: #d40dc4; /* Highlighted links */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.policy-section {
+    background-color: #0d1440; /* Slightly lighter dark background for content */
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+
+}
+
+.policy-section h2 {
+    margin-top: 20px;
+}
+
+.container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 15px;
+    border-left: 5px solid #4c0d63; /* Accent color to enhance design */
+}
+
+.highlight {
+    color: #d40dc4; /* Text highlight color */
+    font-weight: bold;
+}
+
+.accent-text {
+    color: #4c0d63; /* Secondary accent text color */
+}
+
+
+
+
+.form-section {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.form-section a {
+    display: inline-block;
+    background-color: #d40dc4;
+    color: #f8f9fa;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1.2rem;
+    margin-top: 20px;
+}

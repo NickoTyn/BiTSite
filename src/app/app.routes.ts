@@ -10,19 +10,19 @@ import { PastActivitiesComponent } from './past-activities/past-activities.compo
 import { ContactComponent } from './contact/contact.component';
 import { PastActivitiesGalleryComponent } from './past-activities-gallery/past-activities-gallery.component';
 import { PolicyAndCookiesComponent } from './policy-and-cookies/policy-and-cookies.component';
+import { RaffleComponent } from './raffle/raffle.component';
 
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' }, // Default route
   { path: 'home', component: HomeComponent },
   { path: 'account', component: AccountComponent },
-  { path: 'validation', component: PostValidationHubComponent},
-  { path: 'about-us', component: AboutUsComponent},
-  { path: 'past-activities', component: PastActivitiesComponent},
-  { path: 'past-activities-gallery', component: PastActivitiesGalleryComponent},
-  { path: 'contact', component: ContactComponent},
-  { path: 'policy-and-cookies', component: PolicyAndCookiesComponent},
-
-
+  { path: 'validation', component: PostValidationHubComponent },
+  { path: 'about-us', component: AboutUsComponent },
+  { path: 'past-activities', component: PastActivitiesComponent },
+  { path: 'past-activities-gallery', component: PastActivitiesGalleryComponent },
+  { path: 'contact', component: ContactComponent },
+  { path: 'policy-and-cookies', component: PolicyAndCookiesComponent },
+  { path: 'raffle', component: RaffleComponent },
 
 ];
