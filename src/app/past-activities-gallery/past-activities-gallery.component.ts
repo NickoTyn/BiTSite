@@ -18,8 +18,10 @@ export class PastActivitiesGalleryComponent implements OnInit {
   announcement: Announcement | undefined = {
     title: 'Default Title',
     description: 'Default Description',
+    refLink: '',
     username: 'Default User',
     imageLink: 'default-image-url.jpg',
+    date: '',
     status: 'past-activities',
     pastActivity: true,
     imagesRef: 'none'

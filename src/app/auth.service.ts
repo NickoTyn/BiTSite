@@ -1,6 +1,6 @@
 import { Injectable, inject, signal } from "@angular/core";
-import { Auth, EmailAuthProvider, User, createUserWithEmailAndPassword, reauthenticateWithCredential, signInWithEmailAndPassword, signOut, updatePassword, updateProfile, user } from "@angular/fire/auth";
-import { Observable, from, throwError } from "rxjs";
+import { Auth, EmailAuthProvider, GoogleAuthProvider, User, createUserWithEmailAndPassword, reauthenticateWithCredential, signInWithEmailAndPassword, signInWithPopup, signOut, updatePassword, updateProfile, user } from "@angular/fire/auth";
+import { BehaviorSubject, Observable, from, throwError } from "rxjs";
 import { UserInterface } from "./user.interface";
 import { getApp } from "firebase/app";
 import { Firestore, getFirestore, setDoc, getDoc, doc } from "firebase/firestore"; // Import Firestore methods
@@ -17,13 +17,16 @@ export class AuthService {
     
     user$ = user(this.firebaseAuth)
     currentUserSig = signal<UserInterface | null | undefined>(undefined)
+    private userRankSubject = new BehaviorSubject<string | null>(null);
+    userRank$ = this.userRankSubject.asObservable();
 
-    private currentUserRank: string | null = null;
+    private currentUserRank: string= '';
   
 
     //firestore = inject(AngularFirestore);
    
    firestore: Firestore;
+  router: any;
 
     constructor(private auth: Auth) {
         this.firestore = getFirestore(getApp());
@@ -54,7 +57,25 @@ export class AuthService {
       getUserRank(): string | null {
         return this.currentUserRank;
       }
+      
+      signInWithGoogle() {
+        signInWithPopup(this.auth , new GoogleAuthProvider())
+          .then(async (response) => {
+            console.log('logged in');
     
+            await this.fetchUserRank(response.user);
+            this.saveUserRankToLocalStorage(this.currentUserRank);
+    
+            this.router.navigateByUrl('/home').then(() => {
+              window.location.reload();
+            });
+            
+          })
+          .catch((error: any) => {
+            console.error('Google login error:', error);
+          });
+      }
+
       register(email: string, username: string, password: string): Observable<void> {
         const promise = createUserWithEmailAndPassword(this.firebaseAuth, email, password)
           .then(async response => {
@@ -74,16 +95,23 @@ export class AuthService {
         return from(promise);
       }
     
-      private async fetchUserRank(user: User): Promise<void> {
+      
+    
+      async fetchUserRank(user: User): Promise<void> {
         const userDocRef = doc(this.firestore, `users/${user.uid}`);
         const userDoc = await getDoc(userDocRef);
+        
         if (userDoc.exists()) {
-          const rank = userDoc.data()["rank"];
+          const rank = userDoc.data()['rank'];
           this.currentUserRank = rank;
-          this.saveUserRankToLocalStorage(rank);
+          this.userRankSubject.next(rank); // Update rank in BehaviorSubject
+        } else {
+          console.log('User document does not exist. Creating a new one.');
+          // Set default rank if the document doesn't exist
+          await this.setUserRank(user.uid, 'defaultRank');
         }
       }
-    
+
       updateDisplayName(newDisplayName: string): Observable<void> {
         const user = this.firebaseAuth.currentUser;
         if (user) {
@@ -111,7 +139,7 @@ export class AuthService {
       logout(): Observable<void> {
         const promise = signOut(this.firebaseAuth)
           .then(() => {
-            this.currentUserRank = null;
+            this.currentUserRank = '';
             this.clearUserRankFromLocalStorage();
           })
           .catch(this.handleError);
@@ -122,8 +150,10 @@ export class AuthService {
         const userDocRef = doc(this.firestore, `users/${uid}`);
         await setDoc(userDocRef, { rank }, { merge: true });
         this.currentUserRank = rank;
-        this.saveUserRankToLocalStorage(rank);
+        this.userRankSubject.next(rank); // Update rank in BehaviorSubject
       }
+
+      
     
       updateUserRank(rank: string): Observable<void> {
         const user = this.firebaseAuth.currentUser;

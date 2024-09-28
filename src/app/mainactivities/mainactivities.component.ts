@@ -4,7 +4,7 @@ import { Announcement } from '../post-validation-hub/post-validation-hub.compone
 import { MatDialog } from '@angular/material/dialog';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormBuilder } from '@angular/forms';
-import { Firestore, collection, doc, getDocs, getDoc, setDoc, writeBatch, CollectionReference, DocumentData } from '@angular/fire/firestore';
+import { Firestore, collection, doc, getDocs, getDoc, setDoc, writeBatch, CollectionReference, DocumentData, Timestamp } from '@angular/fire/firestore';
 
 
 @Component({
@@ -34,6 +34,8 @@ export class MainactivitiesComponent {
     ngOnInit() {
         this.fetchAnnouncements();
         this.addThumbnailEventListeners();
+
+        console.log("REFLINK:", this.queue[0].refLink);
     }
 
     async fetchAnnouncements() {
@@ -49,8 +51,10 @@ export class MainactivitiesComponent {
                 return;
             }
     
+            // Clear the queue before adding new data
+            this.queue = []; 
+            
             // Iterate over the documents and add them to the queue
-            this.queue = []; // Clear the queue before adding new data
             collectionSnapshot.forEach(doc => {
                 if (this.queue.length >= 6) {
                     return; // Stop adding more if queue already has 6 items
@@ -58,7 +62,7 @@ export class MainactivitiesComponent {
     
                 const data = doc.data() as Omit<Announcement, 'title'>; // Assuming `Announcement` type
     
-                // Check if the status is 'active' before adding to the queue
+                // Check if the status is 'approved' before adding to the queue
                 if (data.status === 'approved') {
                     this.queue.push({
                         title: doc.id, // Assuming the document ID or a specific field should be used as title
@@ -67,14 +71,25 @@ export class MainactivitiesComponent {
                 }
             });
     
-            // Log the fetched data DE STERS AT LAUNCH
-            console.log('Fetched Announcements:', this.queue);
+
+
+            this.sortAnnouncementsByDate();
+    
+            // Log the fetched data
+            //console.log('Fetched Announcements:', this.queue);
         } catch (error) {
             console.error('Error fetching announcements:', error);
         }
     }
     
-    
+    private sortAnnouncementsByDate() {
+        this.queue.sort((a, b) => {
+            // Assuming 'createdAt' is the timestamp field in Firestore
+            const dateA = a.date instanceof Timestamp ? a.date.toMillis() : 0;
+            const dateB = b.date instanceof Timestamp ? b.date.toMillis() : 0;
+            return dateB - dateA; // Sort in descending order (most recent first)
+        });
+    }
     
 
 

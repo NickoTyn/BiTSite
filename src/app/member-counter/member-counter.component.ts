@@ -34,7 +34,7 @@ export class MemberCounterComponent implements OnInit {
   startCounting() {
     this.projectcountstop = setInterval(() => {
       this.projectcount++;
-      if (this.projectcount === 287) {
+      if (this.projectcount === 46) {
         clearInterval(this.projectcountstop);
       }
     }, 10);

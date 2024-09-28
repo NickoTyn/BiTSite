@@ -50,6 +50,7 @@ export class MakeAPostComponent implements OnInit {
 
   titleContent: string = '';
   descriptionContent: string = '';
+  linkContent: string = '';
   imageUploadForm: FormGroup;
   imageUrl: string | ArrayBuffer | null = null;
   errorMessage: string | null = null;
@@ -99,6 +100,7 @@ export class MakeAPostComponent implements OnInit {
 
   async onSubmit() {
     let downloadURL: string;
+    const currentDate = new Date();  // Create a date object with the current date and time
 
     if (this.imageUploadForm.valid) {
         console.log('Form submitted successfully!');
@@ -108,26 +110,29 @@ export class MakeAPostComponent implements OnInit {
     this.user$.pipe(take(1)).subscribe(async (user) => {
         if (user) {
             // Reference to the new collection under the user's document
-            const userCollection = collection(this.firestore, `users/${user.uid}/${this.titleContent}`);
+            // const userCollection = collection(this.firestore, `users/${user.uid}/${this.titleContent}`);
             const postCollection = collection(this.firestore, `non-validated-post`);
 
             // Create a new document in the 'titles' collection with auto-generated ID
-            const newTitleDoc = doc(userCollection);
+            /* const newTitleDoc = doc(userCollection);
             await setDoc(newTitleDoc, {
                 title: this.titleContent,
                 description: this.descriptionContent,
-                imageLink: downloadURL
-            }, { merge: true });
+                imageLink: downloadURL,
+                date: currentDate // Save the current date
+            }, { merge: true }); */
 
             // Use the title as the document ID for the post document
             const postDoc = doc(postCollection, this.titleContent);
             await setDoc(postDoc, {
                 title: this.titleContent,
                 description: this.descriptionContent,
+                refLink: this.linkContent,
                 username: user.displayName || user.username,
                 imageLink: downloadURL,
                 status: 'none',
-                pastActivity: false
+                pastActivity: false,
+                date: currentDate // Save the current date
             }, { merge: true });
         }
     });

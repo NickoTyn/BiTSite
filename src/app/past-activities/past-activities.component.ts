@@ -46,7 +46,7 @@ export class PastActivitiesComponent {
       }
   
       // Prepare an array to hold the fetched announcements
-      const announcements = [];
+
   
       // Loop through each document returned by the query
       for (const docSnap of querySnapshot.docs) {
@@ -59,7 +59,7 @@ export class PastActivitiesComponent {
         });
       }
   
-
+      this.announcements = this.sortAnnouncementsByDate(this.announcements);
   
       // Optionally log the fetched data
       console.log('Fetched announcements:', this.announcements);
@@ -69,7 +69,14 @@ export class PastActivitiesComponent {
     }
   }
   
-  
+  sortAnnouncementsByDate(announcements: any[]) {
+    // Sort by date in descending order (most recent first)
+    return announcements.sort((a, b) => {
+      const dateA = a.date ? a.date.toDate() : 0; // Convert Firestore timestamp to JS Date
+      const dateB = b.date ? b.date.toDate() : 0;
+      return dateB - dateA;
+    });
+  }
 
   onPostWrapperClick(event: Event, redirectUrl: string, galleryRef: string, announcement: Announcement) {
     const target = event.currentTarget as HTMLElement;

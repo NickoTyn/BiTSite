@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -7,6 +7,8 @@ import { AuthService } from '../auth.service';
 import { MakeAPostComponent } from '../make-a-post/make-a-post.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Firestore } from 'firebase-admin/firestore';
+import { map, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-account',
@@ -28,6 +30,11 @@ export class AccountComponent {
   updateForm: FormGroup;
   username: string | null = null;
 
+  isAdminUser: boolean = false;
+  isModeratorUser: boolean = false;
+
+  userRank: string | null = null;
+
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -42,7 +49,10 @@ export class AccountComponent {
     });
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.isAdminUser = await this.isAdmin();
+    this.isModeratorUser = await this.isModerator();
+
     this.authService.user$.subscribe(user => {
       if (user) {
         this.username = user.displayName;
@@ -62,17 +72,27 @@ export class AccountComponent {
       }
       console.log(this.authService.currentUserSig());
     });
+
+    this.authService.userRank$.subscribe(rank => {
+      this.userRank = rank;
+      console.log('User rank:', this.userRank);
+    });
   }
 
 
-  isAdmin(): boolean {
-    console.log("USER RANK", this.authService.getUserRank());
-    return this.authService.getUserRank() === 'admin';
+
+ 
+
+  async isAdmin(): Promise<boolean> {
+    const userRank = await this.authService.getUserRank();
+    console.log("USER RANK", userRank);
+    return userRank === 'admin';
   }
 
-  isModerator(): boolean {
-    console.log("USER RANK", this.authService.getUserRank());
-    return this.authService.getUserRank() === 'moderator';
+  async isModerator(): Promise<boolean> {
+    const userRank = await this.authService.getUserRank();
+    console.log("USER RANK", userRank);
+    return userRank === 'moderator';
   }
 
   onUpdateUsername() {

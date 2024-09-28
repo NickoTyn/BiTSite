@@ -10,10 +10,12 @@ export interface Announcement {
   description: string;
   imageLink: string | '';
   title: string;
+  refLink: string;
   username: string;
   status: string;
   pastActivity: true;
   imagesRef: string;
+  date: string | Date;
 }
 
 @Component({
@@ -48,8 +50,6 @@ export class PostValidationHubComponent implements OnInit {
         return;
       }
 
-      // Initialize the announcements array
-      this.announcements = [];
 
       // Iterate over each document in the collection
       snapshot.forEach(docSnap => {
@@ -66,10 +66,20 @@ export class PostValidationHubComponent implements OnInit {
         });
       });
 
+      this.announcements = this.sortAnnouncementsByDate(this.announcements);
       // Log the fetched data
       console.log('Fetched announcements:', this.announcements);
     }, (error) => {
       console.error('Error listening to announcements:', error);
+    });
+  }
+
+  sortAnnouncementsByDate(announcements: any[]) {
+    // Sort by date in descending order (most recent first)
+    return announcements.sort((a, b) => {
+      const dateA = a.date ? a.date.toDate() : 0;
+      const dateB = b.date ? b.date.toDate() : 0;
+      return dateB - dateA;
     });
   }
 
