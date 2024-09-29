@@ -23,12 +23,12 @@ html,body{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.container{
+.containerul{
     width:1600px;
     margin:auto;
 }
 
-.subcontainer{
+.subcontainerul{
     width:85%;
     margin:auto;
 }
@@ -75,7 +75,7 @@ html,body{
 }
 
 @media(max-width: 1600px){
-    .container{
+    .containerul{
         width:100%;
     }
 }
