@@ -87,7 +87,7 @@ export class AppComponent {
     this.renderer.listen(cookiesBtn, 'click', () => {
       const cookiesElement = this.renderer.selectRootElement('#cookies', true);
       this.renderer.setStyle(cookiesElement, 'display', 'none');
-      this.setCookie('cookie', 'accepted', 30);
+      this.setCookie('cookie', true , 30);
     });
 
     window.addEventListener('load', this.cookieMessage);
@@ -96,18 +96,18 @@ export class AppComponent {
 
   showSignInPopup: boolean = false;
 
-  setCookie(cName: string, cValue: string, exDays: number): void {
+  setCookie(cName: string, cValue: boolean, exDays: number): void {
     const date = new Date();
     date.setTime(date.getTime() + (exDays * 24 * 60 * 60 * 1000));
     const expires = 'expires=' + date.toUTCString();
-    document.cookie = `${cName}=${cValue};${expires};path=/home, path=/account, path=/validation, path=/about-us, path=/past-activities, path=/past-activities-gallery, path=/contact, path=/policy-and-cookies, path=/, path=/policy-and-cookies#cookies-policy`;
+    document.cookie = `${cName}=${cValue};${expires};path=/,path=/past-activities`;
   }
 
-  getCookie = (cName: string): string => {
+  getCookie = (cName: string) => {
     const name = cName + '=';
     const decodedCookie = decodeURIComponent(document.cookie);
     const ca = decodedCookie.split(';');
-    let value= '';
+    let value;
     ca.forEach(val => {
       if (val.indexOf(name) === 0) {
         value = val.substring(name.length);

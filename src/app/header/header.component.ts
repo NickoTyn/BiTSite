@@ -77,6 +77,9 @@ export class HeaderComponent {
     });
   }
 
+  onScrollToTargetHome(): void {
+    this.router.navigate(['/home']);
+  }
 
     openDialog(){
        this.dialog.open(DialogBoxComponent,{
