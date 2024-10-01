@@ -26,8 +26,10 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { GoogleMapsModule } from "@angular/google-maps";
 import { BrowserModule } from '@angular/platform-browser';
-import { Auth, GoogleAuthProvider, signInWithPopup } from '@angular/fire/auth';
+import { Auth, authState, GoogleAuthProvider, signInWithPopup } from '@angular/fire/auth';
 import { PolicyAndCookiesComponent } from './policy-and-cookies/policy-and-cookies.component';
+import { Firestore, doc, setDoc, getDoc, collection, updateDoc } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 
 
 
@@ -67,7 +69,12 @@ export class AppComponent {
 
   constructor(private renderer: Renderer2) { }
 
+  private auth: Auth = inject(Auth);
+  private firestore: Firestore = inject(Firestore);
   authService = inject(AuthService);
+
+  user$: Observable<any> = authState(this.auth); // Observable for user state
+
 
   ngOnInit(): void {
     this.authService.user$.subscribe(user => {
@@ -95,6 +102,21 @@ export class AppComponent {
 
 
   showSignInPopup: boolean = false;
+
+  saveCookie(){
+    this.user$.subscribe(async (user) => {
+      console.log("USER:", user);
+      if (user) {
+        const cookielocation = doc(this.firestore, `users/${user.uid}`);
+        
+        // Update the Firestore document to set `cookies` to true
+        await setDoc(cookielocation, {
+          cookies: true
+        });
+        console.log("Cookies set to true in Firestore");
+      }
+    });
+  }
 
   setCookie(cName: string, cValue: boolean, exDays: number): void {
     const date = new Date();
