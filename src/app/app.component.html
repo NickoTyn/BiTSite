@@ -8,18 +8,22 @@
     <router-outlet></router-outlet>
 
     <div class="body">
-    <div id="cookies">
-        <div class="containerul">
-            <div class="subcontainerul">
-                <div class="cookies">
-                    <p> This website uses cookies to ensure the best user experience 
-                        <a href="/policy-and-cookies" >More info.</a></p>
-                       <button id="cookies-btn" (click)="saveCookie()">I agree</button>
-
+        @if(this.cookiesAgreed){
+            <div id="cookies">
+                <div class="containerul">
+                    <div class="subcontainerul">
+                        <div class="cookies">
+                            <p> This website uses cookies to ensure the best user experience 
+                                <a href="/policy-and-cookies" >More info.</a></p>
+                               <button id="cookies-btn" (click)="saveCookie()">I agree</button>
+                            
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
+        }
+    
+    
     </div>
 
 

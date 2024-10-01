@@ -74,9 +74,10 @@ export class AppComponent {
   authService = inject(AuthService);
 
   user$: Observable<any> = authState(this.auth); // Observable for user state
+  cookiesAgreed: boolean = false;
 
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.authService.user$.subscribe(user => {
       if (user) {
         this.authService.currentUserSig.set({
@@ -98,6 +99,8 @@ export class AppComponent {
     });
 
     window.addEventListener('load', this.cookieMessage);
+
+    this.cookiesAgreed = await this.getCookieFirestore();
   }
 
 
@@ -107,15 +110,32 @@ export class AppComponent {
     this.user$.subscribe(async (user) => {
       console.log("USER:", user);
       if (user) {
-        const cookielocation = doc(this.firestore, `users/${user.uid}`);
-        
-        // Update the Firestore document to set `cookies` to true
+        const cookielocation = doc(this.firestore, `cookies/${user.uid}`);
         await setDoc(cookielocation, {
           cookies: true
         });
         console.log("Cookies set to true in Firestore");
       }
     });
+  }
+
+  async getCookieFirestore(): Promise<boolean> {
+    try {
+      const user = await this.user$.toPromise();
+      
+      if (user) {
+        const cookielocation = doc(this.firestore, `cookies/${user.uid}`);
+        const cookieDoc = await getDoc(cookielocation);
+  
+        if (cookieDoc.exists()) {
+          const cookieData = cookieDoc.data();
+          return cookieData['cookies'] === true; // Ensure it returns a boolean
+        }
+      }
+    } catch (error) {
+      console.error("Error fetching cookie data:", error);
+    }
+    return false; // Default to false if any issues arise
   }
 
   setCookie(cName: string, cValue: boolean, exDays: number): void {

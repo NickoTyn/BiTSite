@@ -23,6 +23,5 @@ export const routes: Routes = [
   { path: 'past-activities-gallery', component: PastActivitiesGalleryComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'policy-and-cookies', component: PolicyAndCookiesComponent },
-  { path: 'raffle', component: RaffleComponent },
-
+  { path: 'nxp', component: RaffleComponent },
 ];
