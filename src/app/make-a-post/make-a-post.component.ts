@@ -15,6 +15,7 @@ import { getDownloadURL, getStorage, ref, uploadBytes } from '@angular/fire/stor
 import { Observable, take } from 'rxjs';
 import { Auth, authState } from '@angular/fire/auth';
 import { Firestore, doc, setDoc, getDoc, collection } from '@angular/fire/firestore';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-make-a-post',
@@ -62,7 +63,7 @@ export class MakeAPostComponent implements OnInit {
 
 
 
-  constructor() {
+  constructor(public dialogRef: MatDialogRef<MakeAPostComponent>) {
     this.imageUploadForm = this.fb.group({
       image: [null, Validators.required]
     });
@@ -136,6 +137,8 @@ export class MakeAPostComponent implements OnInit {
             }, { merge: true });
         }
     });
+    this.dialogRef.close();
+    alert('Post submitted successfully! Please wait for the admin to validate it.');
 }
 
 

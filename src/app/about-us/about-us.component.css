@@ -193,6 +193,11 @@ body{
 }
 
 
+.highlight {
+    color: #fb98f3; /* Text highlight color */
+}
+
+
 .material-symbols-outlined {
   font-variation-settings:
   'FILL' 0,
