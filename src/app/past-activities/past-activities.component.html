@@ -4,7 +4,7 @@
       <ul class="carousel__slides">
         <li class="carousel__slide" *ngFor="let announcement of announcements">
           <figure>
-            <div class="post_wrapper" (click)="onPostWrapperClick($event, '/past-activities-gallery', '123', announcement)">
+            <div class="post_wrapper" (click)="onPostWrapperClick($event, announcement.typeRef, '123', announcement)">
                 <img [src]="announcement.imageLink" alt="{{announcement.title}}">
             </div>
             <figcaption>

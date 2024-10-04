@@ -33,89 +33,95 @@
       </div>
 
       @if (!showNotification){ @if (authService.isUserSignedIn()){
-      <form [formGroup]="applyForm" (ngSubmit)="submitApplication()">
-        <div class="name">
-          <div class="input-row">
-            <input
-              id="first-name"
-              type="text"
-              formControlName="firstName"
-              class="input-field"
-              required=""
-              placeholder=" "
-            />
-            <div class="labelline">First Name</div>
-          </div>
-
-          <div class="input-row">
-            <input
-              id="last-name"
-              type="text"
-              formControlName="lastName"
-              class="input-field"
-              required=""
-              placeholder=" "
-            />
-            <div class="labelline">Last Name</div>
-          </div>
-        </div>
-
-        <div class="contact">
-          <div class="input-row">
-            <input
-              id="email"
-              type="email"
-              formControlName="email"
-              class="input-field"
-              required=""
-              placeholder=" "
-            />
-            <div class="labelline">Email</div>
-          </div>
-
-          <div class="input-row">
-            <input
-              id="phone-number"
-              type="tel"
-              formControlName="telnr"
-              class="input-field"
-              required=""
-              placeholder=" "
-            />
-            <div class="labelline">+40</div>
-          </div>
-
-          <div class="input-row">
-            <input
-              id="discord"
-              type="text"
-              formControlName="discord"
-              class="input-field"
-              placeholder=" "
-            />
-            <div class="labelline">Discord ID</div>
-          </div>
-        </div>
-
-        <!-- New textarea for additional information -->
-        <div class="additional-info">
-          <div class="input-row">
-            <textarea
-              id="additional-info"
-              formControlName="additionalInfo"
-              class="input-field"
-              placeholder=" "
-            ></textarea>
-            <div class="labelline" id="labelline-add-info">
-              Additional Information
+        <form [formGroup]="applyForm" (ngSubmit)="submitApplication()">
+          <div class="name">
+            <div class="input-row">
+              <input
+                id="first-name"
+                type="text"
+                formControlName="firstName"
+                class="input-field"
+                required=""
+                placeholder=" "
+                [ngClass]="{ 'filled': applyForm.get('firstName')?.value }"
+              />
+              <div class="labelline">First Name</div>
+            </div>
+        
+            <div class="input-row">
+              <input
+                id="last-name"
+                type="text"
+                formControlName="lastName"
+                class="input-field"
+                required=""
+                placeholder=" "
+                [ngClass]="{ 'filled': applyForm.get('lastName')?.value }"
+              />
+              <div class="labelline">Last Name</div>
             </div>
           </div>
-        </div>
-
-        <div class="button-container">
-          <button type="submit" class="form-button button">Join Us</button>
-        </div>
-      </form>
+        
+          <div class="contact">
+            <div class="input-row">
+              <input
+                id="email"
+                type="email"
+                formControlName="email"
+                class="input-field"
+                required=""
+                placeholder=" "
+                [ngClass]="{ 'filled': applyForm.get('email')?.value }"
+              />
+              <div class="labelline">Email</div>
+            </div>
+        
+            <div class="input-row">
+              <input
+                id="phone-number"
+                type="tel"
+                formControlName="telnr"
+                class="input-field"
+                required=""
+                placeholder=" "
+                [ngClass]="{ 'filled': applyForm.get('telnr')?.value }"
+              />
+              <div class="labelline">+40</div>
+            </div>
+        
+            <div class="input-row">
+              <input
+                id="discord"
+                type="text"
+                formControlName="discord"
+                class="input-field"
+                placeholder=" "
+                [ngClass]="{ 'filled': applyForm.get('discord')?.value }"
+              />
+              <div class="labelline">Discord ID</div>
+            </div>
+          </div>
+        
+          <div class="additional-info">
+            <div class="input-row">
+              <textarea
+                id="additional-info"
+                formControlName="additionalInfo"
+                class="input-field"
+                placeholder=" "
+                [ngClass]="{ 'filled': applyForm.get('additionalInfo')?.value }"
+              ></textarea>
+              <div class="labelline" id="labelline-add-info">
+                Additional Information
+              </div>
+            </div>
+          </div>
+        
+          <div class="button-container">
+            <button type="submit" class="form-button button">Join Us</button>
+          </div>
+        </form>
+        
       } }
     </div>
     @if (!authService.isUserSignedIn()){

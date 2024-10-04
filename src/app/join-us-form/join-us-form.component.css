@@ -64,6 +64,17 @@ form {
   transition: filter 0.7s ease;
 }
 
+input:focus + .labelline,
+textarea:focus + .labelline,
+.filled + .labelline {
+  color: #d7bce8;
+  box-shadow: 0px -2px 3px rgba(205, 19, 204, 0.7), 0px -2px 35px rgba(103, 95, 255, 0.7);
+  height: 30px;
+  line-height: 30px;
+  transform: translateY(-120%) scale(0.88);
+  z-index: 1;
+}
+
 
 .input-row {
   position: relative;
@@ -115,6 +126,7 @@ textarea:focus + .labelline,
   transform: translateY(-120%) scale(0.88);
   z-index: 1;
 }
+
 
 input:invalid:not(:focus):not(:placeholder-shown) + .labelline {
   color: red;
