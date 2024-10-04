@@ -16,6 +16,7 @@ export interface Announcement {
   pastActivity: true;
   imagesRef: string;
   date: string | Date;
+  typeRef: string;
 }
 
 @Component({

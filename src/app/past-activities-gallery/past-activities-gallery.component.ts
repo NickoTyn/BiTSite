@@ -24,7 +24,8 @@ export class PastActivitiesGalleryComponent implements OnInit {
     date: '',
     status: 'past-activities',
     pastActivity: true,
-    imagesRef: 'none'
+    imagesRef: 'none',
+    typeRef: '/past-activities-gallery',
   };
 
   constructor(private router: Router, private route: ActivatedRoute) {}

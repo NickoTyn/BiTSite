@@ -11,6 +11,7 @@ import { ContactComponent } from './contact/contact.component';
 import { PastActivitiesGalleryComponent } from './past-activities-gallery/past-activities-gallery.component';
 import { PolicyAndCookiesComponent } from './policy-and-cookies/policy-and-cookies.component';
 import { RaffleComponent } from './raffle/raffle.component';
+import { PastActivitiesCourseComponent } from './past-activities-course/past-activities-course.component';
 
 
 export const routes: Routes = [
@@ -21,6 +22,7 @@ export const routes: Routes = [
   { path: 'about-us', component: AboutUsComponent },
   { path: 'past-activities', component: PastActivitiesComponent },
   { path: 'past-activities-gallery', component: PastActivitiesGalleryComponent },
+  { path: 'past-activities-course', component: PastActivitiesCourseComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'policy-and-cookies', component: PolicyAndCookiesComponent },
   { path: 'nxp', component: RaffleComponent },

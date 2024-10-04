@@ -1,0 +1,627 @@
+/* General Container Styles */
+/* Container styles */
+section {
+    margin-top: 175px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    padding: 40px;
+    background-color: #330329;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 0.3);
+    color: #fff;
+    font-family: Arial, sans-serif;
+    border-radius: 50px;
+    /* Remove max-height or set it to none */
+    max-height: none; /* Allow the container to grow with its content */
+    overflow: visible; /* Ensure that overflowing content is visible */
+  }
+  
+  /* Expanded class for when the form is visible */
+  .container.expanded {
+    overflow: visible; /* Ensure content is not clipped */
+  }
+  
+
+
+/* Other styles remain the same */
+
+figure {
+  display: flex;
+}
+
+/* Carousel Styles */
+.carousel {
+  position: relative;
+  text-align: left;
+  margin-bottom: 22px;
+}
+
+/* Carousel Slides */
+.carousel__slides {
+  display: flex;
+  flex-direction: column; /* Stack slides vertically */
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+/* Carousel Slide Styles */
+.carousel__slide {
+  position: relative;
+  display: flex;
+  flex-direction: row; /* Place image and text side-by-side */
+  margin-bottom: 20px; /* Space between slides */
+  padding: 20px;
+  border-bottom: 1px solid #ddd; /* Optional: Adds a border between slides */
+  width: 100%;
+  overflow: visible; /* Allows children to extend beyond the container */
+  position: relative; /* Ensures that child elements positioned absolutely are relative to this container */
+}
+
+/* Image Styles */
+.carousel__slide img {
+  width: 600px; /* Set width of the image */
+  height: auto; /* Maintain aspect ratio */
+  margin-right: 20px; /* Space between image and text */
+  object-fit: cover;
+  transition: box-shadow 0.5s ease-in-out;
+  box-shadow: 0 0 15px 8px #972ba5; /* Glow effect */
+}
+
+/* Glow Effect on Hover */
+.carousel__slide img:hover {
+  box-shadow: 0 0 350px 60px #972ba5; /* Stronger and larger glow on hover */
+}
+
+/* Figcaption Styles */
+figcaption {
+  flex: 1; /* Take remaining space */
+  opacity: 1; /* Hide by default */
+  transition: opacity 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center text vertically */
+  padding: 20px;
+  color: white;
+}
+
+/* Show Figcaption on Image Hover */
+.carousel__slide:hover figcaption {
+  opacity: 1; /* Show figcaption when image is hovered */
+}
+
+/* Title and Description Styles */
+.titleDescriptionCompany {
+  max-width: 600px; /* Increase max width to accommodate larger text */
+  padding: 20px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.titleDescriptionCompany h1 {
+  font-family: "Dancing Script", cursive;
+  font-size: 70px; /* Increase font size for title */
+  text-transform: capitalize;
+  line-height: 1.3;
+  margin: 0 0 15px 0; /* Adjust margins for better spacing */
+  text-align: center; /* Center the title text horizontally */
+}
+
+.titleDescriptionCompany h2 {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 22px; /* Increase font size for description */
+  text-transform: uppercase;
+  text-shadow: 1px 1px 2px black;
+  align-self: flex-start; /* Align description to the start (left) */
+}
+
+.post_wrapper.active {
+  filter: brightness(1.2);
+  transform: scale(1.3) translateX(255px) translateY(60px);
+  transition: transform 2.3s cubic-bezier(0.42, 0, 0.58, 1),
+    filter 2.3s cubic-bezier(0.42, 0, 0.58, 1);
+  z-index: 10;
+}
+
+/* Responsive Styles */
+@media (max-width: 1068px) {
+  .carousel__slide {
+    flex-direction: column; /* Stack image and text vertically on small screens */
+    align-items: center;
+    padding: 10px;
+  }
+
+  .carousel__slide img {
+    width: 100%; /* Full width for the image */
+    max-width: 500px; /* Ensure image does not exceed container width */
+    margin: 0 0 10px 0; /* Remove margin and add spacing below */
+  }
+
+  figcaption {
+    width: 100%; /* Full width for text content on small screens */
+    text-align: center; /* Center text on small screens */
+  }
+
+  .titleDescriptionCompany h1 {
+    font-size: 50px; /* Adjust for smaller screens */
+  }
+
+  .titleDescriptionCompany h2 {
+    font-size: 18px; /* Adjust for smaller screens */
+  }
+}
+
+/* General Container Styles */
+.container-img {
+  max-width: 1544px;
+  margin: 0 auto;
+  margin-top: 30px;
+  padding: 20px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-color: #330329;
+  color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 0.3);
+  overflow: hidden; /* Prevents overflow issues */
+}
+
+/* Grid Container for Images */
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 10px; /* Space between grid items */
+}
+
+/* Image Item Styles */
+.image-item {
+  position: relative;
+  overflow: hidden; /* Prevents images from overflowing */
+  border-radius: 8px; /* Rounded corners for images */
+  box-shadow: 0 0 15px 8px #972ba5; /* Glow effect */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  aspect-ratio: var(--aspect-ratio); /* Aspect ratio calculated dynamically */
+}
+
+/* Image Styles */
+.image-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures images cover the container while maintaining aspect ratio */
+}
+
+/* Hover Effects */
+.image-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px 15px #972ba5; /* Stronger glow on hover */
+}
+
+/* Responsive Styles */
+@media (max-width: 968px) {
+  .titleDescriptionCompany {
+    display: none;
+  }
+
+  .image-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+}
+
+.add-class {
+  display: flex; /* Use flexbox for alignment */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically, if needed */
+  margin: 20px 0; /* Optional: adds some vertical spacing around the button */
+}
+
+.circle-button {
+  width: 65px; /* Adjust size as needed */
+  height: 65px; /* Same as width for a perfect circle */
+  border-radius: 50%; /* Makes the button circular */
+  background-color: #d80cce; /* Button background color */
+  color: white; /* Text color */
+  font-size: 36px; /* Size of the "+" symbol */
+  border: none; /* Remove default border */
+  cursor: pointer; /* Changes cursor to pointer on hover */
+  display: flex; /* Center the "+" */
+  justify-content: center; /* Horizontally center */
+  align-items: center; /* Vertically center */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow */
+  transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+.circle-button:hover {
+  box-shadow: 0 7px 14px rgba(0, 0, 0, 0.3), 0 3px 6px rgba(0, 0, 0, 0.08),
+    0 0 0 2px rgba(255, 255, 255, 0.7),
+    /* Semi-transparent white outline */ 0 0 0 3px #ff98ff,
+    /* Violet ring */ 0 0 10px rgba(242, 0, 255, 0.7),
+    /* Soft violet glow for extra effect */ 0 0 15px rgba(255, 255, 255, 0.5); /* Outer violet glow */
+}
+
+/*Add New Class Form*/
+/* General styles for larger screens */
+.container {
+  display: flex;
+  flex-direction: column;
+  max-width: 1400px;
+  margin: auto;
+  padding: 40px;
+  background-color: #330329;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  font-family: Arial, sans-serif;
+  border-radius: 50px;
+}
+
+.form-container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px; /* Add some spacing above the form */
+  flex-direction: column; /* Stack inputs vertically */
+}
+
+.input-row {
+  position: relative;
+  margin-bottom: 15px; /* Space between inputs */
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  resize: vertical; /* allows the text box to resize vertically */
+}
+
+.labelline {
+  position: absolute;
+  font-size: 14px;
+  pointer-events: none; /* so the label doesn't block interaction with the textarea */
+  transition: 0.2s ease all;
+}
+
+.input-field:focus + .labelline,
+.input-field:not(:placeholder-shown) + .labelline {
+  font-size: 12px; /* Make label smaller */
+  color: #d7bce8; /* Make the label a darker color */
+}
+
+.form-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+}
+
+.form-header p {
+  font-family: "Nunito", sans-serif;
+  color: #d7bce8;
+  font-size: 25px;
+  text-align: center;
+  margin: 0px auto;
+}
+
+form {
+  margin: 0px 35px;
+}
+
+.highlight {
+  color: #d40dc4;
+}
+
+.glow-text {
+  color: #d40dc4;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 0 0 3px #d40dc4, 0 0 20px #675fff7b;
+}
+
+.input-row {
+  position: relative;
+  width: 100%; /* Ensure full width */
+}
+
+input,
+textarea {
+  padding: 10px;
+  margin: 10px 0;
+  background: none;
+  border: 1px solid #333;
+  border-radius: 4px;
+  color: white;
+  font-size: 16px;
+  outline: none;
+  transition: box-shadow 0.3s ease;
+  width: 100%; /* Ensure full width */
+}
+
+input:focus,
+textarea:focus {
+  z-index: 1111;
+  box-shadow: 0 0 8px 3px rgba(205, 19, 204, 0.7),
+    0 0 25px 5px rgba(103, 95, 255, 0.7);
+}
+
+.labelline {
+  position: absolute;
+  background-color: #330329;
+  border-radius: 30px;
+  top: 50%;
+  padding: 0 10px;
+  left: 10px;
+  transform: translateY(-50%);
+  color: #999;
+  transition: 0.3s ease-out;
+  pointer-events: none;
+}
+
+input:focus + .labelline,
+textarea:focus + .labelline,
+.filled + .labelline {
+  color: #d7bce8;
+  box-shadow: 0px -2px 3px rgba(205, 19, 204, 0.7),
+    0px -2px 35px rgba(103, 95, 255, 0.7);
+  height: 30px;
+  line-height: 30px;
+  transform: translateY(-120%) scale(0.88);
+  z-index: 1;
+}
+
+.submitButton {
+  min-width: 125px;
+  min-height: 50px;
+  font-family: "Nunito", sans-serif;
+  font-size: 22px;
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+  font-weight: 700;
+  color: white;
+  background: linear-gradient(125deg, #cd13cc 0%, #675fff 100%);
+  border: none;
+  border-radius: 1000px;
+  box-shadow: 4px 4px 24px #675fffac;
+  transition: all 0.3s ease-in-out 0s;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  padding: 10px;
+}
+
+.submitButton:hover {
+  transform: translateY(-2px); /* Moves the button up slightly */
+  box-shadow: 6px 6px 30px #675fffac; /* Increases the shadow for a lifted effect */
+  background: linear-gradient(
+    125deg,
+    #b310b2 0%,
+    #4e4bff 100%
+  ); /* Slightly darker gradient */
+  box-shadow: 0px 0px 40px #675fff; /* Enhanced box shadow on hover */
+}
+
+.cancelButton {
+  min-width: 125px;
+  min-height: 50px;
+  margin-left: 20px;
+  font-family: "Nunito", sans-serif;
+  font-size: 22px;
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+  font-weight: 700;
+  color: white;
+  background: linear-gradient(125deg, #cd1313 0%, #ff5f5f 100%);
+  border: none;
+  border-radius: 1000px;
+  box-shadow: 4px 4px 24px #ff5f5fac; /* Closer shadow */
+  transition: all 0.3s ease-in-out 0s;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  padding: 10px;
+}
+
+.cancelButton:hover {
+  transform: translateY(-2px); /* Moves the button up slightly */
+  box-shadow: 6px 6px 30px #ff5f5fac; /* Increases the shadow for a lifted effect */
+  background: linear-gradient(
+    125deg,
+    #cd1313 0%,
+    #ff5f5f 100%
+  ); /* Slightly darker gradient */
+  box-shadow: 0px 0px 40px #ff5f5fac; /* Enhanced box shadow on hover */
+}
+
+.button-container {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Responsive styles for smaller screens */
+@media (max-width: 768px) {
+  .container {
+    max-height: 900px;
+  }
+
+  .form-container {
+    flex-direction: column;
+    padding: 20px;
+    max-width: 100%;
+    max-height: none;
+  }
+
+  .form-header p {
+    font-size: 20px;
+  }
+
+  .button-container {
+    margin-top: 0px;
+  }
+
+  .button {
+    width: 100%;
+    font-size: 20px;
+  }
+}
+
+.labelline {
+    position: absolute;
+    background-color: #330329;
+    border-radius: 30px;
+    top: 50%;
+    padding: 0 10px;
+    left: 10px;
+    transform: translateY(-50%);
+    color: #999;
+    transition: 0.3s ease-out;
+    pointer-events: none;
+  }
+  
+  #labelline-add-info{
+    margin-top: -65px
+  }
+  
+  input:focus + .labelline,
+  textarea:focus + .labelline,
+  .filled + .labelline {
+    color: #d7bce8;
+    box-shadow: 0px -2px 3px rgba(205, 19, 204, 0.7), 0px -2px 35px rgba(103, 95, 255, 0.7);
+    height: 30px;
+    line-height: 30px;
+    transform: translateY(-120%) scale(0.88);
+    z-index: 1;
+  }
+  
+  input:focus + .labelline,
+textarea:focus + .labelline,
+.filled + .labelline {
+  color: #d7bce8;
+  box-shadow: 0px -2px 3px rgba(205, 19, 204, 0.7), 0px -2px 35px rgba(103, 95, 255, 0.7);
+  height: 30px;
+  line-height: 30px;
+  transform: translateY(-120%) scale(0.88);
+  z-index: 1;
+  transition: all 0.2s ease; /* Smooth animation */
+}
+
+.input-container {
+  position: relative;
+}
+
+/* For focused input or input with text */
+input:focus + .labelline,
+textarea:focus + .labelline,
+input:not(:placeholder-shown) + .labelline,
+textarea:not(:placeholder-shown) + .labelline,
+.filled + .labelline {
+  color: #d7bce8;
+  box-shadow: 0px -2px 3px rgba(205, 19, 204, 0.7), 0px -2px 35px rgba(103, 95, 255, 0.7);
+  height: 30px;
+  line-height: 30px;
+  transform: translateY(-120%) scale(0.88); /* Move up and scale */
+  z-index: 1;
+  transition: all 0.2s ease; /* Smooth animation */
+}
+
+/* Initial state for the label */
+.labelline {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  transition: all 0.2s ease;
+  color: #666;
+}
+
+
+.input-container {
+  position: relative;
+  margin-top: 20px; /* Adjust based on your layout */
+}
+
+.labelline {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: all 0.2s ease; /* Smooth transition */
+  pointer-events: none; /* Prevent clicking on the label */
+}
+
+input {
+  padding: 10px;
+  width: 100%;
+}
+
+/* For focused textarea or textarea with text */
+textarea:focus + .labelline,
+textarea:not(:placeholder-shown) + .labelline,
+.filled + .labelline {
+  color: #d7bce8;
+  box-shadow: 0px -2px 3px rgba(205, 19, 204, 0.7), 0px -2px 35px rgba(103, 95, 255, 0.7);
+  height: 30px;
+  line-height: 30px;
+  transform: translateY(-150%) scale(0.88); /* Move label up and scale down */
+  z-index: 1;
+  transition: all 0.2s ease; /* Smooth animation */
+}
+
+/* Initial label state */
+.labelline {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  transition: all 0.2s ease;
+  color: #666;
+}
+
+/* Ensure textarea container is positioned properly */
+.input-container {
+  position: relative;
+  width: 100%;
+}
+
+/* Style the textarea to match your design */
+textarea {
+  width: 100%;
+  padding: 10px;
+  resize: vertical; /* Allow vertical resizing, but not horizontal */
+}
+
+/*UPLAOD BUTTON*/
+.center-upload {
+  display: flex;
+  justify-content: center;
+}
+  
+.upload-button {
+  display: inline-flex;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #4A5699;
+  border: none;
+  cursor: pointer;
+  margin-left:30px;
+  transition: background-color 0.3s ease;
+}
+
+.upload-button:hover {
+  background-color: #3c4571;
+}
+
+.upload-button .icon {
+  margin-top: 3px;
+  width: 90px;
+  height: 90px;
+  fill: white;
+}
+/*UPLOAD BUTTON END*?
+
+/*ADD NEW CLASS FORM END*/
