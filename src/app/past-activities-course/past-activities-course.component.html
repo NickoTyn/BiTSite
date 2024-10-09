@@ -61,7 +61,7 @@
             <!-- New File Upload Field -->
             <div class="input-row">
               <div class="input-container center-upload">
-                <input type="file" id="imageUpload" (change)="onFileSelected($event)" multiple accept="image/*" style="display: none;" />
+                <input type="file" id="imageUpload" (change)="onFileSelected($event)" multiple accept="*/*" style="display: none;" />
                 <label for="imageUpload" class="upload-button">
                   <svg viewBox="0 0 1024 1024" class="icon" xmlns="http://www.w3.org/2000/svg">
                     <path d="M736.68 435.86a173.773 173.773 0 0 1 172.042 172.038c0.578 44.907-18.093 87.822-48.461 119.698-32.761 34.387-76.991 51.744-123.581 52.343-68.202 0.876-68.284 106.718 0 105.841 152.654-1.964 275.918-125.229 277.883-277.883 1.964-152.664-128.188-275.956-277.883-277.879-68.284-0.878-68.202 104.965 0 105.842zM285.262 779.307A173.773 173.773 0 0 1 113.22 607.266c-0.577-44.909 18.09-87.823 48.461-119.705 32.759-34.386 76.988-51.737 123.58-52.337 68.2-0.877 68.284-106.721 0-105.842C132.605 331.344 9.341 454.607 7.379 607.266 5.417 759.929 135.565 883.225 285.262 885.148c68.284 0.876 68.2-104.965 0-105.841z" fill="#4A5699"></path>
@@ -84,40 +84,67 @@
         
       </div>
   
+      <div class="class-container">
+        <div class="line"></div>
       <div class="class-list">
         <ul>
-          <li *ngFor="let class of classes">
-            <div class="class-header">
-              <h3>{{class.title}}</h3>
-              <span class="class-date">Date: {{class.date}}</span>
+          <li *ngFor="let class of classes" class="class-item">
+            <div class="line-container">
+              <div class="circle"></div>
+              <div class="line"></div>
             </div>
-            <div class="class-content">
-              <p>{{class.description}}</p>
-              <div class="class-materials">
-                <h4>Materials</h4>
-                <ul>
-                  <li *ngFor="let material of class.materials">
-                    <a [href]="material.link" target="_blank">{{material.name}}</a>
-                  </li>
-                </ul>
+            <div class="class-details"> <!-- Wrap title and date in a separate container -->
+              <div class="class-header">
+                <h3>{{class.title}}</h3>
+                <div class="date-container">
+                  <svg viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                    <g id="SVGRepo_iconCarrier">
+                      <path d="M965.282 186.746H62.449c-25.477 0-46.129 21.177-46.129 47.298v7.139c0 26.121 20.652 47.296 46.129 47.296h902.833c25.48 0 46.131-21.175 46.131-47.296v-7.139c0-26.121-20.65-47.298-46.131-47.298z" fill="#4A5699"></path>
+                      <path d="M965.282 821.697H62.449c-25.477 0-46.129 21.173-46.129 47.296v7.141c0 26.119 20.652 47.297 46.129 47.297h902.833c25.48 0 46.131-21.178 46.131-47.297v-7.141c0-26.123-20.65-47.296-46.131-47.296z" fill="#C45FA0"></path>
+                      <path d="M69.412 186.746H62.33c-26.121 0-47.294 21.177-47.294 47.298v642.09c0 26.119 21.173 47.297 47.294 47.297h7.082c26.121 0 47.294-21.178 47.294-47.297v-642.09c0.001-26.121-21.173-47.298-47.294-47.298zM964.117 186.746h-7.082c-26.119 0-47.296 21.177-47.296 47.298v642.09c0 26.119 21.177 47.297 47.296 47.297h7.082c26.122 0 47.296-21.178 47.296-47.297v-642.09c0-26.121-21.174-47.298-47.296-47.298z" fill="#F39A2B"></path>
+                      <path d="M426.617 435.818h-7.082c-26.121 0-47.296 21.171-47.296 47.294v38.715c0 26.119 21.175 47.296 47.296 47.296h7.082c26.121 0 47.298-21.177 47.298-47.296v-38.715c0-26.122-21.177-47.294-47.298-47.294zM601.912 435.818h-7.082c-26.118 0-47.292 21.171-47.292 47.294v38.715c0 26.119 21.174 47.296 47.292 47.296h7.082c26.119 0 47.3-21.177 47.3-47.296v-38.715c0-26.122-21.181-47.294-47.3-47.294zM777.211 435.818h-7.082c-26.122 0-47.296 21.171-47.296 47.294v38.715c0 26.119 21.174 47.296 47.296 47.296h7.082c26.119 0 47.292-21.177 47.292-47.296v-38.715c0-26.122-21.173-47.294-47.292-47.294zM777.211 611.22h-7.082c-26.122 0-47.296 21.17-47.296 47.293v38.716c0 26.115 21.174 47.293 47.296 47.293h7.082c26.119 0 47.292-21.178 47.292-47.293v-38.716c0-26.123-21.173-47.293-47.292-47.293zM601.912 611.22h-7.082c-26.118 0-47.292 21.17-47.292 47.293v38.716c0 26.115 21.174 47.293 47.292 47.293h7.082c26.119 0 47.3-21.178 47.3-47.293v-38.716c0-26.123-21.181-47.293-47.3-47.293zM426.617 611.22h-7.082c-26.121 0-47.296 21.17-47.296 47.293v38.716c0 26.115 21.175 47.293 47.296 47.293h7.082c26.121 0 47.298-21.178 47.298-47.293v-38.716c0-26.123-21.177-47.293-47.298-47.293zM251.32 611.22h-7.08c-26.123 0-47.294 21.17-47.294 47.293v38.716c0 26.115 21.171 47.293 47.294 47.293h7.08c26.123 0 47.294-21.178 47.294-47.293v-38.716c0-26.123-21.171-47.293-47.294-47.293z" fill="#E5594F"></path>
+                      <path d="M299.245 91.914h-7.435c-26.125 0-47.296 19.988-47.296 44.649V312.24c0 24.657 21.171 44.649 47.296 44.649h7.435c26.125 0 47.296-19.992 47.296-44.649V136.563c0-24.661-21.172-44.649-47.296-44.649zM719.956 91.914h-7.438c-26.118 0-47.292 19.988-47.292 44.649V312.24c0 24.657 21.174 44.649 47.292 44.649h7.438c26.123 0 47.296-19.992 47.296-44.649V136.563c0-24.661-21.173-44.649-47.296-44.649z" fill="#6277BA"></path>
+                    </g>
+                  </svg>
+                  <span class="class-date">{{class.date}}</span>
+                </div>
               </div>
-              <div class="class-videos" *ngIf="class.videos.length > 0">
-                <h4>Video Content</h4>
-                <ul>
-                  <li *ngFor="let video of class.videos">
-                    <a [href]="video.link" target="_blank">{{video.title}}</a>
-                  </li>
-                </ul>
+              <div class="class-content"> <!-- Moved class-content here -->
+                <p>{{class.description}}</p>
+                <div class="class-materials">
+                  <h4>Materials:</h4>
+                  <button class="button" data-text="Awesome" (click)="downloadFiles()">
+                    <span class="actual-text">&nbsp;DOWNLOAD&nbsp;</span>
+                    <span aria-hidden="true" class="hover-text">&nbsp;DOWNLOAD&nbsp;</span>
+                  </button>
+                </div>
+                <div class="class-videos" *ngIf="class.videos.length > 0">
+                  <h4>Video Content:</h4>
+                  <ul>
+                    <li *ngFor="let video of class.videos">
+                      <div class="flame-container">
+                        <iframe 
+                          [src]="getVideoUrl(video.link)"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowfullscreen>
+                        </iframe>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </li>
         </ul>
       </div>
-  
+    
       <!-- Load More Button -->
       <!-- <div class="load-more" *ngIf="hasMoreClasses">
         <button (click)="loadMoreClasses()">Load More Classes</button>
       </div> -->
+    </div>
     </div>
   </section>
   

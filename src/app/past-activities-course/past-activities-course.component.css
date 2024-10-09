@@ -127,6 +127,53 @@ figcaption {
   z-index: 10;
 }
 
+/*LINE START*/
+.class-item {
+  display: flex;
+  padding: 20px; /* Optional padding for spacing */
+  position: relative; /* Required for absolute positioning of line-container */
+}
+
+.line-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center circle on the line */
+  margin-right: 15px; /* Space between line and class content */
+}
+
+.circle {
+  margin-top: 10px;
+  width: 50px; /* Circle diameter */
+  height: 50px; /* Circle diameter */
+  border-radius: 50%;
+  border: 5px solid  #d8bce8; /* Stroke color and width */
+    border-radius: 50%; /* Makes it a circle */
+    background-color: transparent; /* Ensure background is transparent */
+  margin-bottom: 10px; /* Space between circle and line */
+}
+
+.line {
+  width: 5px; /* Line width */
+  height: calc(100% - 20px); /* Adjust to fit the container */
+  background-color: #d8bce8; /* Line color */
+}
+
+.class-details {
+  width: 100%;
+  display: flex;
+  flex-direction: column; /* Stack title and date above content */
+}
+
+.class-header {
+  margin-bottom: 10px; /* Space between header and content */
+}
+
+.class-content {
+  flex: 1; /* Make content take available space */
+}
+
+/*LINE END*/
+
 /* Responsive Styles */
 @media (max-width: 1068px) {
   .carousel__slide {
@@ -152,6 +199,10 @@ figcaption {
 
   .titleDescriptionCompany h2 {
     font-size: 18px; /* Adjust for smaller screens */
+  }
+
+  .line-container{
+    display: none;
   }
 }
 
@@ -625,3 +676,352 @@ textarea {
 /*UPLOAD BUTTON END*?
 
 /*ADD NEW CLASS FORM END*/
+
+/*Classes START*/
+
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.class-list {
+  font-family: "Lobster", cursive;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.class-list ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.class-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  border-radius: 6px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+  margin-bottom: 10px;
+}
+
+.class-header h3 {
+  font-size: 3.5rem;
+  font-weight: bold;
+  font-family: "Dancing Script", cursive;
+  color: #cd13cc;
+  margin: 0;
+}
+
+.class-header .class-date {
+  font-size: 1rem;
+  color: #d8bce8;
+  font-family: "Verdana", sans-serif;
+}
+
+.date-container {
+  display: flex;
+  align-items: center; /* Vertically centers the content */
+}
+
+.date-container svg {
+  margin-right: 11px; /* Adds space between the SVG and the date */
+  width: 34px; /* Adjust the size of the icon */
+  height: 34px;
+}
+
+.class-content {
+  padding: 20px;
+  border-radius: 6px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.class-content p {
+  font-size: 1.1rem;
+  font-family: "Verdana", sans-serif;
+  color: #d8bce8;
+  margin-bottom: 20px;
+}
+
+.class-materials{
+  margin-top: 50px;
+  margin-bottom: 55px;
+}
+
+.class-materials h4, .class-videos h4 {
+  text-decoration: underline;
+  font-family: "Lobster", cursive;
+  font-size: 1.9rem;
+  color: #675fff;
+  margin-bottom: 10px;
+}
+
+.class-materials ul, .class-videos ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.class-materials li, .class-videos li {
+  margin-bottom: 8px;
+}
+
+.class-materials a, .class-videos a {
+  font-family: "Verdana", sans-serif;
+  color: #972ba5;
+  text-decoration: none;
+  transition: color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.class-materials a:hover, .class-videos a:hover {
+  color: #cd13cc;
+  box-shadow: 0px 3px 0px #cd13cc;
+}
+
+.class-videos {
+  margin-top: 20px;
+}
+
+.class-videos ul {
+  padding: 0;
+}
+
+.class-videos li {
+  margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+  .class-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .class-header h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+
+  .class-content {
+    padding: 15px;
+  }
+
+  .class-content p {
+    font-size: 1rem;
+  }
+
+  .class-materials h4, .class-videos h4 {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .class-list {
+    padding: 15px;
+  }
+
+  .class-header h3 {
+    font-size: 1.4rem;
+  }
+
+  .class-header .class-date {
+    font-size: 0.8rem;
+  }
+
+  .class-content {
+    padding: 10px;
+  }
+
+  .class-materials h4, .class-videos h4 {
+    font-size: 1.2rem;
+  }
+}
+
+/*VIDEO PLAYER START*/
+
+/* Parent container to maintain the aspect ratio */
+.responsive-iframe {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio (9/16 * 100 = 56.25%) */
+  height: 0;
+  overflow: hidden;
+  border-radius: 8px; /* Rounded corners for a modern look */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.responsive-iframe iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Optional: Adding hover effects for interactivity */
+.responsive-iframe:hover {
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow on hover */
+}
+
+/* For small devices */
+@media (max-width: 768px) {
+  .responsive-iframe {
+    padding-bottom: 75%; /* Adjusted aspect ratio for smaller screens */
+  }
+}
+
+@media (max-width: 500px) {
+  .responsive-iframe {
+    padding-bottom: 100%; /* 1:1 aspect ratio for very small devices */
+  }
+}
+
+/*FLAME EFFECT START*/
+/* Flame container for the video */
+.flame-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* Maintain 16:9 aspect ratio */
+  height: 0;
+  border-radius: 12px;
+  box-shadow: 0 8px 15px rgba(255, 0, 0, 0.272); /* Adds depth */
+  overflow: visible;
+}
+
+.flame-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  z-index: 1;
+}
+
+/* Flame effect with reduced size and more stretch */
+.flame-container::before, .flame-container::after {
+  content: "";
+  position: absolute;
+  max-width: 99%;
+  top: -10px; /* Smaller vertical size */
+  left: -60px; /* Increased horizontal size for stretch */
+  right: -60px; /* Increased horizontal size for stretch */
+  bottom: -10px; /* Smaller vertical size */
+  border-radius: 100px / 50px; /* Maintain horizontal stretch */
+  background: radial-gradient(circle, rgb(255, 0, 0), transparent 50%);
+  opacity: 0.8;
+  z-index: 0;
+  filter: blur(50px); /* Further reduced blur for sharper effect */
+  animation: flicker 2s infinite alternate;
+}
+
+/* Second flame layer for extra depth */
+.flame-container::after {
+  background: radial-gradient(circle, rgb(255, 0, 0), transparent 50%);
+  filter: blur(80px); /* Further reduced blur for second flame */
+  animation: flicker-alt 2.5s infinite alternate;
+  opacity: 0.7;
+}
+
+/* Flame flickering animation */
+@keyframes flicker {
+  0% {
+    transform: scale(1.05) translateY(0px); /* Smaller scale */
+    background-position: 50% 50%;
+  }
+  50% {
+    transform: scale(1.1) translateY(-10px); /* Smaller scale and movement */
+    background-position: 55% 45%;
+  }
+  100% {
+    transform: scale(1.05) translateY(0px);
+    background-position: 50% 50%;
+  }
+}
+
+@keyframes flicker-alt {
+  0% {
+    transform: scale(1.05) translateY(0px); /* Smaller scale */
+    background-position: 45% 50%;
+  }
+  50% {
+    transform: scale(1.1) translateY(-20px); /* Smaller scale and movement */
+    background-position: 50% 55%;
+  }
+  100% {
+    transform: scale(1.05) translateY(0px);
+    background-position: 45% 50%;
+  }
+}
+
+/* Ensure responsiveness */
+@media (max-width: 768px) {
+  .flame-container {
+    padding-bottom: 75%; /* Adjust aspect ratio on smaller screens */
+  }
+}
+
+@media (max-width: 500px) {
+  .flame-container {
+    padding-bottom: 100%; /* Adjust aspect ratio for mobile */
+  }
+}
+
+/*FLAME EFFECT END*/
+
+
+/*VIDEO PLAYER END*/
+/*Classes END*/
+
+/*DOWNLOAD BUTTON START*/
+/* === removing default button style ===*/
+.button {
+  margin: 0;
+  height: auto;
+  background: transparent;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+}
+
+/* button styling */
+.button {
+  --border-right: 6px;
+  --text-stroke-color: rgb(255, 255, 255);
+  --animation-color: #d40dc4;
+  --fs-size: 2em;
+  letter-spacing: 3px;
+  text-decoration: none;
+  font-size: var(--fs-size);
+  font-family: "Arial";
+  position: relative;
+  text-transform: uppercase;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--text-stroke-color);
+}
+/* this is the text, when you hover on button */
+.hover-text {
+  position: absolute;
+  box-sizing: border-box;
+  content: attr(data-text);
+  color: var(--animation-color);
+  width: 0%;
+  inset: 0;
+  border-right: var(--border-right) solid var(--animation-color);
+  overflow: hidden;
+  transition: 0.5s;
+  -webkit-text-stroke: 1px var(--animation-color);
+}
+/* hover */
+.button:hover .hover-text {
+  width: 100%;
+  filter: drop-shadow(0 0 23px var(--animation-color))
+}
+/*DOWNLOAD BUTTON END*/
