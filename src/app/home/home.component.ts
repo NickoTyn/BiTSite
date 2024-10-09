@@ -7,13 +7,14 @@ import { RouterOutlet } from '@angular/router';
 import { MemberCounterComponent } from "../member-counter/member-counter.component";
 import { HSEPartnershipComponent } from "../hse-partnership/hse-partnership.component";
 import { SponsorsComponent } from "../sponsors/sponsors.component";
+import { DiscordComponent } from "../discord/discord.component";
 
 @Component({
     selector: 'app-home',
     standalone: true,
     templateUrl: './home.component.html',
     styleUrl: './home.component.css',
-    imports: [HeaderComponent, MainactivitiesComponent, JoinUsFormComponent, FooterComponent, RouterOutlet, MemberCounterComponent, HSEPartnershipComponent, SponsorsComponent]
+    imports: [HeaderComponent, MainactivitiesComponent, JoinUsFormComponent, FooterComponent, RouterOutlet, MemberCounterComponent, HSEPartnershipComponent, SponsorsComponent, DiscordComponent]
 })
 export class HomeComponent {
 
