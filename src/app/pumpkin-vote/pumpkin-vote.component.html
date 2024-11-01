@@ -1,0 +1,45 @@
+<div class="vote-container">
+    <h2>🎃 Halloween Pumpkin Contest 🎃</h2>
+    <p>Select up to <strong>2 pumpkins</strong> to vote for your favorites!</p>
+  
+    <form [formGroup]="voteForm" (ngSubmit)="submitVote()">
+      <div class="pumpkin-list">
+        <div *ngFor="let pumpkin of pumpkins" class="pumpkin-item">
+          <label class="pumpkin-card">
+            <input
+              type="checkbox"
+              [value]="pumpkin.id"
+              (change)="onPumpkinSelect($event)"
+              [checked]="isPumpkinSelected(pumpkin.id)"
+              id="pumpkin-{{ pumpkin.id }}" />
+            {{ pumpkin.name }}  <!-- Text label for the pumpkin -->
+            <img *ngIf="pumpkin.imageUrl" [src]="pumpkin.imageUrl" alt="{{ pumpkin.name }}" class="pumpkin-image" />
+          </label>
+        </div>
+      </div>
+      
+      
+  
+      <button type="submit" [disabled]="selectedPumpkins.length === 0 || !isEligibleToVote()">
+        Submit Vote
+      </button>
+    </form>
+  
+    <p class="footer-text">Only one vote per device. May the best pumpkin win!</p>
+  
+    <!-- Admin Section for Adding Pumpkins -->
+    <div *ngIf="isAdmin" class="admin-container">
+      <h2>Add a New Pumpkin</h2>
+      <form (ngSubmit)="addPumpkin()" #pumpkinForm="ngForm">
+        <label for="pumpkinName">Pumpkin Name:</label>
+        <input type="text" id="pumpkinName" [(ngModel)]="newPumpkinName" name="pumpkinName" required />
+  
+        <label for="pumpkinImage">Upload Pumpkin Image:</label>
+        <input type="file" id="pumpkinImage" (change)="onFileSelected($event)" accept="image/*" required />
+  
+        <button class="add-new-pumpkin" type="submit">Add Pumpkin</button>
+      </form>
+    </div>
+  
+  </div>
+  

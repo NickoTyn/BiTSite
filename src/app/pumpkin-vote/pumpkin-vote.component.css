@@ -1,0 +1,157 @@
+/* Container and General Styling */
+.vote-container {
+  max-width: 400px;
+  margin: 0 auto;
+  margin-top: 250px;
+  padding: 2em;
+  background-color: #2e2e2e;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  color: #f8f8f8;
+  font-family: "Creepster", cursive, sans-serif;
+  text-align: center;
+}
+
+/* Header */
+.vote-container h2 {
+  font-size: 2em;
+  color: #ffa31a;
+  margin-bottom: 0.5em;
+  text-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.vote-container p {
+  color: #f3f3f3;
+  font-size: 1.1em;
+  margin-bottom: 1em;
+}
+
+/* Pumpkin List */
+.pumpkin-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8em;
+  margin-bottom: 1.5em;
+}
+
+.pumpkin-item {
+  display: flex;
+  align-items: center;
+  background-color: #3d3d3d;
+  padding: 0.5em;
+  border-radius: 8px;
+  transition: transform 0.2s;
+}
+.pumpkin-item:hover {
+  transform: scale(1.05);
+  background-color: #ff6b6b;
+}
+
+/* Checkbox and Label */
+.pumpkin-item input[type="checkbox"] {
+  accent-color: #ffa31a;
+  margin-right: 0.5em;
+  scale: 1.5;
+}
+
+.pumpkin-item label {
+  font-size: 1.1em;
+  color: #ffe0a3;
+}
+
+.pumpkin-card {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5em;
+  padding: 1em;
+  background-color: #3d3d3d;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s;
+}
+
+
+
+/* Submit Button */
+button[type="submit"] {
+  width: 100%;
+  padding: 0.7em;
+  font-size: 1.1em;
+  color: #2e2e2e;
+  background-color: #ffa31a;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+button[type="submit"]:hover {
+  background-color: #ff5733;
+  transform: scale(1.05);
+}
+
+button[type="submit"]:disabled {
+  background-color: #7a7a7a;
+  cursor: not-allowed;
+}
+
+/* Footer Text */
+.footer-text {
+  font-size: 0.9em;
+  color: #aaa;
+  margin-top: 1.5em;
+}
+
+.admin-container {
+  margin-top: 2em;
+  padding: 1em;
+  background-color: #444;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.admin-container h2 {
+  color: #ffa31a;
+  font-size: 1.5em;
+}
+
+.admin-container label {
+  color: #ffe0a3;
+  font-size: 1.1em;
+}
+
+.admin-container input[type="text"] {
+  width: 90%;
+  padding: 0.5em;
+  margin: 0.5em 0;
+  border-radius: 4px;
+  border: 1px solid #ffa31a;
+  background-color: #2e2e2e;
+  color: #f8f8f8;
+}
+
+.admin-container button {
+  padding: 0.7em;
+  background-color: #ffa31a;
+  color: #2e2e2e;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.admin-container button:hover {
+  background-color: #ff5733;
+}
+
+.pumpkin-image {
+  width: 100px; /* Adjust size as needed */
+  height: auto;
+  border-radius: 8px;
+  margin-left: 10px;
+}
+
+.add-new-pumpkin{
+  margin-top: 20px;
+}

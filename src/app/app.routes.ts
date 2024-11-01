@@ -12,7 +12,7 @@ import { PastActivitiesGalleryComponent } from './past-activities-gallery/past-a
 import { PolicyAndCookiesComponent } from './policy-and-cookies/policy-and-cookies.component';
 import { RaffleComponent } from './raffle/raffle.component';
 import { PastActivitiesCourseComponent } from './past-activities-course/past-activities-course.component';
-
+import { PumpkinVoteComponent } from './pumpkin-vote/pumpkin-vote.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' }, // Default route
@@ -25,5 +25,6 @@ export const routes: Routes = [
   { path: 'past-activities-course', component: PastActivitiesCourseComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'policy-and-cookies', component: PolicyAndCookiesComponent },
-  { path: 'nxp', component: RaffleComponent },
+  { path: 'halloween-vote', component: PumpkinVoteComponent },
+
 ];
