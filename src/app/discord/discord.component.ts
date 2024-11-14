@@ -40,7 +40,7 @@ export class DiscordComponent implements OnInit {
 
       // Wait for the animation to finish before redirecting
       setTimeout(() => {
-        window.location.href = 'https://discord.gg/KUFAnWUg'; // Replace with your desired link
+        window.location.href = 'https://discord.gg/ptVamcnrRm'; // Replace with your desired link
       }, 1000); // Match with the duration of the animation (1 second)
     }
   }

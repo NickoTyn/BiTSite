@@ -65,7 +65,7 @@ import { Observable } from 'rxjs';
   ]
 })
 export class AppComponent {
-  title = 'BiTSite';
+  title = 'Asociatia BiT';
 
   constructor(private renderer: Renderer2) { }
 
