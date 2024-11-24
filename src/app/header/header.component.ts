@@ -23,8 +23,7 @@ export class HeaderComponent {
   auth: Auth;
 
   constructor(public dialog: MatDialog, private router: Router, private scrollService: ScrollService) {
-    this.auth = getAuth(); // Initialize the Auth instance
-   /*  this.openDialog(); */ //DELETE THIS WHEN READY
+    this.auth = getAuth();
   };
 
 

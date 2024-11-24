@@ -97,7 +97,6 @@ figcaption {
 .titleDescriptionCompany h2 {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 22px; /* Increase font size for description */
-  text-transform: uppercase;
   text-shadow: 1px 1px 2px black;
   align-self: flex-start; /* Align description to the start (left) */
 }

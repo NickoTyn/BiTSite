@@ -19,11 +19,12 @@
         </ul>
       </div>
     
-      <!-- Class List Section -->
-      <!-- Add Class Button -->
-      <div class="add-class">
-        <button class="circle-button" (click)="addNewClass()">+</button>
-      </div>
+      @if(authService.getUserRank() === 'admin'){
+        <div class="add-class">
+          <button class="circle-button" (click)="addNewClass()">+</button>
+        </div>
+      }
+      
   
       <!-- Form Section -->
       <div *ngIf="isFormVisible">

@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule, DatePipe } from '@angular/common';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { AuthService } from '../auth.service';
 
 export interface Video {
   title: string;
@@ -69,6 +70,8 @@ export class PastActivitiesCourseComponent implements Class, OnInit {
       videos: []
     }
   ]; */
+
+  authService = inject(AuthService);
 
   private firestore: Firestore = inject(Firestore);
   public classesQueue: Class[] = []; // Initialize as an empty array

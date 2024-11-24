@@ -1,10 +1,12 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { Firestore, collection, doc, getDoc, setDoc, DocumentReference, DocumentData, onSnapshot } from '@angular/fire/firestore';
+import { Firestore, collection, doc, getDoc, setDoc, DocumentReference, DocumentData, onSnapshot, query, orderBy } from '@angular/fire/firestore';
 import { CommonModule } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { PostValidationComponent } from '../post-validation/post-validation.component';
 import { AdditionalQuestionComponent } from '../additional-question/additional-question.component';
 import { getDownloadURL, getStorage, listAll, ref, uploadBytes } from '@angular/fire/storage';
+import { BehaviorSubject } from 'rxjs';
+import { FormsModule } from '@angular/forms';
 
 export interface Announcement {
   description: string;
@@ -22,17 +24,18 @@ export interface Announcement {
 @Component({
   selector: 'app-post-validation-hub',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './post-validation-hub.component.html',
   styleUrls: ['./post-validation-hub.component.css']
 })
 export class PostValidationHubComponent implements OnInit {
 
-
   private firestore: Firestore = inject(Firestore);
-  announcements: Announcement[] = [];
+  public announcementsSubject = new BehaviorSubject<Announcement[]>([]);
+  announcements$ = this.announcementsSubject.asObservable();
 
   imageUrls: string[] = [];
+  currentAnnouncement: string | null = null; // To track the selected announcement
 
   constructor(public dialog: MatDialog) { }
 
@@ -42,47 +45,45 @@ export class PostValidationHubComponent implements OnInit {
 
   listenToAnnouncements() {
     const collectionRef = collection(this.firestore, 'non-validated-post');
-
-    // Set up a real-time listener
-    onSnapshot(collectionRef, (snapshot) => {
+    const q = query(collectionRef, orderBy('date', 'desc')); // Order by date in descending order
+    
+    onSnapshot(q, (snapshot) => {
       if (snapshot.empty) {
         console.log('No documents found in the collection non-validated-post.');
-        this.announcements = [];
+        this.announcementsSubject.next([]);
         return;
       }
-
-
-      // Iterate over each document in the collection
+  
+      const announcements: Announcement[] = [];
+  
       snapshot.forEach(docSnap => {
-        // Get data from each document
         const data = docSnap.data() as Omit<Announcement, 'title'>;
-
-        // Use document ID as title or adjust as needed
         const title = docSnap.id;
-
-        // Push the data into announcements array
-        this.announcements.push({
+  
+        announcements.push({
           title,
           ...data
         });
       });
-
-      this.announcements = this.sortAnnouncementsByDate(this.announcements);
-      // Log the fetched data
-      console.log('Fetched announcements:', this.announcements);
+  
+      this.announcementsSubject.next(announcements);
+      console.log('Fetched and sorted announcements:', announcements);
     }, (error) => {
       console.error('Error listening to announcements:', error);
     });
   }
+  
 
-  sortAnnouncementsByDate(announcements: any[]) {
-    // Sort by date in descending order (most recent first)
+  sortAnnouncementsByDate(announcements: Announcement[]) {
+    // Sort by date in descending order (newest first)
     return announcements.sort((a, b) => {
-      const dateA = a.date ? a.date.toDate() : 0;
-      const dateB = b.date ? b.date.toDate() : 0;
-      return dateB - dateA;
+      // Ensure both dates are valid
+      const dateA = a.date instanceof Date ? a.date.getTime() : new Date(a.date).getTime();
+      const dateB = b.date instanceof Date ? b.date.getTime() : new Date(b.date).getTime();
+      return dateB - dateA; // Change to descending order (newest first)
     });
   }
+  
 
   async approveAnnouncement(title: string) {
     console.log('Approved announcement with title:', title);
@@ -163,14 +164,12 @@ export class PostValidationHubComponent implements OnInit {
     }
   }
 
-  async pinAnnouncement(title: string) {
+  async pinAnnouncement(title: string): Promise<void> {
     const sourcePath = `non-validated-post/${title}`;
     const destinationPath = `validated-posts/${title}`;
 
-    // Reference to source document
+    // Reference to source and destination documents
     const sourceDocRef = doc(this.firestore, sourcePath);
-
-    // Reference to destination document
     const destinationDocRef = doc(this.firestore, destinationPath);
 
     try {
@@ -181,11 +180,48 @@ export class PostValidationHubComponent implements OnInit {
       await setDoc(sourceDocRef, { pastActivity: true }, { merge: true });
       await setDoc(destinationDocRef, { pastActivity: true }, { merge: true });
 
+      console.log('Announcement pinned:', title);
     } catch (error) {
-      console.error('Error processing document:', error);
+      console.error('Error pinning announcement:', error);
     }
   }
 
+  selectAnnouncementType(title: string): void {
+    this.currentAnnouncement = this.currentAnnouncement === title ? null : title;
+  }
+
+  async updateTypeRef(event: Event, title: string): Promise<void> {
+    const selectedType = (event.target as HTMLSelectElement).value;
+    if (!selectedType) return;
+
+    const docRef = doc(this.firestore, `non-validated-post/${title}`);
+    try {
+      // Update the typeRef in Firebase
+      await setDoc(docRef, { typeRef: selectedType }, { merge: true });
+      console.log(`Type updated to ${selectedType} for ${title}`);
+
+      // Call the pinAnnouncement function after updating typeRef
+      await this.pinAnnouncement(title);
+    } catch (error) {
+      console.error('Error updating typeRef or pinning announcement:', error);
+    } finally {
+      this.currentAnnouncement = null; // Hide the selector after updating
+    }
+
+    const docRef2 = doc(this.firestore, `validated-posts/${title}`);
+    try {
+      // Update the typeRef in Firebase
+      await setDoc(docRef2, { typeRef: selectedType }, { merge: true });
+      console.log(`Type updated to ${selectedType} for ${title}`);
+
+      // Call the pinAnnouncement function after updating typeRef
+      await this.pinAnnouncement(title);
+    } catch (error) {
+      console.error('Error updating typeRef or pinning announcement:', error);
+    } finally {
+      this.currentAnnouncement = null; // Hide the selector after updating
+    }
+  }
 
   async unpinAnnouncement(title: string) {
     const sourcePath = `non-validated-post/${title}`;
@@ -235,17 +271,16 @@ export class PostValidationHubComponent implements OnInit {
           const destinationPath = `validated-posts/${title}`;
           console.log('Destination Path:', destinationPath);
           const destinationDocRef = doc(this.firestore, destinationPath);
-          
+
           // Update Firestore with the file path
           const folderPath = `posts/past-activities/${title}`;
           await setDoc(destinationDocRef, { imagesRef: folderPath }, { merge: true });
           console.log('Document successfully updated with file path');
-          
+
         } catch (error) {
           console.error('Error uploading file or updating document:', error);
         }
       }
     }
   }
- 
 }

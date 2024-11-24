@@ -492,9 +492,7 @@ textarea:focus + .labelline,
 
 /* Responsive styles for smaller screens */
 @media (max-width: 768px) {
-  .container {
-    max-height: 900px;
-  }
+
 
   .form-container {
     flex-direction: column;
@@ -824,6 +822,12 @@ textarea {
 @media (max-width: 500px) {
   .class-list {
     padding: 15px;
+
+  }
+
+  .class-item{
+    width: 100%;
+    box-shadow: none;
   }
 
   .class-header h3 {
@@ -832,6 +836,7 @@ textarea {
 
   .class-header .class-date {
     font-size: 0.8rem;
+    font-weight: bolder;
   }
 
   .class-content {
@@ -873,13 +878,13 @@ textarea {
 /* For small devices */
 @media (max-width: 768px) {
   .responsive-iframe {
-    padding-bottom: 75%; /* Adjusted aspect ratio for smaller screens */
+    padding-bottom: 75%; 
   }
 }
 
 @media (max-width: 500px) {
   .responsive-iframe {
-    padding-bottom: 100%; /* 1:1 aspect ratio for very small devices */
+    padding-bottom: 100%; 
   }
 }
 
@@ -969,6 +974,24 @@ textarea {
 }
 
 @media (max-width: 500px) {
+
+  .class-content{
+    box-shadow: none;
+  }
+
+  .class-list{
+    padding: 0;
+    box-shadow: none;
+  }
+
+  .class-item{
+    padding: 0;
+    box-shadow: none;
+  }
+
+  .class-header{
+    align-items: center;
+  }
   .flame-container {
     padding-bottom: 100%; /* Adjust aspect ratio for mobile */
   }
