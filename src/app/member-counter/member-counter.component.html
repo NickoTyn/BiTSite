@@ -1,26 +1,21 @@
 <div class="client-count-wrp">
-    <div class="container">
-      <div  #counterElement class="heading">
-        <!--<h4>Our Numbers</h4>-->
+  <div class="container">
+    <div #counterElement class="heading">
+      <!--<h4>Our Numbers</h4>-->
+    </div>
+    <div class="client-count-wrp-inner">
+      <div class="cards">
+        <h4>{{ projectcount }}</h4>
+        <p>Events</p>
       </div>
-      <div class="client-count-wrp-inner">
-        <div class="cards">
-          <h4>{{projectcount}}</h4>
-          <p>Events</p>
-        </div>
-       
-        <!--card-->
-        <div class="cards">
-          <h4>{{clientcount}}+</h4>
-          <p>Hours Logged</p>
-        </div>
-
-
-        <div class="cards">
-          <h4>{{courses}}</h4>
-          <!--concat % sign-->
-          <p>Courses</p>
-        </div>
+      <div class="cards">
+        <h4>{{ clientcount }}+</h4>
+        <p>Hours Logged</p>
+      </div>
+      <div class="cards">
+        <h4>{{ courses }}</h4>
+        <p>Courses</p>
+      </div>
     </div>
   </div>
-  
+</div>

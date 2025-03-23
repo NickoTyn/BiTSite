@@ -9,7 +9,25 @@ body{
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+:root {
+  --primary-color: #d40dc4;
+  --secondary-color: #675fff;
+  --background-color: #050b2d;
+  --scrollbar-track-color: #f0f0f0;
+  --scrollbar-thumb-border-color: #fff;
 
+  /*title*/
+  --font-family-title: 'Dancing Script', cursive;
+  --font-size-title: 70px;
+  --text-shadow-title: 0 0 10px #ff98ff, 0 0 20px #ff98ff, 0 0 30px #675fff;
+  
+  /*description*/
+  --font-family-description: 'Poppins', sans-serif;
+  --font-size-description: 20px;
+  --text-shadow-description: 2px 2px 4px rgba(0, 0, 0, 0.7);
+
+
+}
 
 @media (min-width: 768px) {
 /* Custom Scrollbar Styles */

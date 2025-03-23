@@ -44,6 +44,12 @@ figure {
   position: relative; /* Ensures that child elements positioned absolutely are relative to this container */
 }
 
+/* When slide is active (centered), show the description */
+.carousel__slide.active figcaption {
+  opacity: 1;
+}
+
+
 /* Image Styles */
 .carousel__slide img {
   width: 600px; /* Set width of the image */
@@ -86,19 +92,22 @@ figcaption {
 }
 
 .titleDescriptionCompany h1 {
-  font-family: 'Dancing Script', cursive;
-  font-size: 70px; /* Increase font size for title */
+  font-family: var( --font-family-title);
+  font-size: var(--font-size-title); /* Increase font size for title */
   text-transform: capitalize;
   line-height: 1.3;
   margin: 0 0 15px 0; /* Adjust margins for better spacing */
+  text-shadow: var(--text-shadow-title);
   text-align: center; /* Center the title text horizontally */
 }
 
 .titleDescriptionCompany h2 {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 22px; /* Increase font size for description */
-  text-shadow: 1px 1px 2px black;
+  font-family: var(--font-family-description);
+  font-size: var(--font-size-description); /* Increase font size for description */
+  font-weight: 400;
   align-self: flex-start; /* Align description to the start (left) */
+  text-shadow: var(--text-shadow-description);
+  transition: transform 0.3s ease, text-shadow 0.3s ease;
 }
 
 .post_wrapper.active {

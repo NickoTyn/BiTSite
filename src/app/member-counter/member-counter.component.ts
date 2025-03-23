@@ -23,13 +23,19 @@ export class MemberCounterComponent implements OnInit {
   ngOnInit(): void {
     const observer = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
-        this.startCounting();
-        observer.unobserve(this.counterElement.nativeElement); // Stop observing after the first trigger
+        setTimeout(() => {
+          this.startCounting();
+        }, 100); // 500ms delay after becoming visible
+        observer.unobserve(this.counterElement.nativeElement);
       }
-    }, { threshold: 0.5 }); // Trigger when 50% of the element is in view
-
+    }, {
+      threshold: 0.5,
+      rootMargin: '0px 0px -300px 0px'  // Delay trigger until the element is further in view
+    });
+  
     observer.observe(this.counterElement.nativeElement);
   }
+  
 
   startCounting() {
     this.projectcountstop = setInterval(() => {

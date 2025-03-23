@@ -2,11 +2,11 @@
   <div class="container">
     <div class="carousel">
       <ul class="carousel__slides">
-        <li class="carousel__slide" *ngFor="let announcement of announcements">
+        <li #slide class="carousel__slide" *ngFor="let announcement of announcements">
           <figure>
-            <div class="post_wrapper" (click)="onPostWrapperClick($event, announcement.typeRef, '123', announcement)">
-                <img [src]="announcement.imageLink" alt="{{announcement.title}}">
-            </div>
+            <div class="post_wrapper" (click)="onPostWrapperClick($event, announcement.typeRef, announcement)">
+              <img [src]="announcement.imageLink" alt="{{announcement.title}}">
+            </div>            
             <figcaption>
               <div class="titleDescriptionCompany">
                 <h1>{{announcement.title}}</h1>

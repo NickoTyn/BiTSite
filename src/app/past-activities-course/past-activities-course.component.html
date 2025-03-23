@@ -19,11 +19,10 @@
         </ul>
       </div>
     
-      @if(authService.getUserRank() === 'admin'){
+      @if(isAdminUser){
         <div class="add-class">
           <button class="circle-button" (click)="addNewClass()">+</button>
         </div>
-      }
       
   
       <!-- Form Section -->
@@ -78,12 +77,14 @@
           </div>
         
           <div class="button-container">
-            <button type="submit" class="submitButton">Submit</button>
             <button type="button" (click)="isFormVisible = false" class="cancelButton">Cancel</button>
+            <button type="submit" class="submitButton">Submit</button>
           </div>
         </form>
+
         
       </div>
+    }
   
       <div class="class-container">
         <div class="line"></div>

@@ -1,53 +1,27 @@
 import { Component, inject, OnInit } from '@angular/core';
-import {
-  MatDialogTitle,
-  MatDialogContent,
-  MatDialogActions,
-  MatDialogClose
-} from '@angular/material/dialog';
-import { MatButtonModule } from '@angular/material/button';
-import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { LoginComponent } from '../login/login.component';
-import { RegisterComponent } from '../register/register.component';
+import { FormBuilder, FormGroup, Validators, FormsModule } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 import { getDownloadURL, getStorage, ref, uploadBytes } from '@angular/fire/storage';
 import { Observable, take } from 'rxjs';
 import { Auth, authState } from '@angular/fire/auth';
-import { Firestore, doc, setDoc, getDoc, collection } from '@angular/fire/firestore';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Firestore, doc, setDoc, collection } from '@angular/fire/firestore';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-make-a-post',
   standalone: true,
-  imports: [
-    MatFormFieldModule,
-    MatInputModule,
-    FormsModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    FormsModule,
-    MatButtonModule,
-    MatDialogTitle,
-    MatDialogContent,
-    MatDialogActions,
-    MatDialogClose,
-
-    LoginComponent,
-    RegisterComponent
-  ],
+  imports: [FormsModule, CommonModule],
   templateUrl: './make-a-post.component.html',
-  styleUrl: './make-a-post.component.css'
+  styleUrls: ['./make-a-post.component.css']
 })
-
 export class MakeAPostComponent implements OnInit {
   fb = inject(FormBuilder);
   auth = inject(Auth);
   private firestore: Firestore = inject(Firestore);
 
-
-  user$: Observable<any> = authState(this.auth); // Observable for user state
+  // Observable for the current user
+  user$: Observable<any> = authState(this.auth);
 
   titleContent: string = '';
   descriptionContent: string = '';
@@ -59,17 +33,13 @@ export class MakeAPostComponent implements OnInit {
   defaultImageUrl = 'https://via.placeholder.com/500';
   file: File | null = null;
 
-  downloadURL: string | null = null;
-
-
-
   constructor(public dialogRef: MatDialogRef<MakeAPostComponent>) {
     this.imageUploadForm = this.fb.group({
       image: [null, Validators.required]
     });
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -101,60 +71,47 @@ export class MakeAPostComponent implements OnInit {
 
   async onSubmit() {
     let downloadURL: string;
-    const currentDate = new Date();  // Create a date object with the current date and time
+    const currentDate = new Date();
 
     if (this.imageUploadForm.valid) {
-        console.log('Form submitted successfully!');
-        downloadURL = await this.uploadPhoto();
+      console.log('Form submitted successfully!');
+      downloadURL = await this.uploadPhoto();
     }
 
     this.user$.pipe(take(1)).subscribe(async (user) => {
-        if (user) {
-            // Reference to the new collection under the user's document
-            // const userCollection = collection(this.firestore, `users/${user.uid}/${this.titleContent}`);
-            const postCollection = collection(this.firestore, `non-validated-post`);
-
-            // Create a new document in the 'titles' collection with auto-generated ID
-            /* const newTitleDoc = doc(userCollection);
-            await setDoc(newTitleDoc, {
-                title: this.titleContent,
-                description: this.descriptionContent,
-                imageLink: downloadURL,
-                date: currentDate // Save the current date
-            }, { merge: true }); */
-
-            // Use the title as the document ID for the post document
-            const postDoc = doc(postCollection, this.titleContent);
-            await setDoc(postDoc, {
-                title: this.titleContent,
-                description: this.descriptionContent,
-                refLink: this.linkContent,
-                username: user.displayName || user.username,
-                imageLink: downloadURL,
-                status: 'none',
-                pastActivity: false,
-                date: currentDate // Save the current date
-            }, { merge: true });
-        }
+      if (user) {
+        const postCollection = collection(this.firestore, 'non-validated-post');
+        const postDoc = doc(postCollection, this.titleContent);
+        await setDoc(
+          postDoc,
+          {
+            title: this.titleContent,
+            description: this.descriptionContent,
+            refLink: this.linkContent,
+            username: user.displayName || user.username,
+            imageLink: downloadURL,
+            status: 'none',
+            pastActivity: false,
+            date: currentDate
+          },
+          { merge: true }
+        );
+      }
     });
     this.dialogRef.close();
     alert('Post submitted successfully! Please wait for the admin to validate it.');
-}
-
+  }
 
   async uploadPhoto(): Promise<string> {
     const storage = getStorage();
-
     return new Promise((resolve, reject) => {
       this.user$.pipe(take(1)).subscribe(async (user) => {
         if (user) {
           const folder = ref(storage, `make_a_post/${user.uid}/${this.titleContent}/${this.fileName}`);
-
           if (this.file) {
             await uploadBytes(folder, this.file);
             console.log('Uploaded a blob or file!');
           }
-
           try {
             const downloadURL = await getDownloadURL(folder);
             resolve(downloadURL);
@@ -167,5 +124,9 @@ export class MakeAPostComponent implements OnInit {
         }
       });
     });
+  }
+
+  closeDialog() {
+    this.dialogRef.close();
   }
 }

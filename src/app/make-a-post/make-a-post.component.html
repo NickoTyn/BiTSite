@@ -209,7 +209,7 @@
             <ul class="carousel__slides">
               <li class="carousel__slide">
                 <figure>
-                  @if ("imageUrl"){
+                  @if (imageUrl){
                   <div class="post_wrapper">
                     <img
                       [src]="imageUrl || defaultImageUrl"
@@ -217,16 +217,14 @@
                       style="max-width: 100%; height: auto"
                     />
                   </div>
-                  } @else{
-                  <img src="assets/Afis Socials Editia 2.jpg" />
-                  }
+                  } 
                   <figcaption>
                     <div class="titleDescriptionCompany">
 
                     
                     <h1><span class="title">{{ titleContent }}</span></h1>
                     <h2 class="description">{{ descriptionContent }}</h2>
-                    <span class="credit">Provided by:</span>
+                    <span class="credit">Provided by: {{ (user$ | async)?.displayName }}</span>
                   </div>
                   </figcaption>
                   

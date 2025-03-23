@@ -30,6 +30,19 @@
     margin: 0;
     overflow: hidden;
   }
+
+  .carousel__slides::after {
+    content: "";
+    display: block;
+    width: 95%;
+    height: 4px;
+    border-radius: 30px;
+    background-color: #ffffffe1; /* Adjust color as needed */
+    box-shadow: var(--text-shadow-title);
+    padding: 0px 5px;
+    margin: 0px auto 25px;
+  }
+  
   
   /* Carousel Slide Styles */
   .carousel__slide {
@@ -38,12 +51,12 @@
     flex-direction: row; /* Place image and text side-by-side */
     margin-bottom: 20px; /* Space between slides */
     padding: 20px;
-    border-bottom: 1px solid #ddd; /* Optional: Adds a border between slides */
     width: 100%;
     overflow: visible; /* Allows children to extend beyond the container */
     position: relative; /* Ensures that child elements positioned absolutely are relative to this container */
   }
   
+
   /* Image Styles */
   .carousel__slide img {
     width: 600px; /* Set width of the image */
@@ -86,19 +99,22 @@
   }
   
   .titleDescriptionCompany h1 {
-    font-family: 'Dancing Script', cursive;
-    font-size: 70px; /* Increase font size for title */
+    font-family: var( --font-family-title);
+    font-size: var(--font-size-title); /* Increase font size for title */
     text-transform: capitalize;
     line-height: 1.3;
     margin: 0 0 15px 0; /* Adjust margins for better spacing */
+    text-shadow: var(--text-shadow-title);
     text-align: center; /* Center the title text horizontally */
   }
   
   .titleDescriptionCompany h2 {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 22px; /* Increase font size for description */
-    text-shadow: 1px 1px 2px black;
+    font-family: var(--font-family-description);
+    font-size: var(--font-size-description); /* Increase font size for description */
+    font-weight: 400;
     align-self: flex-start; /* Align description to the start (left) */
+    text-shadow: var(--text-shadow-description);
+    transition: transform 0.3s ease, text-shadow 0.3s ease;
   }
   
   .post_wrapper.active {
@@ -139,6 +155,7 @@
   
 
 /* General Container Styles */
+/* Container for the images */
 .container-img {
   max-width: 1544px;
   margin: 0 auto;
@@ -149,38 +166,43 @@
   color: #fff;
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 0.3);
-  overflow: hidden; /* Prevents overflow issues */
+  overflow: hidden;
 }
 
-/* Grid Container for Images */
+/* Flex container for the image items */
 .image-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-  gap: 10px; /* Space between grid items */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; /* space between images */
+  justify-content: center;
+  align-items: center;
 }
 
-/* Image Item Styles */
+/* Image item styles: adjust the flex-basis for how many items per row you want */
 .image-item {
   position: relative;
-  overflow: hidden; /* Prevents images from overflowing */
-  border-radius: 8px; /* Rounded corners for images */
-  box-shadow: 0 0 15px 8px #972ba5; /* Glow effect */
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 0 15px 8px #972ba5;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  aspect-ratio: var(--aspect-ratio); /* Aspect ratio calculated dynamically */
 }
 
-/* Image Styles */
+/* Ensure the images keep their natural aspect ratio */
+/* Ensure the gallery images keep their natural aspect ratio with fixed height */
 .image-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Ensures images cover the container while maintaining aspect ratio */
+  width: auto;      /* Width adapts automatically based on aspect ratio */
+  height: 400px;    /* Set a fixed height (adjust as needed) */
+  display: block;
+  object-fit: cover; /* Crop the image to cover the fixed area without distortion */
 }
 
-/* Hover Effects */
+
+/* Hover effect for image items */
 .image-item:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 25px 15px #972ba5; /* Stronger glow on hover */
+  box-shadow: 0 0 25px 15px #972ba5;
 }
+
 
 /* Responsive Styles */
 @media (max-width: 968px) {
@@ -192,6 +214,21 @@
 
   .image-grid {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+}
+
+
+@media (max-width: 600px) {
+  .image-grid {
+    justify-content: center; /* Center items on small screens */
+  }
+  
+  .image-item {
+    max-width: calc(100% - 20px);
+  }
+  
+  .image-item img {
+    height: 150px; /* Optionally reduce height for smaller devices */
   }
 }
 
