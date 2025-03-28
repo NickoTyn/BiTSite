@@ -1,5 +1,9 @@
 <div class="session-choice-screen">
-    <button (click)="startSolo()">💻 Codez singur</button>
-    <button (click)="startGroupSession()">👥 Codez în grup</button>
+  <div class="session-option solo" #soloEl (click)="startSolo()">
+    <canvas #soloCanvas></canvas>
+    <div class="label-text solo-text">💻 Solo Coding</div>
   </div>
-  
+  <div class="session-option group" #groupEl (click)="startGroupSession()" (mousemove)="onGroupMove($event)" (mouseleave)="resetGroupPosition()">
+    <div class="label-text group-text">👥 Group Coding</div>
+  </div>
+</div>

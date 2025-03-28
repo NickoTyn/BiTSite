@@ -1,38 +1,127 @@
 .language-select-screen {
-    background-color: #050b2d;
-    color: white;
-    min-height: 100vh;
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  background-color: #050b2d;
+  color: white;
+  min-height: 100vh;
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.large-header {
+  position: relative;
+  width: 100%;
+  background: #050b2d;
+  overflow: hidden;
+  z-index: 0;
+}
+
+#demo-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+.language-select-screen {
+  position: relative;
+  z-index: 2;
+}
+
+
+h1 {
+  margin-bottom: 3rem;
+  font-size: 2.75rem;
+  font-weight: bold;
+  background: linear-gradient(90deg, #675fff, #d40dc4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.languages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 1000px;
+}
+
+button {
+  padding: 1.2rem 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  color: white;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(200, 100, 255, 0.2);
+}
+
+
+button small {
+  display: block;
+  font-size: 0.8rem;
+  opacity: 0.8;
+  margin-top: 4px;
+}
+
+button:hover {
+  transform: scale(1.06);
+  box-shadow: 0 0 18px rgba(255, 0, 255, 0.3), 0 0 30px rgba(100, 100, 255, 0.2);
+  background: linear-gradient(135deg, #7e5fff, #e14bd4);
+
+}
+
+button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  transform: skewX(-25deg);
+  transition: left 0.5s ease;
+}
+
+button:hover::after {
+  left: 130%;
+}
+
+button {
+  animation: fadeInUp 0.6s ease both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+@media (max-width: 600px) {
   h1 {
-    margin-bottom: 2rem;
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
-  
-  .languages-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 1rem;
-    width: 100%;
-    max-width: 1000px;
-  }
-  
+
   button {
-    padding: 1rem;
     font-size: 1rem;
-    background: linear-gradient(135deg, #675fff, #d40dc4);
-    color: white;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: transform 0.2s ease;
+    padding: 1rem;
   }
-  
-  button:hover {
-    transform: scale(1.05);
-  }
-  
+}
