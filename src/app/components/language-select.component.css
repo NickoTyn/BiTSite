@@ -1,0 +1,38 @@
+.language-select-screen {
+    background-color: #050b2d;
+    color: white;
+    min-height: 100vh;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  h1 {
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+  }
+  
+  .languages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1rem;
+    width: 100%;
+    max-width: 1000px;
+  }
+  
+  button {
+    padding: 1rem;
+    font-size: 1rem;
+    background: linear-gradient(135deg, #675fff, #d40dc4);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  
+  button:hover {
+    transform: scale(1.05);
+  }
+  

@@ -8,13 +8,15 @@ import { MemberCounterComponent } from "../member-counter/member-counter.compone
 import { HSEPartnershipComponent } from "../hse-partnership/hse-partnership.component";
 import { SponsorsComponent } from "../sponsors/sponsors.component";
 import { DiscordComponent } from "../discord/discord.component";
+import { MonacoEditorWrapperComponent } from '../monaco-editor-wrapper/monaco-editor-wrapper.component';
+
 
 @Component({
     selector: 'app-home',
     standalone: true,
     templateUrl: './home.component.html',
     styleUrl: './home.component.css',
-    imports: [HeaderComponent, MainactivitiesComponent, JoinUsFormComponent, FooterComponent, RouterOutlet, MemberCounterComponent, HSEPartnershipComponent, SponsorsComponent, DiscordComponent]
+    imports: [HeaderComponent, MainactivitiesComponent, JoinUsFormComponent, FooterComponent, RouterOutlet, MemberCounterComponent, HSEPartnershipComponent, SponsorsComponent, DiscordComponent, MonacoEditorWrapperComponent]
 })
 export class HomeComponent {
 

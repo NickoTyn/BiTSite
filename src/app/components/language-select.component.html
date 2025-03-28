@@ -1,0 +1,12 @@
+<div class="language-select-screen">
+    <h1>Alege un limbaj de programare</h1>
+    <div class="languages-grid">
+      <button
+        *ngFor="let lang of languages"
+        (click)="selectLanguage(lang.language, lang.version)"
+      >
+        {{ lang.language }} <small>{{ lang.version }}</small>
+      </button>
+    </div>
+  </div>
+  

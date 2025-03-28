@@ -13,6 +13,10 @@ import { PolicyAndCookiesComponent } from './policy-and-cookies/policy-and-cooki
 import { RaffleComponent } from './raffle/raffle.component';
 import { PastActivitiesCourseComponent } from './past-activities-course/past-activities-course.component';
 import { PumpkinVoteComponent } from './pumpkin-vote/pumpkin-vote.component';
+import { MonacoEditorWrapperComponent } from './monaco-editor-wrapper/monaco-editor-wrapper.component';
+import { SessionChoiceComponent } from './components/session-choice.component';
+import { LanguageSelectComponent } from './components/language-select.component';
+import { CodeEditorComponent } from './components/code-editor.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' }, // Default route
@@ -26,5 +30,9 @@ export const routes: Routes = [
   { path: 'contact', component: ContactComponent },
   { path: 'policy-and-cookies', component: PolicyAndCookiesComponent },
   { path: 'halloween-vote', component: PumpkinVoteComponent },
+  { path: 'shared-code', component: MonacoEditorWrapperComponent },
+  { path: 'session-choice', component: SessionChoiceComponent },
+  { path: 'language', component: LanguageSelectComponent },
+  { path: 'editor', component: CodeEditorComponent },
 
 ];

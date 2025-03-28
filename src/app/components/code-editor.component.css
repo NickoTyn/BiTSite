@@ -1,0 +1,61 @@
+.code-wrapper{
+    margin-top: 300px;
+}
+
+.editor-page {
+    margin-top: 300px;
+    height: 100vh;
+    background-color: #050b2d;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    box-sizing: border-box;
+    gap: 1rem;
+  }
+  
+  .toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #0e1446;
+    padding: 1rem;
+    border-radius: 10px;
+    border: 1px solid #675fff;
+  }
+  
+  button {
+    background-color: #675fff;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    padding: 0.5rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #d40dc4;
+  }
+  
+  .editor-wrapper {
+    flex: 1;
+    border: 1px solid #444;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .editor-container {
+    height: 100%;
+    width: 100%;
+  }
+  
+  .output-box {
+    background-color: #111630;
+    padding: 1rem;
+    border-radius: 10px;
+    max-height: 200px;
+    overflow-y: auto;
+    font-family: 'Fira Code', monospace;
+  }
+  
