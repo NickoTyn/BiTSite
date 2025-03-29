@@ -39,9 +39,8 @@
               "src/custom-theme.scss",
               "src/styles.css"
             ],
-            "scripts": ["node_modules/jquery/dist/jquery.min.js",
-            "node_modules/gsap/src/uncompressed/TweenLite.js",
-            "node_modules/gsap/src/uncompressed/easing/EasePack.js"]
+            "scripts": ["node_modules/jquery/dist/jquery.min.js"
+]
           },
           "configurations": {
             "production": {
