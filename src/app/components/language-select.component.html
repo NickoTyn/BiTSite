@@ -5,11 +5,19 @@
     <h1>Alege un limbaj de programare</h1>
     <div class="languages-grid">
       <button
-        *ngFor="let lang of languages"
-        (click)="selectLanguage(lang.language, lang.version)"
-      >
-        {{ lang.language }} <small>{{ lang.version }}</small>
-      </button>
+      *ngFor="let lang of languages"
+      (click)="selectLanguage(lang.language, lang.version)"
+    >
+      <img
+        [src]="'assets/logos/' + lang.language.toLowerCase() + '.png'"
+        alt="{{ lang.language }} logo"
+        class="language-logo"
+        (error)="onImageError($event)"
+      />
+      {{ lang.displayName }}
+      <small>{{ lang.version }}</small>
+    </button>
+    
     </div>
   </div>
 </div>

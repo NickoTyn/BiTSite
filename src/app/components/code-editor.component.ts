@@ -85,7 +85,7 @@ export class CodeEditorComponent implements AfterViewInit {
           }          
 
           this.editor.updateOptions({
-            readOnly: !this.isOwner
+            readOnly: this.mode() === 'group' && !this.isOwner
           });
           
 
@@ -122,16 +122,39 @@ export class CodeEditorComponent implements AfterViewInit {
     });
 
     this.waitForMonaco().then(() => {
+      monaco.editor.defineTheme('my-theme', {
+        base: 'vs-dark',
+        inherit: true,
+        rules: [
+          { token: 'comment', foreground: 'a9a9a9', fontStyle: 'italic' },
+          { token: 'keyword', foreground: 'c586c0' },
+        ],
+        colors: {
+          'editor.background': '#1e1e1e',
+          'editorLineNumber.foreground': '#858585',
+          'editorCursor.foreground': '#ffffff'
+        },
+      });
+    
+      // 🖌️ Apply the custom theme
+      monaco.editor.setTheme('my-theme');
+
+
+      // 🧠 Now create the editor
       this.editor = monaco.editor.create(this.editorContainer.nativeElement, {
         value: '',
         language: this.mapToMonacoLang(this.language()),
-        theme: 'vs-dark',
+        theme: 'my-theme',
         automaticLayout: true,
-      });     
+        fontSize: 16,
+        cursorBlinking: 'expand',
+        smoothScrolling: true,
+        wordWrap: 'on'
+      });
       
       this.editor.updateOptions({
-        readOnly: !this.isOwner
-      });
+        readOnly: this.mode() === 'group' && !this.isOwner
+      });      
 
       const starter = this.getStarterCode(this.language());
       this.editor.setValue(starter);

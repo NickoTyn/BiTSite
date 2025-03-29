@@ -1,8 +1,9 @@
 <div class="code-wrapper">
 
-    <div *ngIf="!isOwner && mode() === 'group'" class="viewer-warning"></div>
-        ⚠️ Ești în modul vizualizare – doar deținătorul sesiunii poate edita codul.
-    </div>
+  <div *ngIf="!isOwner && mode() === 'group'" class="viewer-warning">
+    ⚠️ Ești în modul vizualizare – doar deținătorul sesiunii poate edita codul.
+  </div>
+  
 
       
 <div class="editor-page">
@@ -11,14 +12,18 @@
       <button (click)="runCode()">▶ Run</button>
     </div>
   
-    <div class="editor-wrapper">
-      <div #editorContainer class="editor-container"></div>
+    <div class="main-panel">
+      <div class="editor-wrapper">
+        <div #editorContainer class="editor-container"></div>
+      </div>
+    
+      <div class="output-box">
+        <h3>🧾 Output:</h3>
+        <pre>{{ output() }}</pre>
+      </div>
     </div>
-  
-    <div class="output-box">
-      <h3>🧾 Output:</h3>
-      <pre>{{ output() }}</pre>
-    </div>
+    
+    
   </div>
 
 

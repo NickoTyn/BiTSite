@@ -8,6 +8,9 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { gsap } from "gsap"; // Recommended modern GSAP import
+
+
 
 @Component({
   standalone: true,
@@ -51,8 +54,12 @@ export class LanguageSelectComponent implements OnInit, AfterViewInit {
 
     this.http.get<any[]>('https://emkc.org/api/v2/piston/runtimes').subscribe(data => {
       this.languages = data
-        .filter(lang => this.basicLanguages.includes(lang.language.toLowerCase()))
-        .sort((a, b) => a.language.localeCompare(b.language));
+      .filter(lang => this.basicLanguages.includes(lang.language.toLowerCase()))
+      .sort((a, b) => a.language.localeCompare(b.language))
+      .map(lang => ({
+        ...lang,
+        displayName: lang.language.charAt(0).toUpperCase() + lang.language.slice(1)
+      }));
     });
   }
 
@@ -71,10 +78,13 @@ export class LanguageSelectComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    console.log('🚀 ngAfterViewInit fired');
     this.initAnimatedBackground();
   }
 
   private initAnimatedBackground() {
+
+    console.log('🎨 Animation initialized');
     const canvas = document.getElementById('demo-canvas') as HTMLCanvasElement;
     const ctx = canvas.getContext('2d')!;
     let width = window.innerWidth;
@@ -157,14 +167,15 @@ export class LanguageSelectComponent implements OnInit, AfterViewInit {
     function animate() {
       if (animateHeader) {
         ctx.clearRect(0, 0, width, height);
-        for (let i in points) {
+        console.log('🔄 Animation frame');
+        for (let i = 0; i < points.length; i++) {
           let p = points[i];
           let d = getDistance(target, p);
           p.active = d < 4000 ? 0.3 : d < 20000 ? 0.1 : d < 40000 ? 0.02 : 0;
           p.circle.active = p.active * 2;
           drawLines(p);
           p.circle.draw();
-        }
+        }        
       }
       requestAnimationFrame(animate);
     }
@@ -181,15 +192,11 @@ export class LanguageSelectComponent implements OnInit, AfterViewInit {
     }
 
     function shiftPoint(p: any) {
-      const TweenLite = (window as any).TweenLite;
-      const Circ = (window as any).Circ;
-
-      if (!TweenLite || !Circ) return;
-
-      TweenLite.to(p, 1 + 1 * Math.random(), {
+      gsap.to(p, {
+        duration: 1 + Math.random(),
         x: p.originX - 50 + Math.random() * 100,
         y: p.originY - 50 + Math.random() * 100,
-        ease: Circ.easeInOut,
+        ease: 'circ.inOut',
         onComplete: () => shiftPoint(p),
       });
     }
@@ -221,4 +228,9 @@ export class LanguageSelectComponent implements OnInit, AfterViewInit {
 
     animate();
   }
+
+  onImageError(event: any) {
+    event.target.style.display = 'none'; // or fallback to a default icon
+  }
+
 }
