@@ -109,21 +109,53 @@ button:active {
 }
 
 /* Viewer Warning Banner */
-.viewer-warning {
-  background-color: #2e1f36;
-  color: #ffb3c6;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  border: 1px solid #ff67a1;
-  border-radius: 10px;
-  font-size: 0.95rem;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
+.viewer-icon-container {
+  z-index: 10;
 }
 
-.viewer-warning::before {
-  content: "⚠️";
-  font-size: 1.2rem;
+.viewer-icon {
+  color: #93a4ff;
+  cursor: default;
+  transform: translateY(2px);
 }
+
+.viewer-tooltip {
+  visibility: hidden;
+  opacity: 0;
+  background-color: #33333354;
+  color: #fff;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  border-radius: 6px;
+  padding: 6px 10px;
+  position: absolute;
+  z-index: 20;
+  white-space: nowrap;
+  transition: opacity 0.2s ease;
+  font-size: 0.85rem;
+  pointer-events: none;
+}
+
+.viewer-icon-container:hover .viewer-tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+/*Participants START*/
+.participant-avatars {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin-right: 1rem;
+}
+
+.avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--secondary-color);
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+}
+
+/*Participants END*/

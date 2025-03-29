@@ -1,14 +1,24 @@
 <div class="code-wrapper">
 
-  <div *ngIf="!isOwner && mode() === 'group'" class="viewer-warning">
-    ⚠️ Ești în modul vizualizare – doar deținătorul sesiunii poate edita codul.
-  </div>
+
+  
   
 
       
 <div class="editor-page">
     <div class="toolbar">
       <span>💻 {{ language() }} ({{ version() }})</span>
+      <div *ngIf="!isOwner && mode() === 'group'" class="viewer-icon-container">
+        <svg xmlns="http://www.w3.org/2000/svg" class="viewer-icon" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+          <path d="M12 5c-7.633 0-12 7-12 7s4.367 7 12 7 12-7 12-7-4.367-7-12-7zm0 12c-2.757 0-5-2.243-5-5s2.243-5 5-5
+            5 2.243 5 5-2.243 5-5 5zm0-8c-1.657 0-3 1.343-3 3s1.343 3 3 3
+            3-1.343 3-3-1.343-3-3-3z"/>
+        </svg>
+        <span class="viewer-tooltip">Viewing Mode</span>
+      </div>
+      <div class="participant-avatars" *ngIf="participants().length > 0">
+        <img *ngFor="let user of participants()" [src]="user.photoURL || 'https://ui-avatars.com/api/?name=U'" class="avatar" />
+      </div>      
       <button (click)="runCode()">▶ Run</button>
     </div>
   

@@ -1,73 +1,94 @@
 <div class="container">
-    <h1>Account Handling Page</h1>
+  <h1>Account Handling Page</h1>
+
+  <!-- ✅ Only show if user is admin or moderator -->
+  <section class="make-post" *ngIf="isAdminUser || isModeratorUser">
+    <button mat-button (click)="openDialog()">Make a Post</button>
+  </section>
+
+  <!-- ✅ Account Info with Profile Image -->
+  <section class="profile-photo">
   
-    @if (isAdminUser || isModeratorUser){
-      <section class="make-post">
-        <button mat-button (click)="openDialog()">Make a Post</button>
-      </section>
-    }
-    
+    <div class="preview-wrapper">
+      <img
+        [src]="previewUrl || photoURL || 'https://www.svgrepo.com/show/382106/avatar-default.svg'"
+        alt="Profile"
+        width="100"
+        height="100"
+        class="profile-image"
+      />
+  
+      <!-- 📷 Edit icon -->
+      <label class="edit-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="20" fill="#fff">
+          <path d="M0 0h24v24H0V0z" fill="none"/>
+          <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 
+          7.04a1.003 1.003 0 0 0 0-1.41l-2.34-2.34a1.003 1.003 0 0 0-1.41 
+          0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+        </svg>
+        <input type="file" (change)="onFileSelected($event)" />
+      </label>
+    </div>
+  
+    <button *ngIf="previewUrl" (click)="onSaveProfileImage()">Save Profile Picture</button>
+  
+    <p>{{ username }}</p>
+  </section>
   
 
-    <section class="account-info">
-      <h2>Account Information</h2>
-      <p>Current Username: {{ username }}</p>
-    </section>
-  
-    <section class="update-info">
-      <h2>Update Account Details</h2>
-  
-      <form [formGroup]="updateForm" (ngSubmit)="onUpdateUsername()">
-        <label for="newUsername">New Username:</label>
-        <input
-          type="text"
-          id="newUsername"
-          formControlName="newUsername"
-          required
-        />
-        <button type="submit">Update Username</button>
-      </form>
-    </section>
-  
-    <section class="change-password">
-      <h2>Change Password</h2>
-  
-      <form [formGroup]="updateForm" (ngSubmit)="onChangePassword()">
-        <label for="currentPassword">Current Password:</label>
-        <input
-          type="password"
-          id="currentPassword"
-          formControlName="currentPassword"
-          required
-        />
-  
-        <label for="newPassword">New Password:</label>
-        <input
-          type="password"
-          id="newPassword"
-          formControlName="newPassword"
-          required
-        />
-  
-        <label for="confirmPassword">Confirm New Password:</label>
-        <input
-          type="password"
-          id="confirmPassword"
-          formControlName="confirmPassword"
-          required
-        />
-        <button type="submit">Change Password</button>
-      </form>
+  <!-- ✅ Update Username -->
+  <section class="update-info">
+    <h2>Update Account Details</h2>
 
-      
-    </section>
+    <form [formGroup]="updateForm" (ngSubmit)="onUpdateUsername()">
+      <label for="newUsername">New Username:</label>
+      <input
+        type="text"
+        id="newUsername"
+        formControlName="newUsername"
+        required
+      />
+      <button type="submit">Update Username</button>
+    </form>
+  </section>
 
-<section>
-  <div class="Logout">
-    <button mat-button (click)="logout()">Logout</button>
-  </div>
-</section>
+  <!-- ✅ Change Password -->
+  <section class="change-password">
+    <h2>Change Password</h2>
+
+    <form [formGroup]="updateForm" (ngSubmit)="onChangePassword()">
+      <label for="currentPassword">Current Password:</label>
+      <input
+        type="password"
+        id="currentPassword"
+        formControlName="currentPassword"
+        required
+      />
+
+      <label for="newPassword">New Password:</label>
+      <input
+        type="password"
+        id="newPassword"
+        formControlName="newPassword"
+        required
+      />
+
+      <label for="confirmPassword">Confirm New Password:</label>
+      <input
+        type="password"
+        id="confirmPassword"
+        formControlName="confirmPassword"
+        required
+      />
+      <button type="submit">Change Password</button>
+    </form>
+  </section>
+
+ 
+  <!-- ✅ Logout -->
+  <section>
+    <div class="Logout">
+      <button mat-button (click)="logout()">Logout</button>
+    </div>
+  </section>
 </div>
-
-
-

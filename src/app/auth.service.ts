@@ -122,6 +122,17 @@ export class AuthService {
           return throwError(() => new Error("No user is currently signed in"));
         }
       }
+
+      updateProfilePhoto(photoURL: string): Observable<void> {
+        const user = this.firebaseAuth.currentUser;
+        if (user) {
+          const promise = updateProfile(user, { photoURL }).catch(this.handleError);
+          return from(promise);
+        } else {
+          return throwError(() => new Error("No user is currently signed in"));
+        }
+      }
+      
     
       changePassword(currentPassword: string, newPassword: string): Observable<void> {
         const user = this.firebaseAuth.currentUser;

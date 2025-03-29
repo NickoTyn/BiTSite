@@ -3,8 +3,7 @@ import {
   ViewChild,
   ElementRef,
   AfterViewInit,
-  signal,
-  effect
+  signal
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PistonService } from '../services/piston.service';
@@ -13,7 +12,7 @@ import { SessionService } from '../services/session.service';
 import { debounceTime, Subject } from 'rxjs';
 import { AuthService } from '../auth.service';
 
-declare const monaco: any; // Asigură-te că ai monaco disponibil global
+declare const monaco: any;
 
 @Component({
   standalone: true,
@@ -25,7 +24,6 @@ declare const monaco: any; // Asigură-te că ai monaco disponibil global
 export class CodeEditorComponent implements AfterViewInit {
   @ViewChild('editorContainer', { static: true }) editorContainer!: ElementRef;
 
-
   codeChanges$ = new Subject<string>();
   code = signal('');
   output = signal('');
@@ -35,9 +33,10 @@ export class CodeEditorComponent implements AfterViewInit {
   sessionId: string | null = null;
   isOwner = false;
 
+  participants = signal<{ uid: string; photoURL: string | null }[]>([]);
 
   private editor: any;
-  private lastLocalUpdate: number = Date.now(); // 👈 Adaugă asta
+  private pendingRemoteCode: string | null = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -45,82 +44,109 @@ export class CodeEditorComponent implements AfterViewInit {
     private sessionService: SessionService,
     private authService: AuthService
   ) {}
-  
 
   ngAfterViewInit() {
     this.route.queryParamMap.subscribe(params => {
-      this.language.set(params.get('lang') || 'python');
-      this.version.set(params.get('version') || '3.10.0');
-      this.mode.set((params.get('mode') as any) || 'solo');
-      this.sessionId = params.get('sessionId');
+      const modeParam = (params.get('mode') as 'solo' | 'group') || 'solo';
+      const sessionIdParam = params.get('sessionId');
+      const lang = params.get('lang') || 'python';
+      const version = params.get('version') || '3.10.0';
+      
 
-      if (this.mode() === 'group' && this.sessionId) {
+      this.language.set(lang);
+      this.version.set(version);
+      this.mode.set(modeParam);
+      this.sessionId = sessionIdParam;
+
+      const isGroup = modeParam === 'group';
+
+      if (isGroup && this.sessionId) {
         const currentUser = this.authService.getCurrentUser();
         const uid = currentUser?.uid;
-      
-        if (!uid) return;
-      
-        this.sessionService.getSession(this.sessionId).then(session => {
-          if (!session.exists()) {
-            this.sessionService.createSession(this.sessionId || '', {
-              code: '',
-              language: this.language(),
-              version: this.version(),
-              output: ''
-            }, uid);
-          }
-        });
-      }
-      
 
-      if (this.mode() === 'group' && this.sessionId) {
-        this.sessionService.listenToSession(this.sessionId).subscribe(session => {
-          const incomingCode = session.code;
-          const currentCode = this.editor.getValue();
-        
-          if (session.ownerUid && session.ownerUid === this.authService.getCurrentUser()?.uid) {
-            this.isOwner = true;
-          } else {
-            this.isOwner = false;
-          }          
-
-          this.editor.updateOptions({
-            readOnly: this.mode() === 'group' && !this.isOwner
+        // Creează sesiunea dacă e owner
+        if (uid) {
+          this.sessionService.getSession(this.sessionId).then(session => {
+            if (!session.exists()) {
+              this.sessionService.createSession(this.sessionId || '', {
+                code: '',
+                language: lang,
+                version: version,
+                output: '',
+                ownerUid: uid
+              });
+            }
           });
+        }
+
+
+        // Pornim mereu listener-ul, indiferent dacă e viewer sau owner
+        this.sessionService.listenToSession(this.sessionId).subscribe(session => {
+          const incomingCode = session.code ?? '';
+          const currentUser = this.authService.getCurrentUser();
+          const uid = currentUser?.uid;
+
+          const participantsData = session.participants || {};
+          const list = Object.values(participantsData) as { uid: string; photoURL: string | null }[];
+          this.participants.set(list);
+
+          console.log('👥 Raw participants:', session.participants);
+
+          this.isOwner = session.ownerUid === uid;
+
+          console.log('👤 isOwner:', this.isOwner);
+          console.log('📥 incomingCode:', incomingCode);
+          console.log('📄 currentCode:', this.editor?.getValue());
+
+          if (this.editor) {
+            this.editor.updateOptions({
+              readOnly: isGroup && !this.isOwner
+            });
+          }
+
+          if (!this.editor) {
+            this.pendingRemoteCode = incomingCode;
+            return;
+          }
+
+          const currentCode = this.editor.getValue();
+
+          if (this.isOwner) {
+            if (!incomingCode || incomingCode.trim() === '') {
+              const starter = this.getStarterCode(lang);
+              this.editor.setValue(starter);
+              this.code.set(starter);
+              this.codeChanges$.next(starter);
+            }
+          } else {
+            if (incomingCode && incomingCode !== currentCode) {
+              setTimeout(() => {
+                if (!this.editor) return;
+          
+                this.editor.setValue(incomingCode);
+                this.code.set(incomingCode);
+              }, 50); // mic delay pentru siguranță
+            }
+          }
           
 
-          if (incomingCode && incomingCode !== currentCode) {
-            const selection = this.editor.getSelection(); // salvează poziția cursorului
-        
-            this.editor.executeEdits(null, [
-              {
-                range: this.editor.getModel().getFullModelRange(),
-                text: incomingCode,
-                forceMoveMarkers: true,
-              },
-            ]);
-        
-            this.editor.setSelection(selection); // restaurează cursorul
-            this.code.set(incomingCode);
-          }
-        
           if (session.output !== undefined) {
             this.output.set(session.output);
           }
         });
-        
       }
-    
+
+      // Cod sincronizat (pentru owner)
       this.codeChanges$.pipe(debounceTime(150)).subscribe(newCode => {
-        if (this.mode() === 'group' && this.sessionId) {
+        if (this.mode() === 'group' && this.sessionId && this.isOwner) {
           this.sessionService.updateSession(this.sessionId, {
             code: newCode,
           });
         }
-      });      
-
+      });
     });
 
+    // Inițializare editor după ce Monaco e încărcat
     this.waitForMonaco().then(() => {
       monaco.editor.defineTheme('my-theme', {
         base: 'vs-dark',
@@ -135,12 +161,9 @@ export class CodeEditorComponent implements AfterViewInit {
           'editorCursor.foreground': '#ffffff'
         },
       });
-    
-      // 🖌️ Apply the custom theme
+
       monaco.editor.setTheme('my-theme');
 
-
-      // 🧠 Now create the editor
       this.editor = monaco.editor.create(this.editorContainer.nativeElement, {
         value: '',
         language: this.mapToMonacoLang(this.language()),
@@ -151,47 +174,80 @@ export class CodeEditorComponent implements AfterViewInit {
         smoothScrolling: true,
         wordWrap: 'on'
       });
-      
+
+      // ✅ After editor is initialized, add current user as participant
+if (this.mode() === 'group' && this.sessionId) {
+  const currentUser = this.authService.getCurrentUser();
+  if (currentUser?.uid) {
+    console.log('🔥 Adding participant:', currentUser.uid);
+    this.sessionService.addParticipant(this.sessionId, {
+      uid: currentUser.uid,
+      photoURL: currentUser.photoURL || null,
+    }).then(() => {
+      console.log('✅ Participant added');
+    }).catch(err => {
+      console.error('❌ Failed to add participant', err);
+    });
+  }
+}
+
+
+      // Load latest code from Firestore once after editor is created
+if (this.mode() === 'group' && this.sessionId && !this.isOwner) {
+  this.sessionService.getSession(this.sessionId).then(snapshot => {
+    const sessionData = snapshot.data();
+    const firestoreCode = sessionData?.['code'] ?? '';
+
+    if (firestoreCode && this.editor.getValue().trim() === '') {
+      this.editor.setValue(firestoreCode);
+      this.code.set(firestoreCode);
+    }
+  });
+}
+
+
       this.editor.updateOptions({
         readOnly: this.mode() === 'group' && !this.isOwner
-      });      
+      });
 
-      const starter = this.getStarterCode(this.language());
-      this.editor.setValue(starter);
-      this.code.set(starter);
+      if (this.pendingRemoteCode && this.mode() === 'group' && !this.isOwner) {
+        this.editor.setValue(this.pendingRemoteCode);
+        this.code.set(this.pendingRemoteCode);
+        this.pendingRemoteCode = null;
+      }
 
       this.editor.onDidChangeModelContent(() => {
         const newCode = this.editor.getValue();
         this.code.set(newCode);
-        this.codeChanges$.next(newCode); // doar aici trimitem
+
+        if (this.mode() === 'group' && this.isOwner) {
+          this.codeChanges$.next(newCode);
+        }
       });
-      
     });
+    
   }
 
   runCode() {
     const codeToRun = this.code();
     this.output.set('⌛ Rulează...');
-  
-    
+
     this.piston.runCode({
       code: codeToRun,
       language: this.language(),
       version: this.version()
     }).subscribe({
       next: (res: any) => {
-        console.log('[Piston Response]', res); // 👈 adaugă asta
         const stdout = res?.run?.stdout?.trim();
         const stderr = res?.run?.stderr?.trim();
         const combined = [stdout, stderr].filter(Boolean).join('\n');
         this.output.set(combined || '[Fără output]');
-      },      
+      },
       error: err => {
         this.output.set('❌ Eroare: ' + err.message);
       }
     });
   }
-  
 
   waitForMonaco(): Promise<void> {
     return new Promise<void>((resolve) => {
@@ -205,7 +261,6 @@ export class CodeEditorComponent implements AfterViewInit {
       check();
     });
   }
-  
 
   getStarterCode(lang: string): string {
     const templates: Record<string, string> = {
@@ -218,6 +273,7 @@ export class CodeEditorComponent implements AfterViewInit {
     };
     return templates[lang] || '';
   }
+
   mapToMonacoLang(lang: string): string {
     const map: Record<string, string> = {
       cpp: 'cpp',
