@@ -17,6 +17,7 @@ import { MonacoEditorWrapperComponent } from './monaco-editor-wrapper/monaco-edi
 import { SessionChoiceComponent } from './components/session-choice.component';
 import { LanguageSelectComponent } from './components/language-select.component';
 import { CodeEditorComponent } from './components/code-editor.component';
+import { ScreenSizeGuard } from './guards/screnn-size.guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' }, // Default route
@@ -31,8 +32,9 @@ export const routes: Routes = [
   { path: 'policy-and-cookies', component: PolicyAndCookiesComponent },
   { path: 'halloween-vote', component: PumpkinVoteComponent },
   { path: 'shared-code', component: MonacoEditorWrapperComponent },
-  { path: 'session-choice', component: SessionChoiceComponent },
-  { path: 'language', component: LanguageSelectComponent },
-  { path: 'editor', component: CodeEditorComponent },
+  { path: 'session-choice', component: SessionChoiceComponent, canActivate: [ScreenSizeGuard] },
+  { path: 'language', component: LanguageSelectComponent, canActivate: [ScreenSizeGuard] },
+  { path: 'editor', component: CodeEditorComponent, canActivate: [ScreenSizeGuard] },
+  
 
 ];

@@ -1,40 +1,74 @@
+
 <div class="code-wrapper">
-
-
-  
-  
-
-      
-<div class="editor-page">
+  <div class="editor-page">
+    <!-- Toolbar -->
     <div class="toolbar">
-      <span>💻 {{ language() }} ({{ version() }})</span>
-      <div *ngIf="!isOwner && mode() === 'group'" class="viewer-icon-container">
-        <svg xmlns="http://www.w3.org/2000/svg" class="viewer-icon" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
-          <path d="M12 5c-7.633 0-12 7-12 7s4.367 7 12 7 12-7 12-7-4.367-7-12-7zm0 12c-2.757 0-5-2.243-5-5s2.243-5 5-5
-            5 2.243 5 5-2.243 5-5 5zm0-8c-1.657 0-3 1.343-3 3s1.343 3 3 3
-            3-1.343 3-3-1.343-3-3-3z"/>
-        </svg>
-        <span class="viewer-tooltip">Viewing Mode</span>
+      <div class="left-wrapper">
+        <span>💻 {{ language() }} ({{ version() }})</span>
+
+        <!-- Viewer-only icon -->
+        <div *ngIf="!isEditor && mode() === 'group'" class="viewer-icon-container">
+          <svg xmlns="http://www.w3.org/2000/svg" class="viewer-icon" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+            <path d="M12 5c-7.633 0-12 7-12 7s4.367 7 12 7 12-7 12-7-4.367-7-12-7zm0 12c-2.757 0-5-2.243-5-5s2.243-5 5-5
+              5 2.243 5 5-2.243 5-5 5zm0-8c-1.657 0-3 1.343-3 3s1.343 3 3 3
+              3-1.343 3-3-1.343-3-3-3z"/>
+          </svg>
+          <span class="viewer-tooltip">Viewing Mode</span>
+        </div>
       </div>
+
+      <!-- Participants Avatars -->
       <div class="participant-avatars" *ngIf="participants().length > 0">
-        <img *ngFor="let user of participants()" [src]="user.photoURL || 'https://ui-avatars.com/api/?name=U'" class="avatar" />
-      </div>      
+        <ng-container *ngFor="let user of participants()">
+          <div class="avatar-wrapper" (click)="toggleUserCard(user, $event)">
+            <img
+              *ngIf="user.photoURL; else guestIcon"
+              [src]="user.photoURL"
+              class="avatar"
+            />
+            <ng-template #guestIcon>
+              <svg class="avatar" viewBox="0 0 24 24" fill="currentColor">
+                <circle cx="12" cy="8" r="4" />
+                <path d="M4 20c0-4 4-6 8-6s8 2 8 6" />
+              </svg>
+            </ng-template>
+          </div>
+        </ng-container>
+      </div>
+
       <button (click)="runCode()">▶ Run</button>
     </div>
-  
+
+    <!-- Main Panel -->
     <div class="main-panel">
       <div class="editor-wrapper">
         <div #editorContainer class="editor-container"></div>
       </div>
-    
+
       <div class="output-box">
+        <div class="output-wrapper">
         <h3>🧾 Output:</h3>
         <pre>{{ output() }}</pre>
       </div>
+       <button *ngIf="mode() === 'group' && isGroupOwner && !isEditor" (click)="makeSelfEditor()">
+  👑 Devino Editor
+</button>
+
+      </div>
     </div>
-    
-    
   </div>
 
-
-  
+  <!-- Floating User Action Card -->
+  <div
+    *ngIf="selectedUser() && popupPosition() && isGroupOwner"
+    class="user-action-card fixed"
+    [ngStyle]="{
+      top: popupPosition()?.y + 'px',
+      left: popupPosition()?.x + 'px'
+    }"
+  >
+    <div class="card-name">{{ selectedUser()?.displayName || 'Anonim' }}</div>
+    <button (click)="makeEditor(selectedUser()!.uid); $event.stopPropagation()">✍ Make Editor</button>
+    <!-- <button (click)="kickUser(selectedUser()!.uid); $event.stopPropagation()">❌ Kick</button>     -->
+  </div>
+</div>

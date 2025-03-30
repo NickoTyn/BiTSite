@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Firestore, doc, setDoc, docData, updateDoc, collection } from '@angular/fire/firestore';
+import { Firestore, doc, setDoc, docData, updateDoc, collection, deleteField } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { getDoc } from '@angular/fire/firestore'; // dacă nu e deja
 
@@ -47,12 +47,22 @@ export class SessionService {
     return getDoc(ref);
   }
 
-  addParticipant(sessionId: string, user: { uid: string; photoURL: string | null }) {
+  
+  addParticipant(sessionId: string, user: { uid: string; photoURL: string | null; displayName?: string }) {
     const ref = this.getSessionDoc(sessionId);
-    console.log('🔥 Adding participant:', user);
     return updateDoc(ref, {
-      [`participants.${user.uid}`]: user
+      [`participants.${user.uid}`]: {
+        ...user,
+        lastActive: Date.now()
+      }
     });
   }
+
+  removeParticipant(sessionId: string, uid: string) {
+    const ref = this.getSessionDoc(sessionId);
+    return updateDoc(ref, {
+      [`participants.${uid}`]: deleteField()
+    });
+  }  
   
 }

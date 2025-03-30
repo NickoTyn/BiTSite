@@ -133,6 +133,38 @@ export class AuthService {
         }
       }
       
+      async getUserProfileImage(uid: string): Promise<string | null> {
+        const ref = doc(this.firestore, `users/${uid}`);
+        const snap = await getDoc(ref);
+      
+        if (snap.exists() && snap.data()['profileImage']) {
+          return snap.data()['profileImage'];
+        }
+      
+        // fallback to Firebase Auth photoURL
+        const currentUser = this.getCurrentUser();
+        if (currentUser && currentUser.uid === uid && currentUser.photoURL) {
+          return currentUser.photoURL;
+        }
+      
+        return null;
+      }
+      
+
+      getUserProfileFromFirestore(uid: string): Promise<any> {
+        const ref = doc(this.firestore, `users/${uid}`);
+        return getDoc(ref).then(snap => snap.exists() ? snap.data() : null);
+      }
+       
+
+async saveProfileImageToFirestore(base64Image: string): Promise<void> {
+  const user = this.firebaseAuth.currentUser;
+  if (!user) throw new Error('Not authenticated');
+
+  const userDoc = doc(this.firestore, `users/${user.uid}`);
+  await setDoc(userDoc, { profileImage: base64Image }, { merge: true });
+}
+
     
       changePassword(currentPassword: string, newPassword: string): Observable<void> {
         const user = this.firebaseAuth.currentUser;

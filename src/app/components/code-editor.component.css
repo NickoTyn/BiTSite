@@ -61,6 +61,10 @@
   font-weight: 500;
 }
 
+.left-wrapper{
+  display: flex;
+}
+
 /* Button Styling */
 button {
   background-color: #675fff;
@@ -76,7 +80,6 @@ button {
 
 button:hover {
   background-color: #8b6eff;
-  transform: translateY(-1px);
 }
 
 button:active {
@@ -84,10 +87,9 @@ button:active {
 }
 
 
-
-
 .output-box {
   flex: 1;
+  justify-content:space-between;
   background-color: #111630;
   padding: 1.2rem;
   border-radius: 12px;
@@ -111,12 +113,12 @@ button:active {
 /* Viewer Warning Banner */
 .viewer-icon-container {
   z-index: 10;
+  margin-left: 20px;
 }
 
 .viewer-icon {
   color: #93a4ff;
   cursor: default;
-  transform: translateY(2px);
 }
 
 .viewer-tooltip {
@@ -128,9 +130,11 @@ button:active {
   font-family: 'Poppins', sans-serif;
   border-radius: 6px;
   padding: 6px 10px;
+  margin-left: 6px;
   position: absolute;
   z-index: 20;
   white-space: nowrap;
+  transform: translateY(-3px);
   transition: opacity 0.2s ease;
   font-size: 0.85rem;
   pointer-events: none;
@@ -147,15 +151,138 @@ button:active {
   gap: 0.5rem;
   align-items: center;
   margin-right: 1rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 40vw; /* sau cât spațiu vrei să aloci */
+  padding-bottom: 4px;
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: #666 transparent;
+}
+
+/* Webkit (Chrome, Edge) */
+.participant-avatars::-webkit-scrollbar {
+  height: 4px;
+}
+
+.participant-avatars::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.participant-avatars::-webkit-scrollbar-thumb {
+  background-color: #666;
+  border-radius: 10px;
+}
+
+
+.avatar-wrapper {
+  position: relative;
+  display: inline-block;
 }
 
 .avatar {
-  width: 34px;
-  height: 34px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid var(--secondary-color);
   box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
 }
 
+.avatar-tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-float {
+  position: absolute;
+  top: -36px; /* 💡 appears above avatar */
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: white;
+  padding: 4px 8px;
+  font-size: 0.7rem;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 100;
+}
+
+
+.tooltip-text {
+  position: absolute;
+  bottom: -30px; /* spațiu sub avatar */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #222;
+  color: #fff;
+  font-size: 0.75rem;
+  padding: 4px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 100;
+}
+
+.avatar-tooltip:hover .tooltip-float {
+  opacity: 1;
+}
+
+
+svg.avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: #555;
+  color: white;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+}
+
+/*Participant Card START*/
+.user-action-card {
+  position: absolute;
+  top: 44px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1e1e2e;
+  border: 1px solid #444;
+  padding: 8px 12px;
+  border-radius: 10px;
+  z-index: 100;
+  min-width: 120px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.user-action-card button {
+  font-size: 0.75rem;
+  padding: 4px 6px;
+  border: none;
+  border-radius: 6px;
+  background-color: #675fff;
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.user-action-card button:hover {
+  background-color: #8b6eff;
+}
+
+.card-name {
+  font-weight: bold;
+  text-align: center;
+  color: #eee;
+  font-size: 0.8rem;
+}
+
+/*Participant Card END*/
+
 /*Participants END*/
+

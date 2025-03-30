@@ -5,6 +5,10 @@ import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } 
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { MakeAPostComponent } from '../make-a-post/make-a-post.component';
+import { ImageCroppedEvent, ImageCropperComponent } from 'ngx-image-cropper';
+import { ImageCropperModule } from 'ngx-image-cropper';
+import { CommonModule } from '@angular/common';
+import { doc, getDoc } from 'firebase/firestore';
 
 @Component({
   selector: 'app-account',
@@ -12,7 +16,9 @@ import { MakeAPostComponent } from '../make-a-post/make-a-post.component';
   imports: [
     MatDialogModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ImageCropperModule,
+    CommonModule
   ],
   templateUrl: './account.component.html',
   styleUrl: './account.component.css'
@@ -47,41 +53,40 @@ export class AccountComponent implements OnInit {
     this.isAdminUser = await this.isAdmin();
     this.isModeratorUser = await this.isModerator();
 
-    this.authService.user$.subscribe(user => {
+    this.authService.user$.subscribe(async user => {
       if (user) {
         this.username = user.displayName;
         this.photoURL = user.photoURL ?? null;
         this.authService.currentUserSig.set({
           email: user.email!,
-          username: user.displayName!,
+          username: user.displayName!
         });
-        console.log('🔥 User from auth:', user);
+
+        const docRef = doc(this.authService.firestore, `users/${user.uid}`);
+        const snap = await getDoc(docRef);
+        const data = snap.data();
+        if (data?.['profileImage']) {
+          this.photoURL = data['profileImage'];
+        }
       } else {
         this.username = null;
         this.photoURL = null;
         this.authService.currentUserSig.set(null);
       }
-
-      if (user) {
-        console.log('📸 user.photoURL:', user.photoURL);
-      }
-      
     });
 
     this.authService.userRank$.subscribe(rank => {
       this.userRank = rank;
     });
-    
   }
 
+
   async isAdmin(): Promise<boolean> {
-    const userRank = await this.authService.getUserRank();
-    return userRank === 'admin';
+    return (await this.authService.getUserRank()) === 'admin';
   }
 
   async isModerator(): Promise<boolean> {
-    const userRank = await this.authService.getUserRank();
-    return userRank === 'moderator';
+    return (await this.authService.getUserRank()) === 'moderator';
   }
 
   onUpdateUsername() {
@@ -115,6 +120,33 @@ export class AccountComponent implements OnInit {
     }
   }
 
+//ACCOUNT IMAGE START
+
+imageChangedEvent: any = '';
+croppedImage: string = '';
+
+fileChangeEvent(event: any): void {
+  console.log('📤 Image file selected:', event);
+  this.imageChangedEvent = event;
+}
+
+imageCropped(event: ImageCroppedEvent) {
+  this.croppedImage = event.base64!;
+}
+
+onSaveCroppedImage(): void {
+  if (!this.croppedImage) return;
+
+  this.authService.saveProfileImageToFirestore(this.croppedImage).then(() => {
+    console.log('✅ Saved to Firestore');
+    this.photoURL = this.croppedImage;
+    this.imageChangedEvent = null;
+    this.croppedImage = '';
+  }).catch(err => {
+    console.error('❌ Failed to save image:', err);
+  });
+}
+
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input?.files?.[0]) {
@@ -128,6 +160,35 @@ export class AccountComponent implements OnInit {
     }
   }
 
+  
+
+  compressBase64Image(base64: string, maxSize = 50, quality = 0.6): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+  
+        // Maintain aspect ratio while resizing
+        const scale = Math.min(maxSize / img.width, maxSize / img.height);
+        const width = img.width * scale;
+        const height = img.height * scale;
+  
+        canvas.width = width;
+        canvas.height = height;
+  
+        ctx?.drawImage(img, 0, 0, width, height);
+  
+        const compressedBase64 = canvas.toDataURL('image/jpeg', quality);
+        resolve(compressedBase64);
+      };
+  
+      img.onerror = (err) => reject(err);
+      img.src = base64;
+    });
+  }
+  
+
   onSaveProfileImage(): void {
     if (this.previewUrl) {
       this.authService.updateProfilePhoto(this.previewUrl).subscribe({
@@ -139,6 +200,9 @@ export class AccountComponent implements OnInit {
       });
     }
   }
+
+
+//ACCOUNT IMAGE END
 
   openDialog(): void {
     this.dialog.open(MakeAPostComponent);

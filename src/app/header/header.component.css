@@ -25,12 +25,12 @@
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #db0ed12e;
+  background-color: #db0ed168;
   color: #fff;
   padding: 10px;
   z-index: 1000;
   transition: all 1.2s ease;
-  box-shadow: 0 4px 10px #db0ed148, /* Deeper glow */ 0 1px 3px #0301022e; /* Subtle inner shadow */
+  box-shadow: 0 4px 10px #db0ed1af, /* Deeper glow */ 0 1px 3px #0301022e; /* Subtle inner shadow */
 }
 
 .site-header {
@@ -198,6 +198,13 @@ body {
   .activity {
     width: auto; /* Allows each activity to fill the container */
     margin: 10px auto; /* Adjust margin as needed for mobile layout */
+  }
+}
+
+@media (max-width: 768px) {
+
+  #coding{
+    display: none;
   }
 }
 
