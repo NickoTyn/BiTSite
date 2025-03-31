@@ -1,18 +1,58 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing Script&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 
-.site-footer {
 
+
+.site-footer {
   color: #fff;
-  padding: 8px 0;
-  padding-top:20px;
+  padding: 20px 0 0 0px;
   background-color: #db0ed12e;
-  text-align: center;
-  
-  border-top: 3px solid #d40dc4;
-  margin-top:40px;
-  z-index: 500;
   box-shadow: 0 4px 200px 20px #db0ed148, /* Deeper glow */ 0 1px 3px #0301022e; /* Subtle inner shadow */
+  border-top: 3px solid #d40dc4;
+  text-align: center;
+  position: relative;
+  overflow: hidden; /* ensure nothing spills out */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  z-index: 500;
+}
+
+.site-footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 200%;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    #d40dc4 20%,
+    #fff 50%,
+    #d40dc4 80%,
+    transparent 100%
+  );
+  box-shadow: 0 0 8px #d40dc4, 0 0 12px #ff66ff;
+  animation: electric-glow 2s linear infinite;
+  z-index: 1;
+}
+
+@keyframes electric-glow {
+  0% {
+    left: -50%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+
+@keyframes electric-glow {
+  0% {
+    left: -50%;
+  }
+  100% {
+    left: 100%;
+  }
 }
 
 .footer-container {
@@ -31,6 +71,7 @@
 }
 
 .footer-section h4 {
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
   margin-bottom: 10px;
 }
 

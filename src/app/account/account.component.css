@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 
 body {
-    font-family: Arial, sans-serif;
+  font-family: var( --font-family-description);
     background-color: #972ba5;
     margin: 0;
     padding: 0;
@@ -24,6 +24,7 @@ h1 {
     text-transform: capitalize;
     text-align: center;
     color: rgb(255, 255, 255);
+    text-shadow: var(--text-shadow-title);
     margin:40px;
     margin-top:0px;
     padding:10px;
@@ -40,6 +41,8 @@ input{
     background-color:#cd13cd77;
     color:white;
 }
+
+
 
 h2 {
 
@@ -95,8 +98,48 @@ input[type="password"] {
 }
 
 input:focus {
-  z-index: 1111;
+  z-index: 2;
   box-shadow: 0 0 8px 3px rgba(205, 19, 204, 0.7), 0 0 25px 5px rgba(103, 95, 255, 0.7);
+  outline: none;
+}
+
+input[type="text"].hacking-style {
+  letter-spacing: 1px;
+}
+
+
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-wrapper input {
+  flex: 1;
+  padding-right: 40px; /* Add padding to make space for the eye icon inside the input */
+}
+
+.eye-icon {
+  position: absolute;
+  right: 10px; /* Position the icon inside the input field */
+  top: 50%; /* Center the icon vertically */
+  transform: translateY(-100%) translateX(-150%);
+  cursor: pointer;
+  fill: #666;
+  transition: fill 0.2s;
+  z-index: 3;
+  pointer-events: auto; /* Ensure the icon is clickable */
+}
+
+.eye-icon:hover {
+  fill: white;
+}
+
+.profile-photo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .preview-wrapper {
@@ -107,7 +150,8 @@ input:focus {
   
   .profile-image {
     border-radius: 50%;
-    border: 2px solid #ccc;
+    border: 1px solid var(--primary-color);
+    box-shadow: var(--text-shadow-title);
     object-fit: cover;
   }
   
@@ -140,6 +184,8 @@ input:focus {
     margin-top: 1rem;
     border: 2px solid #ccc;
   }
+
+
 
 .profile-picture {
     margin-top: 1rem;

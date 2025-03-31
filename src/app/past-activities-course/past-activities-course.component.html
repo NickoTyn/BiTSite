@@ -117,10 +117,10 @@
                 <p>{{class.description}}</p>
                 <div class="class-materials">
                   <h4>Materials:</h4>
-                  <button class="button" data-text="Awesome" (click)="downloadFiles()">
+                  <button class="button" (click)="downloadFiles(class.filesRef)">
                     <span class="actual-text">&nbsp;DOWNLOAD&nbsp;</span>
                     <span aria-hidden="true" class="hover-text">&nbsp;DOWNLOAD&nbsp;</span>
-                  </button>
+                  </button>                  
                 </div>
                 <div class="class-videos" *ngIf="class.videos.length > 0">
                   <h4>Video Content:</h4>

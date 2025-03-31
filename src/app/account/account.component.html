@@ -1,12 +1,8 @@
 <div class="container">
   <h1>Account Handling Page</h1>
 
-  <section class="make-post" *ngIf="isAdminUser || isModeratorUser">
-    <button mat-button (click)="openDialog()">Make a Post</button>
-  </section>
 
   <section class="profile-photo">
-    <h2>Profile Picture</h2>
 
     <div *ngIf="!imageChangedEvent" class="preview-wrapper">
       <img
@@ -52,6 +48,11 @@
     <p>{{ username }}</p>
   </section>
 
+
+  <section class="make-post" *ngIf="isAdminUser || isModeratorUser">
+    <button mat-button (click)="openDialog()">Make a Post</button>
+  </section>
+
   <section class="update-info">
     <h2>Update Account Details</h2>
     <form [formGroup]="updateForm" (ngSubmit)="onUpdateUsername()">
@@ -61,17 +62,81 @@
     </form>
   </section>
 
+  
   <section class="change-password">
     <h2>Change Password</h2>
     <form [formGroup]="updateForm" (ngSubmit)="onChangePassword()">
       <label for="currentPassword">Current Password:</label>
-      <input type="password" id="currentPassword" formControlName="currentPassword" required />
+      <div class="password-wrapper">
+        <input
+        [type]="showCurrentPassword ? 'text' : 'password'"
+        id="currentPassword"
+        formControlName="currentPassword"
+        [class.hacking-style]="showCurrentPassword"
+      />      
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="20"
+          viewBox="0 0 24 24"
+          width="20"
+          fill="#000"
+          class="eye-icon"
+          (click)="togglePasswordVisibility('current')"
+        >
+          <path d="M0 0h24v24H0z" fill="none" />
+          <path
+            d="M12 4.5C7.305 4.5 3.133 7.11 1 12c2.133 4.89 6.305 7.5 11 7.5s8.867-2.61 11-7.5c-2.133-4.89-6.305-7.5-11-7.5zm0 12c-2.485 0-4.5-2.015-4.5-4.5S9.515 7.5 12 7.5s4.5 2.015 4.5 4.5-2.015 4.5-4.5 4.5zm0-7.5c-1.657 0-3 1.343-3 3s1.343 3 3 3 3-1.343 3-3-1.343-3-3-3z"
+          />
+        </svg>
+      </div>
 
       <label for="newPassword">New Password:</label>
-      <input type="password" id="newPassword" formControlName="newPassword" required />
+      <div class="password-wrapper">
+        <input
+          [type]="showNewPassword ? 'text' : 'password'"
+          id="newPassword"
+          formControlName="newPassword"
+          required
+        />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="20"
+          viewBox="0 0 24 24"
+          width="20"
+          fill="#000"
+          class="eye-icon"
+          (click)="togglePasswordVisibility('new')"
+        >
+          <path d="M0 0h24v24H0z" fill="none" />
+          <path
+            d="M12 4.5C7.305 4.5 3.133 7.11 1 12c2.133 4.89 6.305 7.5 11 7.5s8.867-2.61 11-7.5c-2.133-4.89-6.305-7.5-11-7.5zm0 12c-2.485 0-4.5-2.015-4.5-4.5S9.515 7.5 12 7.5s4.5 2.015 4.5 4.5-2.015 4.5-4.5 4.5zm0-7.5c-1.657 0-3 1.343-3 3s1.343 3 3 3 3-1.343 3-3-1.343-3-3-3z"
+          />
+        </svg>
+      </div>
 
       <label for="confirmPassword">Confirm New Password:</label>
-      <input type="password" id="confirmPassword" formControlName="confirmPassword" required />
+      <div class="password-wrapper">
+        <input
+          [type]="showConfirmPassword ? 'text' : 'password'"
+          id="confirmPassword"
+          formControlName="confirmPassword"
+          required
+        />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="20"
+          viewBox="0 0 24 24"
+          width="20"
+          fill="#000"
+          class="eye-icon"
+          (click)="togglePasswordVisibility('confirm')"
+        >
+          <path d="M0 0h24v24H0z" fill="none" />
+          <path
+            d="M12 4.5C7.305 4.5 3.133 7.11 1 12c2.133 4.89 6.305 7.5 11 7.5s8.867-2.61 11-7.5c-2.133-4.89-6.305-7.5-11-7.5zm0 12c-2.485 0-4.5-2.015-4.5-4.5S9.515 7.5 12 7.5s4.5 2.015 4.5 4.5-2.015 4.5-4.5 4.5zm0-7.5c-1.657 0-3 1.343-3 3s1.343 3 3 3 3-1.343 3-3-1.343-3-3-3z"
+          />
+        </svg>
+      </div>
 
       <button type="submit">Change Password</button>
     </form>

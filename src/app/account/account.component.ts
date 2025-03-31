@@ -35,6 +35,10 @@ export class AccountComponent implements OnInit {
   selectedFile: File | null = null;
   previewUrl: string | null = null;
 
+  showCurrentPassword = false;
+  showNewPassword = false;
+  showConfirmPassword = false;
+
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -203,6 +207,54 @@ onSaveCroppedImage(): void {
 
 
 //ACCOUNT IMAGE END
+
+//PASSWORD TOGGLE START
+
+togglePasswordVisibility(field: 'current' | 'new' | 'confirm'): void {
+  if (field === 'current') {
+    this.showCurrentPassword = !this.showCurrentPassword;
+    if (this.showCurrentPassword) {
+      this.animatePasswordReveal(field);
+    }
+  } else if (field === 'new') {
+    this.showNewPassword = !this.showNewPassword;
+    if (this.showNewPassword) {
+      this.animatePasswordReveal(field);
+    }
+  } else if (field === 'confirm') {
+    this.showConfirmPassword = !this.showConfirmPassword;
+    if (this.showConfirmPassword) {
+      this.animatePasswordReveal(field);
+    }
+  }
+}
+
+
+
+animatePasswordReveal(field: 'current' | 'new' | 'confirm'): void {
+  const control = this.updateForm.get(
+    field === 'current' ? 'currentPassword' :
+    field === 'new' ? 'newPassword' : 'confirmPassword'
+  );
+
+  if (!control) return;
+
+  const fullValue = control.value;
+  let index = 0;
+  const interval = setInterval(() => {
+    if (index <= fullValue.length) {
+      control.setValue(fullValue.substring(0, index) + '•'.repeat(fullValue.length - index));
+      index++;
+    } else {
+      control.setValue(fullValue); // Ensure final full value is set
+      clearInterval(interval);
+    }
+  }, 50); // speed of typing
+}
+
+
+
+//PASSWORD TOGGLE END
 
   openDialog(): void {
     this.dialog.open(MakeAPostComponent);

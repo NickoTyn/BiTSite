@@ -232,13 +232,20 @@ export class PastActivitiesCourseComponent implements OnInit, Class {
     }
   }
 
-  async downloadFiles(): Promise<void> {
-    if (!this.filesRef || this.filesRef === 'none') {
+  async downloadFiles(filesRef: string | undefined): Promise<void> {
+    if (!filesRef || filesRef === 'none') {
       console.error('No files available for download.');
       return;
     }
-    const fileUrls = this.filesRef.split(',').map(url => url.trim());
+  
+    const fileUrls = Array.isArray(filesRef)
+      ? filesRef
+      : typeof filesRef === 'string'
+        ? filesRef.split(',').map(url => url.trim())
+        : [];
+  
     console.log('Files to download:', fileUrls);
+  
     fileUrls.forEach(url => {
       const a = document.createElement('a');
       a.href = url;
@@ -248,6 +255,7 @@ export class PastActivitiesCourseComponent implements OnInit, Class {
       document.body.removeChild(a);
     });
   }
+  
 
   loadMoreClasses(): void {
     // Implement logic to load more classes if needed.
