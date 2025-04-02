@@ -107,7 +107,7 @@ export class MainactivitiesComponent {
         function updateModelScale() {
           if (!model) return;
           const baseWidth = 450; // reference width
-          const scale = (container ? container.clientWidth / baseWidth : 1) * 0.8; // Scaled to half
+          const scale = (container ? container.clientWidth / baseWidth : 1); // Scaled to half
           model.scale.set(scale, scale, scale);
         }
       

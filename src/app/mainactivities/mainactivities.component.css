@@ -398,6 +398,15 @@ svg {
     overflow: hidden;
     display: none;
   }
+
+  #three-container {
+    width: 150%;
+    max-width: 450px;
+    aspect-ratio: 1 / 1;
+    height: auto;
+    position: relative;
+    overflow: hidden; /* Prevent scrolling */
+  }
 }
 
 
@@ -417,6 +426,7 @@ svg {
   aspect-ratio: 1 / 1;
   height: auto;
   position: relative;
+  overflow: hidden; /* Prevent scrolling */
 }
 
 #three-container canvas {
