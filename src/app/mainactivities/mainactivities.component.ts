@@ -5,7 +5,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormBuilder } from '@angular/forms';
 import { Firestore, collection, doc, getDocs, getDoc, setDoc, writeBatch, CollectionReference, DocumentData, Timestamp } from '@angular/fire/firestore';
-
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 @Component({
     selector: 'app-mainactivities',
@@ -35,9 +37,110 @@ export class MainactivitiesComponent {
         this.fetchAnnouncements();
         this.addThumbnailEventListeners();
 
-        console.log("REFLINK:", this.queue[0].refLink);
+        this.init3DModel();
     }
 
+    private init3DModel(): void {
+        const container = document.getElementById('three-container');
+        if (!container) return;
+      
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 1000);
+        camera.position.set(0, 2, 5);
+        camera.lookAt(0, 0.5, 0);
+      
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setPixelRatio(window.devicePixelRatio);
+        container.appendChild(renderer.domElement);
+      
+        // Lights
+        scene.add(new THREE.HemisphereLight(0xffffff, 0x000000, 1));
+        scene.add(new THREE.AmbientLight(0xffffff, 0.5));
+        const dirLight = new THREE.DirectionalLight(0xffffff, 1);
+        dirLight.position.set(10, 10, 10);
+        scene.add(dirLight);
+      
+        const controls = new OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.update();
+      
+        const loader = new GLTFLoader();
+        let model: THREE.Object3D;
+        let mixer: THREE.AnimationMixer;
+        const clock = new THREE.Clock();
+      
+        // Mouse tracking
+        let targetRotationX = 0;
+        let targetRotationY = 0;
+      
+        document.addEventListener('mousemove', (event) => {
+          const mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+          const mouseY = (event.clientY / window.innerHeight) * 2 - 1;
+          targetRotationY = mouseX * 0.5;
+          targetRotationX = mouseY * 0.3;
+        });
+      
+        // Load model
+        loader.load(
+          'assets/3D/robot_playground.glb',
+          (gltf) => {
+            model = gltf.scene;
+            model.position.set(0, -0.5, 0);
+            scene.add(model);
+      
+            if (gltf.animations.length > 0) {
+              mixer = new THREE.AnimationMixer(model);
+              gltf.animations.forEach((clip) => {
+                mixer.clipAction(clip).play();
+              });
+            }
+      
+            // Initial scale
+            updateModelScale();
+          },
+          undefined,
+          (error) => {
+            console.error("Model load error:", error);
+          }
+        );
+      
+        function updateModelScale() {
+          if (!model) return;
+          const baseWidth = 450; // reference width
+          const scale = (container ? container.clientWidth / baseWidth : 1) * 0.8; // Scaled to half
+          model.scale.set(scale, scale, scale);
+        }
+      
+        function onResize() {
+          if (!container) return;
+          const width = container.clientWidth;
+          const height = container.clientHeight;
+          camera.aspect = width / height;
+          camera.updateProjectionMatrix();
+          renderer.setSize(width, height);
+          updateModelScale();
+        }
+      
+        window.addEventListener('resize', onResize);
+        onResize(); // call once initially
+      
+        function animate() {
+          requestAnimationFrame(animate);
+          const delta = clock.getDelta();
+      
+          if (mixer) mixer.update(delta);
+          if (model) {
+            model.rotation.y += (targetRotationY - model.rotation.y) * 0.1;
+            model.rotation.x += (targetRotationX - model.rotation.x) * 0.1;
+          }
+      
+          renderer.render(scene, camera);
+        }
+      
+        animate();
+      }
+       
+    
     async fetchAnnouncements() {
         try {
             // Reference to the 'validated-posts' collection
@@ -129,21 +232,21 @@ export class MainactivitiesComponent {
 
 document.addEventListener('DOMContentLoaded', (event) => {
     const postWrappers = document.querySelectorAll('.post_wrapper');
-    const poza = document.querySelector('.poza') as HTMLElement;
+    const modelContainer = document.getElementById('three-container') as HTMLElement;
     const scrisElements = document.querySelectorAll('.titleDescriptionCompany') as NodeListOf<HTMLElement>;
 
     postWrappers.forEach((postWrapper) => {
         postWrapper.addEventListener('mouseover', () => {
-            poza.style.opacity = '0.1';
-            poza.style.filter = 'blur(1px)';
+            modelContainer.style.opacity = '0.1';
+            modelContainer.style.filter = 'blur(1px)';
             scrisElements.forEach((scris) => {
                 scris.style.opacity = '100%';
             });
         });
 
         postWrapper.addEventListener('mouseout', () => {
-            poza.style.opacity = '1';
-            poza.style.filter = 'blur(0)';
+            modelContainer.style.opacity = '1';
+            modelContainer.style.filter = 'blur(0)';
             scrisElements.forEach((scris) => {
                 scris.style.opacity = '0%';
             });

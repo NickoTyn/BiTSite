@@ -399,3 +399,33 @@ svg {
     display: none;
   }
 }
+
+
+
+.design {
+  position: absolute;
+  top: 0vw;
+  right: 2vw;
+  overflow-x: hidden;
+  z-index: 10; /* sau elimină complet linia z-index */
+}
+
+
+#three-container {
+  width: 100%;
+  max-width: 450px;
+  aspect-ratio: 1 / 1;
+  height: auto;
+  position: relative;
+}
+
+#three-container canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+
+
+
+
