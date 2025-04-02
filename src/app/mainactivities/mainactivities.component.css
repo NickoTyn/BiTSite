@@ -417,6 +417,7 @@ svg {
   right: 2vw;
   overflow-x: hidden;
   z-index: 10; /* sau elimină complet linia z-index */
+  pointer-events: none;
 }
 
 
