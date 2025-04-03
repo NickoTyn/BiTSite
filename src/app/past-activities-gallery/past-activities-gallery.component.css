@@ -203,6 +203,84 @@
   box-shadow: 0 0 25px 15px #972ba5;
 }
 
+/*IMAGE VIEWER START*/
+.image-viewer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(10, 10, 10, 0.8);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  cursor: zoom-out;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  }
+  to {
+    opacity: 1;
+    backdrop-filter: blur(8px);
+  }
+}
+
+.image-viewer-content {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  max-height: 90vh;
+  max-width: 90vw;
+  gap: 16px;
+}
+
+
+.viewer-image {
+  max-height: 80vh;
+  max-width: 80vw;
+  height: auto;
+  width: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 25px #972ba5;
+  cursor: default;
+  object-fit: contain;
+}
+
+.nav-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #330329;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  padding: 10px 20px;
+  cursor: pointer;
+  z-index: 10;
+  border-radius: 50%;
+  transition: background 0.3s;
+}
+
+.nav-button:hover {
+  background: #972ba5;
+}
+
+.nav-button.left {
+  left: 20px;
+}
+
+.nav-button.right {
+  right: 20px;
+}
+/* IMAGE VIEWER END */
+
 
 /* Responsive Styles */
 @media (max-width: 968px) {

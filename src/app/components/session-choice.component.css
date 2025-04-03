@@ -4,6 +4,7 @@
   height: 100vh;
   display: flex;
   overflow: hidden;
+  background: linear-gradient(180deg, #ff00ff, #675fff); /* your custom line color */
 }
 
 .session-option {

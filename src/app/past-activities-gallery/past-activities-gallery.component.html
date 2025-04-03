@@ -20,9 +20,24 @@
     </div>
     <div class="container-img" *ngIf="imageUrls.length">
       <div class="image-grid">
-        <div *ngFor="let image of imageUrls" class="image-item">
+        <div *ngFor="let image of imageUrls; let i = index" class="image-item" (click)="openImageViewer(i)">
           <img [src]="image.url" alt="Uploaded Image">
         </div>
+        
+        <!-- Image Viewer Popup -->
+        <div class="image-viewer-overlay" *ngIf="isViewerOpen" (click)="closeImageViewer($event)">
+          <div class="image-viewer-content" (click)="$event.stopPropagation()">
+            <button class="nav-button left" (click)="prevImage($event)"><</button>
+            <img 
+              [src]="imageUrls[currentImageIndex]?.url" 
+              class="viewer-image" 
+              alt="Fullscreen Image"
+            />
+            <button class="nav-button right" (click)="nextImage($event)">></button>
+          </div>
+        </div>
+        
+
       </div>
     </div>
   </div>

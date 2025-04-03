@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { getStorage, ref, listAll, getDownloadURL } from 'firebase/storage';
 import { Firestore, doc, getDoc, collection, getDocs, query, where } from '@angular/fire/firestore';
@@ -108,4 +108,54 @@ export class PastActivitiesGalleryComponent implements OnInit {
       img.onerror = (error) => reject(error);
     });
   }
+
+  /*IMAGE VIEWER START*/
+  
+  isViewerOpen = false;
+currentImageIndex = 0;
+
+openImageViewer(index: number): void {
+  this.currentImageIndex = index;
+  this.isViewerOpen = true;
+}
+
+closeImageViewer(event: MouseEvent): void {
+  const target = event.target as HTMLElement;
+
+  // Only close if clicked on the background (not image or nav buttons)
+  const clickedInsideViewer = target.closest('.image-viewer-content');
+  if (!clickedInsideViewer) {
+    this.isViewerOpen = false;
+  }
+}
+
+
+prevImage(event?: Event): void {
+  event?.stopPropagation();
+  if (this.imageUrls.length > 0) {
+    this.currentImageIndex = (this.currentImageIndex - 1 + this.imageUrls.length) % this.imageUrls.length;
+  }
+}
+
+nextImage(event?: Event): void {
+  event?.stopPropagation();
+  if (this.imageUrls.length > 0) {
+    this.currentImageIndex = (this.currentImageIndex + 1) % this.imageUrls.length;
+  }
+}
+
+@HostListener('document:keydown', ['$event'])
+handleKeyboardEvent(event: KeyboardEvent): void {
+  if (this.isViewerOpen) {
+    if (event.key === 'ArrowLeft') {
+      this.prevImage();
+    } else if (event.key === 'ArrowRight') {
+      this.nextImage();
+    } else if (event.key === 'Escape') {
+      this.isViewerOpen = false;
+    }
+  }
+}
+
+  /*IMAGE VIEWER END*/ 
 }

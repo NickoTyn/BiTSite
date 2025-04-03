@@ -505,4 +505,19 @@ export class CodeEditorComponent implements AfterViewInit {
       this.popupPosition.set(null);
     }
   }
+
+  copiedPopup = signal(false);
+
+copyLink() {
+  const url = window.location.href;
+  navigator.clipboard.writeText(url).then(() => {
+    this.copiedPopup.set(true);
+    setTimeout(() => {
+      this.copiedPopup.set(false);
+    }, 2000);
+  }).catch(err => {
+    console.error('❌ Failed to copy:', err);
+  });
+}
+
 }
